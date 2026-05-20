@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UniCal — Elevator Pitch Portfolio</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: #f3f6fb;
+      color: #121826;
+      line-height: 1.6;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 28px 18px 60px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 18px;
+      padding: 14px 18px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.84);
+      backdrop-filter: blur(18px);
+      border: 1px solid #e3e9f6;
+      position: sticky;
+      top: 14px;
+      z-index: 20;
+      box-shadow: 0 14px 34px rgba(18, 24, 38, 0.06);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 950;
+      letter-spacing: -0.05em;
+    }
+
+    .logo span {
+      color: #3157ff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: #61708a;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 850;
+      padding: 8px 10px;
+      border-radius: 999px;
+    }
+
+    .nav-links a:hover {
+      background: #edf2ff;
+      color: #3157ff;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 38px;
+      align-items: center;
+      padding: 58px;
+      border-radius: 36px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(119, 223, 255, 0.32), transparent 30%),
+        radial-gradient(circle at 12% 80%, rgba(255, 255, 255, 0.16), transparent 26%),
+        linear-gradient(135deg, #121826, #3157ff);
+      color: white;
+      box-shadow: 0 26px 70px rgba(18, 24, 38, 0.22);
+      overflow: hidden;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.13);
+      color: #dbe8ff;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #7df1ff;
+    }
+
+    .hero h1 {
+      max-width: 780px;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: 0.95;
+      margin-bottom: 20px;
+      letter-spacing: -0.07em;
+    }
+
+    .hero h1 span {
+      color: #8fe3ff;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      font-size: 20px;
+      color: #edf4ff;
+      margin-bottom: 22px;
+    }
+
+    .one-liner {
+      padding: 18px 20px;
+      border-radius: 22px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: 850;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 20px;
+      border-radius: 15px;
+      font-size: 14px;
+      font-weight: 900;
+      text-decoration: none;
+    }
+
+    .button.primary {
+      background: #ffffff;
+      color: #121826;
+    }
+
+    .button.secondary {
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      color: white;
+    }
+
+    .phone-mockup {
+      position: relative;
+      width: min(356px, 100%);
+      margin: 0 auto;
+      padding: 16px;
+      border-radius: 40px;
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+    }
+
+    .phone-screen {
+      min-height: 564px;
+      border-radius: 30px;
+      background: #ffffff;
+      color: #121826;
+      padding: 22px;
+      box-shadow: inset 0 0 0 1px rgba(18, 24, 38, 0.08);
+    }
+
+    .screen-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .screen-header strong {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3157ff, #8fe3ff);
+    }
+
+    .mock-hero {
+      min-height: 140px;
+      margin-bottom: 16px;
+      border-radius: 24px;
+      padding: 18px;
+      background: linear-gradient(135deg, #e8efff, #f8fbff);
+      border: 1px solid #dbe5fb;
+    }
+
+    .mock-hero small {
+      display: block;
+      color: #61708a;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .mock-hero h3 {
+      font-size: 23px;
+      line-height: 1.15;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .mock-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .mock-pills span {
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: white;
+      color: #3157ff;
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-card {
+      padding: 14px;
+      border-radius: 18px;
+      background: #f5f7fb;
+      border: 1px solid #e6ebf5;
+    }
+
+    .mini-card small {
+      display: block;
+      margin-bottom: 4px;
+      color: #6d7da0;
+      font-weight: 850;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 15px;
+    }
+
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .metric {
+      padding: 18px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid #e3e9f6;
+      box-shadow: 0 14px 34px rgba(18, 24, 38, 0.06);
+    }
+
+    .metric strong {
+      display: block;
+      color: #3157ff;
+      font-size: 28px;
+      line-height: 1;
+      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+    }
+
+    .metric span {
+      display: block;
+      color: #61708a;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .section {
+      margin-top: 28px;
+      padding: 42px;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 18px 48px rgba(18, 24, 38, 0.08);
+      border: 1px solid rgba(227, 233, 246, 0.75);
+    }
+
+    .section-title {
+      max-width: 940px;
+      margin-bottom: 30px;
+    }
+
+    .section-label {
+      margin-bottom: 8px;
+      color: #3157ff;
+      font-size: 13px;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+    }
+
+    .section h2 {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.12;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .section-title p {
+      color: #5d6a80;
+      font-size: 17px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .three-column {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .four-column {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .card {
+      padding: 24px;
+      border-radius: 26px;
+      background: #f8faff;
+      border: 1px solid #e3e9f6;
+    }
+
+    .card.dark {
+      background: #121826;
+      color: white;
+      border: none;
+    }
+
+    .card.dark p,
+    .card.dark li {
+      color: #dbe8ff;
+    }
+
+    .icon {
+      min-width: 46px;
+      width: fit-content;
+      max-width: 100%;
+      min-height: 46px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 0 12px;
+      border-radius: 15px;
+      background: #e8efff;
+      color: #3157ff;
+      font-size: 14px;
+      font-weight: 950;
+      line-height: 1.1;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+
+    .card.dark .icon {
+      background: rgba(255, 255, 255, 0.13);
+      color: #8fe3ff;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+      font-size: 20px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p,
+    .card li {
+      color: #5d6a80;
+      font-size: 15px;
+    }
+
+    .card ul {
+      display: grid;
+      gap: 8px;
+      padding-left: 18px;
+    }
+
+    .story-card {
+      padding: 32px;
+      border-radius: 30px;
+      background: linear-gradient(135deg, #121826, #3157ff);
+      color: white;
+    }
+
+    .story-card h3 {
+      font-size: 31px;
+      line-height: 1.13;
+      letter-spacing: -0.05em;
+      margin-bottom: 18px;
+    }
+
+    .story-card p {
+      color: #edf4ff;
+      font-size: 17px;
+      margin-bottom: 14px;
+    }
+
+    .chart-card {
+      padding: 28px;
+      border-radius: 30px;
+      background: #f8faff;
+      border: 1px solid #e3e9f6;
+    }
+
+    .chart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .chart-header h3 {
+      font-size: 22px;
+      letter-spacing: -0.04em;
+    }
+
+    .chart-header span {
+      color: #61708a;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .bar-chart {
+      display: grid;
+      gap: 14px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 54px;
+      gap: 12px;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 850;
+      color: #4d5b72;
+    }
+
+    .bar-track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e8eefb;
+      overflow: hidden;
+    }
+
+    .bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #3157ff, #8fe3ff);
+    }
+
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 26px;
+      align-items: center;
+    }
+
+    .donut {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: conic-gradient(#3157ff 0 42%, #8fe3ff 42% 68%, #121826 68% 86%, #dce5f5 86% 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .donut::after {
+      content: "";
+      position: absolute;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: #f8faff;
+    }
+
+    .donut strong {
+      position: relative;
+      z-index: 1;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+    }
+
+    .legend {
+      display: grid;
+      gap: 10px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: white;
+      border: 1px solid #e3e9f6;
+      color: #4d5b72;
+      font-size: 14px;
+      font-weight: 850;
+    }
+
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 8px;
+      background: #3157ff;
+    }
+
+    .swatch.cyan { background: #8fe3ff; }
+    .swatch.dark { background: #121826; }
+    .swatch.gray { background: #dce5f5; }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+    }
+
+    .roadmap-card {
+      position: relative;
+      padding: 22px;
+      min-height: 210px;
+      border-radius: 26px;
+      background: #f8faff;
+      border: 1px solid #e3e9f6;
+    }
+
+    .roadmap-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 22px;
+      right: 22px;
+      height: 5px;
+      border-radius: 0 0 999px 999px;
+      background: linear-gradient(90deg, #3157ff, #8fe3ff);
+    }
+
+    .roadmap-card strong {
+      display: block;
+      color: #3157ff;
+      font-size: 14px;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .roadmap-card h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .roadmap-card p {
+      color: #5d6a80;
+      font-size: 14px;
+    }
+
+    .quote-section {
+      margin-top: 28px;
+      padding: 52px;
+      border-radius: 34px;
+      background: #121826;
+      color: white;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(18, 24, 38, 0.2);
+    }
+
+    .quote-section h2 {
+      max-width: 940px;
+      margin: 0 auto 18px;
+      font-size: clamp(32px, 5vw, 60px);
+      line-height: 1.07;
+      letter-spacing: -0.06em;
+    }
+
+    .quote-section p {
+      max-width: 820px;
+      margin: 0 auto;
+      color: #dbe8ff;
+      font-size: 18px;
+    }
+
+    .footer-note {
+      margin-top: 22px;
+      text-align: center;
+      color: #7c879c;
+      font-size: 14px;
+    }
+
+    @media (max-width: 1000px) {
+      .hero,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-strip,
+      .four-column,
+      .roadmap {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .three-column {
+        grid-template-columns: 1fr;
+      }
+
+      .donut-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 38px;
+      }
+
+      .section {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .nav {
+        position: static;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .metrics-strip,
+      .four-column,
+      .roadmap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 28px;
+        border-radius: 28px;
+      }
+
+      .bar-row {
+        grid-template-columns: 92px 1fr 44px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+      <nav class="nav">
+        <div class="logo">Uni<span>Cal</span></div>
+        <div class="nav-links">
+          <a href="#why">Why</a>
+          <a href="#pain">Pain</a>
+          <a href="#market">Market</a>
+          <a href="#barriers">Barriers</a>
+          <a href="#solution">Product</a>
+          <a href="#roadmap">Roadmap</a>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div>
+          <div class="eyebrow"><span class="dot"></span>University Life Platform</div>
+          <h1>Uni<span>Cal</span></h1>
+          <p class="hero-copy">
+            UniCal is a campus app that helps university students browse lecture lists, understand course details,
+            build a personal academic calendar, and connect with a verified student community.
+          </p>
+          <div class="one-liner">
+            “Lecture information, academic calendar, and student community — unified in one campus platform.”
+          </div>
+          <div class="hero-actions">
+            <a class="button primary" href="#why">Why it exists</a>
+            <a class="button secondary" href="#roadmap">Roadmap</a>
+          </div>
+        </div>
+
+        <div class="phone-mockup">
+          <div class="phone-screen">
+            <div class="screen-header">
+              <strong>UniCal</strong>
+              <div class="avatar"></div>
+            </div>
+            <div class="mock-hero">
+              <small>Recommended for your semester</small>
+              <h3>Introduction to Computer Science</h3>
+              <div class="mock-pills">
+                <span>Mon 10:00</span>
+                <span>Room B204</span>
+                <span>6 ECTS</span>
+              </div>
+            </div>
+            <div class="card-list">
+              <div class="mini-card">
+                <small>Lecture Detail</small>
+                <strong>Professor, room, time, credits, notes</strong>
+              </div>
+              <div class="mini-card">
+                <small>My Uni Calendar</small>
+                <strong>Saved courses become my weekly flow</strong>
+              </div>
+              <div class="mini-card">
+                <small>Course Community</small>
+                <strong>Ask classmates, share tips, join groups</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="metrics-strip" aria-label="portfolio metrics">
+        <div class="metric"><strong>3</strong><span>Core user jobs: browse, plan, connect</span></div>
+        <div class="metric"><strong>Free</strong><span>Student-first access model</span></div>
+        <div class="metric"><strong>Independent</strong><span>Can be tested without university contracts</span></div>
+        <div class="metric"><strong>Focused</strong><span>Lecture planning + student community</span></div>
+      </div>
+
+      <section class="section" id="why">
+        <div class="section-title">
+          <div class="section-label">Why I Built This</div>
+          <h2>University life starts with courses, but the course experience is fragmented.</h2>
+          <p>
+            Students do not only need a timetable. They need to understand which lectures exist, what each lecture means,
+            how it fits into their semester, and who else is taking the same course. UniCal was created to connect those moments into one clear experience.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <div class="story-card">
+            <h3>The first student problem is not search. It is structure.</h3>
+            <p>
+              A student may see a long list of lectures, but that list rarely feels like a personal academic plan.
+              Course information, calendar planning, and student conversations often live in separate places.
+            </p>
+            <p>
+              UniCal turns the lecture list into a starting point for the whole semester: discover a course, understand it,
+              save it, and connect with other students around it.
+            </p>
+          </div>
+
+          <div class="card dark">
+            <div class="icon">Goal</div>
+            <h3>Product purpose</h3>
+            <ul>
+              <li>Make lecture lists easier to read on mobile.</li>
+              <li>Show lecture time, room, professor, credits, and basic details clearly.</li>
+              <li>Let students save courses into a personal university calendar.</li>
+              <li>Create a verified student community around courses and campus life.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pain">
+        <div class="section-title">
+          <div class="section-label">User Pain</div>
+          <h2>The university experience is split across systems that do not feel connected.</h2>
+          <p>
+            Lecture lists, course details, personal schedules, and student conversations are usually separated.
+            UniCal focuses on the gap between official academic information and the real student experience.
+          </p>
+        </div>
+
+        <div class="three-column">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Lecture lists feel heavy</h3>
+            <p>
+              Course catalogues can be difficult to scan quickly. Students need a cleaner way to compare lectures, times, rooms, and credits.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Planning is manual</h3>
+            <p>
+              Students often move from course pages to separate calendar apps. The academic plan is not naturally connected to the lecture list.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Community is disconnected</h3>
+            <p>
+              Students in the same course may not have a simple, trusted place to ask questions, share notes, or find classmates.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="market">
+        <div class="section-title">
+          <div class="section-label">Market Logic</div>
+          <h2>The opportunity is not “no one built student tools.” The opportunity is the missing connection.</h2>
+          <p>
+            Europe already has student services, university portals, timetable apps, housing platforms, and peer-to-peer community products. UniCal’s opportunity is narrower and clearer: connect lecture discovery, course planning, and student interaction around the actual academic experience — without depending on university contracts at the first validation stage.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <h3>Barrier-aware expansion model</h3>
+                <span>Start narrow before scaling across campuses</span>
+              </div>
+            </div>
+            <div class="bar-chart">
+              <div class="bar-row"><span>One course</span><div class="bar-track"><div class="bar-fill" style="width: 18%"></div></div><span>Test</span></div>
+              <div class="bar-row"><span>One department</span><div class="bar-track"><div class="bar-fill" style="width: 42%"></div></div><span>Pilot</span></div>
+              <div class="bar-row"><span>One campus</span><div class="bar-track"><div class="bar-fill" style="width: 70%"></div></div><span>Launch</span></div>
+              <div class="bar-row"><span>Multi-campus</span><div class="bar-track"><div class="bar-fill" style="width: 100%"></div></div><span>Scale</span></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="icon">Why now</div>
+            <h3>Why this can work now</h3>
+            <ul>
+              <li>The product does not need to replace university systems.</li>
+              <li>It can start as an independent student-facing layer using selected, public, curated, or user-submitted lecture information.</li>
+              <li>Course context gives students a practical reason to return every week.</li>
+              <li>Official cooperation could improve data quality later, but it is not required to prove the first user demand.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="barriers">
+        <div class="section-title">
+          <div class="section-label">Why It Has Not Been Solved Yet</div>
+          <h2>The gap exists because campus tools are hard to unify, not because students do not need them.</h2>
+          <p>
+            UniCal is not claiming that no student apps exist. The stronger argument is that existing tools usually solve only one side of the problem: timetable, grades, housing, admissions chat, or general student community. The difficult part is connecting lecture data, personal planning, and course-based community in a way that is accurate, privacy-aware, and realistic to launch without depending on university contracts from day one.
+          </p>
+        </div>
+
+        <div class="three-column">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>University systems are fragmented</h3>
+            <p>
+              Each university may use different student information systems, LMS platforms, course catalogue formats, authentication flows, and internal rules. A product that works in one campus may not automatically work in the next one.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Course data is sensitive to quality</h3>
+            <p>
+              Lecture time, room, professor, credits, and exam-related information must be accurate. If the app shows wrong course data, students lose trust quickly. This makes automation harder than a normal content app.
+            </p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>Privacy and trust are non-negotiable</h3>
+            <p>
+              Student identity, course choices, and community activity can become personal data. In Europe, a campus app must be built with privacy, consent, data minimization, and moderation from the beginning.
+            </p>
+          </article>
+        </div>
+
+        <div class="two-column" style="margin-top: 20px;">
+          <div class="card dark">
+            <div class="icon">Insight</div>
+            <h3>This is exactly why UniCal should start independently.</h3>
+            <p>
+              Instead of trying to integrate every university immediately, UniCal should begin with one campus, one department, or curated lecture data. Partnerships are useful later, but the first goal is to prove that students want a cleaner lecture-centered planning and community experience.
+            </p>
+          </div>
+          <div class="card">
+            <div class="icon">Approach</div>
+            <h3>Barrier-aware launch strategy</h3>
+            <ul>
+              <li>Start with public, curated, or user-submitted lecture data.</li>
+              <li>Clearly separate official information from student-generated content.</li>
+              <li>Add disclaimers when data is unofficial or community-maintained.</li>
+              <li>Use flexible student verification options only when privacy and consent are clear.</li>
+              <li>Keep the first version independent and small enough to test with real students.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="solution">
+        <div class="section-title">
+          <div class="section-label">Product</div>
+          <h2>UniCal connects lecture discovery, course planning, and student community.</h2>
+          <p>
+            The product is designed around a simple student journey: find a lecture, understand it, save it, and connect with people around it.
+          </p>
+        </div>
+
+        <div class="four-column">
+          <article class="card">
+            <div class="icon">01</div>
+            <h3>Lecture List</h3>
+            <p>Browse semester lectures in a clean, mobile-friendly card interface.</p>
+          </article>
+          <article class="card">
+            <div class="icon">02</div>
+            <h3>Lecture Detail</h3>
+            <p>View professor, time, room, credits, description, and course notes.</p>
+          </article>
+          <article class="card">
+            <div class="icon">03</div>
+            <h3>My Uni Calendar</h3>
+            <p>Save courses and build a personal academic calendar from the lecture list.</p>
+          </article>
+          <article class="card">
+            <div class="icon">04</div>
+            <h3>Student Community</h3>
+            <p>Verified students can discuss courses, campus life, events, and study groups.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="usage">
+        <div class="section-title">
+          <div class="section-label">User Journey</div>
+          <h2>A simple loop that gives students a reason to return.</h2>
+          <p>
+            Good student apps need recurring usage. UniCal’s loop starts with course planning and continues through the semester with calendar checks and community interactions.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div>
+                <h3>Expected usage loop</h3>
+                <span>Illustrative behavior model</span>
+              </div>
+            </div>
+            <div class="donut-wrap">
+              <div class="donut"><strong>Loop</strong></div>
+              <div class="legend">
+                <div class="legend-item"><span><i class="swatch"></i>Browse lectures</span><b>42%</b></div>
+                <div class="legend-item"><span><i class="swatch cyan"></i>Check calendar</span><b>26%</b></div>
+                <div class="legend-item"><span><i class="swatch dark"></i>Community Q&A</span><b>18%</b></div>
+                <div class="legend-item"><span><i class="swatch gray"></i>Campus info</span><b>14%</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card dark">
+            <div class="icon">Loop</div>
+            <h3>Retention logic</h3>
+            <ul>
+              <li>Before semester: students browse and compare lectures.</li>
+              <li>During semester: saved courses become a weekly calendar.</li>
+              <li>Before exams: course communities become useful for Q&A and study groups.</li>
+              <li>Every term: students return when new lecture lists are released.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="focus">
+        <div class="section-title">
+          <div class="section-label">Product Focus</div>
+          <h2>UniCal is not trying to become a giant university system.</h2>
+          <p>
+            The product should stay simple: help students understand lectures, organize their academic week, and connect with other students around courses. Anything that sounds like enterprise software, paid university tools, or complex partnerships should be removed from the first version.
+          </p>
+        </div>
+
+        <div class="three-column">
+          <article class="card">
+            <div class="icon">Keep</div>
+            <h3>Lecture-centered planning</h3>
+            <p>Students can browse lectures, open details, and save selected courses into their own weekly academic view.</p>
+          </article>
+          <article class="card">
+            <div class="icon">Keep</div>
+            <h3>Course-based community</h3>
+            <p>Students can ask questions, share tips, and connect with classmates around courses or campus life.</p>
+          </article>
+          <article class="card">
+            <div class="icon">Remove</div>
+            <h3>Overbuilt business claims</h3>
+            <p>No student premium, no enterprise dashboards, no sponsored ads, and no forced university partnership in the MVP pitch.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="roadmap">
+        <div class="section-title">
+          <div class="section-label">Execution Plan</div>
+          <h2>Build small, validate with students, then improve what students actually use.</h2>
+          <p>
+            The goal is to avoid building a giant university system too early. The first version should prove that students want lecture-centered planning plus community. After validation, the product can improve based on actual student behavior instead of imaginary business models.
+          </p>
+        </div>
+
+        <div class="roadmap">
+          <article class="roadmap-card">
+            <strong>Phase 01</strong>
+            <h3>Clickable prototype</h3>
+            <p>Show lecture list, course detail, save-to-calendar, and community screens.</p>
+          </article>
+          <article class="roadmap-card">
+            <strong>Phase 02</strong>
+            <h3>Pilot dataset</h3>
+            <p>Start with one small lecture dataset: one department, one semester, or manually curated sample data.</p>
+          </article>
+          <article class="roadmap-card">
+            <strong>Phase 03</strong>
+            <h3>Student validation</h3>
+            <p>Test with students and measure saves, repeats, questions, and community posts.</p>
+          </article>
+          <article class="roadmap-card">
+            <strong>Phase 04</strong>
+            <h3>Improve and expand</h3>
+            <p>Add more lectures, better filters, stronger calendar views, and useful community features based on student feedback.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-section">
+        <h2>UniCal turns course lists into a living campus experience.</h2>
+        <p>
+          Lecture discovery, academic planning, and verified student community — unified in one clean mobile-first platform for university life.
+        </p>
+      </section>
+
+      <p class="footer-note">
+        Portfolio note: Replace illustrative charts with real validation later: student interviews, prototype clicks, saved lectures, community posts, and repeat usage.
+      </p>
+    </div>
+  </main>
+</body>
+</html>
