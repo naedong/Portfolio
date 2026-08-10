@@ -8,9 +8,9 @@
 
 ## Featured projects
 
-- [UniCal](https://github.com/naedong/UniCal-portfolio) — 대학 인증 기반 시간표·강의·커뮤니티 플랫폼
+- [UniCal](https://github.com/naedong/unical) — 대학 인증 기반 시간표·강의·커뮤니티 플랫폼
 - [Deutsch Flow](https://github.com/naedong/vocabapp) — 간격 반복, 발음 코칭과 실전 콘텐츠를 연결한 독일어 학습 앱
-- [Friend](https://github.com/naedong/friend) — 안전 정책을 서버 경계로 구현한 동행 플랫폼
+- [TravelB](https://github.com/naedong/travelB) — Kotlin과 Jetpack Compose로 만든 모듈형 국내 여행 앱
 
 ## Local development
 
