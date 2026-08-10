@@ -21,10 +21,10 @@ const ZONES: Zone[] = [
     key: "home",
     index: "00",
     nav: "시작",
-    eyebrow: "CREATIVE DEVELOPER · SEOUL / BERLIN",
-    title: "디지털에\n온도를 더합니다.",
+    eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI",
+    title: "아이디어를\n작동하는 제품으로.",
     description:
-      "코드, 움직임, 이야기를 엮어 화면 너머까지 기억되는 경험을 만듭니다.",
+      "사용자의 실제 문제에서 출발해 모바일 앱, 안전한 백엔드, AI 기능까지 직접 설계하고 구현합니다.",
     x: 0,
     z: 0,
     accent: "#ff6b35",
@@ -33,10 +33,10 @@ const ZONES: Zone[] = [
     key: "about",
     index: "01",
     nav: "소개",
-    eyebrow: "ABOUT · HOW I THINK",
-    title: "좋은 경험은\n설명보다 먼저 느껴집니다.",
+    eyebrow: "ABOUT · PRODUCT ENGINEERING",
+    title: "가장 중요한 경계부터\n설계합니다.",
     description:
-      "복잡한 문제를 명료한 인터페이스로 바꾸고, 기술과 감각 사이의 균형을 설계합니다.",
+      "Flutter와 Kotlin으로 제품을 만들고 Spring Boot로 신뢰 경계를 세웁니다. 기술보다 먼저 사용자, 안전, 반복 사용의 이유를 봅니다.",
     x: 12,
     z: -2,
     accent: "#ffd166",
@@ -45,10 +45,10 @@ const ZONES: Zone[] = [
     key: "work",
     index: "02",
     nav: "작업",
-    eyebrow: "SELECTED WORK · 2024—2026",
-    title: "쓸모와 매력이\n함께 남는 작업.",
+    eyebrow: "SELECTED PRODUCTS · GITHUB VERIFIED",
+    title: "기획에서 코드까지\n이어진 제품들.",
     description:
-      "브랜드의 첫 인상부터 제품의 반복 사용까지, 서로 다른 접점을 하나의 경험으로 연결합니다.",
+      "GitHub의 실제 구현과 Notion의 제품 정의가 함께 존재하는 프로젝트입니다. 각 항목에서 저장소를 확인할 수 있습니다.",
     x: 24,
     z: 1.5,
     accent: "#3dd6a5",
@@ -57,10 +57,10 @@ const ZONES: Zone[] = [
     key: "lab",
     index: "03",
     nav: "실험",
-    eyebrow: "PLAYGROUND · MOTION / 3D / AI",
-    title: "호기심은 가장\n좋은 프로토타입입니다.",
+    eyebrow: "PRODUCT LAB · NOTION TO PROTOTYPE",
+    title: "문제를 발견하면\n작게라도 만듭니다.",
     description:
-      "새로운 도구를 작게 실험하고, 가능성이 보이면 실제 제품의 언어로 발전시킵니다.",
+      "기억 보존, 기회 창출, 여행 경험처럼 아직 답이 명확하지 않은 문제를 제품 가설과 프로토타입으로 발전시킵니다.",
     x: 36,
     z: -1,
     accent: "#70a1ff",
@@ -70,9 +70,9 @@ const ZONES: Zone[] = [
     index: "04",
     nav: "연락",
     eyebrow: "CONTACT · LET’S MAKE A SIGNAL",
-    title: "다음 장면을\n함께 만들까요?",
+    title: "함께 작동하는 것을\n만들어볼까요?",
     description:
-      "새로운 제품, 인터랙티브 웹, 혹은 아직 이름 붙지 않은 아이디어에 열려 있습니다.",
+      "모바일 제품, 안전 중심 백엔드, AI 기반 학습 도구와 새로운 아이디어에 열려 있습니다.",
     x: 48,
     z: 0,
     accent: "#ff5c8a",
@@ -80,24 +80,50 @@ const ZONES: Zone[] = [
 ];
 
 const PROJECTS = [
-  { year: "2026", name: "Morrow OS", type: "PRODUCT · AI" },
-  { year: "2025", name: "Field Notes", type: "BRAND · WEB" },
-  { year: "2024", name: "Afterglow", type: "EXPERIENCE · 3D" },
+  {
+    year: "LIVE",
+    name: "UniCal",
+    type: "CAMPUS · FLUTTER",
+    href: "https://github.com/naedong/UniCal-portfolio",
+  },
+  {
+    year: "BUILT",
+    name: "Deutsch Flow",
+    type: "EDTECH · FLUTTER · AI",
+    href: "https://github.com/naedong/vocabapp",
+  },
+  {
+    year: "BUILT",
+    name: "Friend",
+    type: "SAFETY · FLUTTER · SPRING",
+    href: "https://github.com/naedong/friend",
+  },
 ];
 
-const LABS = ["생성형 인터페이스", "공간형 웹 내비게이션", "모션 기반 데이터 스토리"];
+const LABS = [
+  { name: "Life Archive", type: "AI MEMORY" },
+  { name: "Outbound Coach", type: "CAREER AI" },
+  { name: "TravelB", type: "ANDROID" },
+];
 
 function ZoneContent({ zone, onExplore }: { zone: Zone; onExplore: () => void }) {
   if (zone.key === "work") {
     return (
       <div className="zone-extra project-list" aria-label="선택한 프로젝트">
         {PROJECTS.map((project) => (
-          <button className="project-row" key={project.name} type="button">
+          <a
+            className="project-row"
+            key={project.name}
+            href={project.href}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`${project.name} GitHub 저장소 열기`}
+          >
             <span className="project-year">{project.year}</span>
             <span className="project-name">{project.name}</span>
             <span className="project-type">{project.type}</span>
             <span className="project-arrow" aria-hidden="true">↗</span>
-          </button>
+          </a>
         ))}
       </div>
     );
@@ -107,9 +133,10 @@ function ZoneContent({ zone, onExplore }: { zone: Zone; onExplore: () => void })
     return (
       <div className="zone-extra lab-list">
         {LABS.map((item, index) => (
-          <div className="lab-pill" key={item}>
+          <div className="lab-pill" key={item.name}>
             <span>0{index + 1}</span>
-            {item}
+            {item.name}
+            <em>{item.type}</em>
           </div>
         ))}
       </div>
@@ -119,13 +146,12 @@ function ZoneContent({ zone, onExplore }: { zone: Zone; onExplore: () => void })
   if (zone.key === "contact") {
     return (
       <div className="zone-extra contact-actions">
-        <a className="primary-link" href="mailto:hello@yourname.dev">
-          hello@yourname.dev <span aria-hidden="true">↗</span>
+        <a className="primary-link" href="mailto:gim21041@gmail.com">
+          gim21041@gmail.com <span aria-hidden="true">↗</span>
         </a>
         <div className="social-row" aria-label="소셜 링크">
-          <a href="#" onClick={(event) => event.preventDefault()}>LINKEDIN</a>
-          <a href="#" onClick={(event) => event.preventDefault()}>GITHUB</a>
-          <a href="#" onClick={(event) => event.preventDefault()}>INSTAGRAM</a>
+          <a href="https://github.com/naedong" target="_blank" rel="noreferrer">GITHUB ↗</a>
+          <a href="https://www.figma.com/design/VuCYqOPKmZbdsg14cx8P2Y" target="_blank" rel="noreferrer">FIGMA ↗</a>
         </div>
       </div>
     );
@@ -147,7 +173,6 @@ export default function Home() {
   const destinationRef = useRef<{ x: number; z: number } | null>(null);
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [ready, setReady] = useState(false);
-  const [sound, setSound] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const activeZone = ZONES.find((zone) => zone.key === activeKey) ?? ZONES[0];
@@ -193,7 +218,7 @@ export default function Home() {
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
       renderer.setSize(host.clientWidth, host.clientHeight);
       renderer.shadowMap.enabled = true;
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      renderer.shadowMap.type = THREE.PCFShadowMap;
       renderer.outputColorSpace = THREE.SRGBColorSpace;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
       renderer.toneMappingExposure = 1.15;
@@ -406,7 +431,8 @@ export default function Home() {
       const dust = new THREE.Points(dustGeometry, new THREE.PointsMaterial({ color: 0xb8ffe4, size: 0.028, transparent: true, opacity: 0.48 }));
       scene.add(dust);
 
-      const clock = new THREE.Clock();
+      const startedAt = performance.now();
+      let previousFrame = startedAt;
       const player = { x: 0, z: 2.5, vx: 0, vz: 0 };
       const pointer = { x: 0, y: 0 };
       let lastZone: ZoneKey = "home";
@@ -442,8 +468,10 @@ export default function Home() {
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       const animate = () => {
-        const elapsed = clock.getElapsedTime();
-        const delta = Math.min(clock.getDelta(), 0.035);
+        const now = performance.now();
+        const elapsed = (now - startedAt) / 1000;
+        const delta = Math.min((now - previousFrame) / 1000, 0.035);
+        previousFrame = now;
         const controls = pressedRef.current;
         const horizontal = Number(controls.has("d") || controls.has("arrowright")) - Number(controls.has("a") || controls.has("arrowleft"));
         const vertical = Number(controls.has("s") || controls.has("arrowdown")) - Number(controls.has("w") || controls.has("arrowup"));
@@ -559,25 +587,22 @@ export default function Home() {
       <div className="scene" ref={canvasHostRef} />
       <div className="atmosphere" aria-hidden="true" />
       <div className={`loading-screen ${ready ? "is-ready" : ""}`} aria-hidden={ready}>
-        <div className="loading-mark">SG</div>
+        <div className="loading-mark">HW</div>
         <div className="loading-track"><span /></div>
         <p>공간을 조립하는 중</p>
       </div>
 
       <header className="topbar">
         <button className="brand" type="button" onClick={() => goToZone("home")} aria-label="처음으로 이동">
-          <span className="brand-mark">SG</span>
-          <span className="brand-copy">SIGNAL<br />GARDEN</span>
+          <span className="brand-mark">HW</span>
+          <span className="brand-copy">WONCHEOL<br />HAN</span>
         </button>
 
-        <div className="availability"><span /> AVAILABLE FOR SELECT PROJECTS</div>
+        <div className="availability"><span /> BUILDING IN PUBLIC · 43 REPOSITORIES</div>
 
         <div className="top-actions">
-          <button className={`sound-toggle ${sound ? "is-on" : ""}`} type="button" onClick={() => setSound((value) => !value)} aria-label={sound ? "사운드 끄기" : "사운드 켜기"}>
-            <span className="sound-bars" aria-hidden="true"><i /><i /><i /></span>
-            {sound ? "SOUND ON" : "SOUND OFF"}
-          </button>
-          <a href="mailto:hello@yourname.dev" className="say-hi">SAY HELLO <span>↗</span></a>
+          <a href="https://github.com/naedong" target="_blank" rel="noreferrer" className="github-link">GITHUB / NAEDONG ↗</a>
+          <a href="mailto:gim21041@gmail.com" className="say-hi">SAY HELLO <span>↗</span></a>
         </div>
       </header>
 
@@ -648,8 +673,8 @@ export default function Home() {
       </div>
 
       <footer className="footer-note">
-        <span>© 2026</span>
-        <span>DESIGNED IN KOREA · BUILT FOR THE WEB</span>
+        <span>© 2026 WONCHEOL HAN</span>
+        <span>PRODUCT · ENGINEERING · AI</span>
       </footer>
     </main>
   );
