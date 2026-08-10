@@ -1,8 +1,12 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import Image, { type StaticImageData } from "next/image";
 import unicalScreenshot from "../public/projects/unical.png";
+import unicalCommunityScreenshot from "../public/projects/unical-community.png";
+import unicalWeekScreenshot from "../public/projects/unical-week.png";
+import unicalDayScreenshot from "../public/projects/unical-day.png";
+import unicalLoginScreenshot from "../public/projects/unical-login.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
 import travelbScreenshot from "../public/projects/travelb.png";
 
@@ -47,12 +51,17 @@ const ZONES: Record<Locale, Zone[]> = {
 };
 
 type ProjectLink = { kind: "github" | "notion"; href: string };
+type ProjectScreen = {
+  image: StaticImageData;
+  label: Record<Locale, string>;
+};
 type Project = {
   key: ProjectKey;
   year: string;
   name: string;
   type: string;
-  image: StaticImageData;
+  accent: string;
+  screens: ProjectScreen[];
   description: Record<Locale, string>;
   links: ProjectLink[];
 };
@@ -63,7 +72,14 @@ const PROJECTS: Project[] = [
     year: "LIVE",
     name: "UniCal",
     type: "CAMPUS · FLUTTER",
-    image: unicalScreenshot,
+    accent: "#6664ff",
+    screens: [
+      { image: unicalScreenshot, label: { ko: "홈 · 오늘의 일정", en: "Home · Today’s schedule", de: "Home · Heutiger Stundenplan" } },
+      { image: unicalCommunityScreenshot, label: { ko: "캠퍼스 커뮤니티", en: "Campus community", de: "Campus-Community" } },
+      { image: unicalWeekScreenshot, label: { ko: "주간 시간표", en: "Weekly timetable", de: "Wochenstundenplan" } },
+      { image: unicalDayScreenshot, label: { ko: "일간 시간표", en: "Daily timetable", de: "Tagesstundenplan" } },
+      { image: unicalLoginScreenshot, label: { ko: "대학 인증 로그인", en: "University sign-in", de: "Hochschul-Anmeldung" } },
+    ],
     description: {
       ko: "대학별 인증을 기반으로 개인 시간표, 강의 탐색·후기, 학생 커뮤니티와 캠퍼스 행사를 연결하는 학생 플랫폼입니다.",
       en: "A student platform connecting personal timetables, course discovery and reviews, student communities, and campus events through university-based verification.",
@@ -79,7 +95,10 @@ const PROJECTS: Project[] = [
     year: "BUILT",
     name: "Deutsch Flow",
     type: "EDTECH · FLUTTER · AI",
-    image: deutschFlowScreenshot,
+    accent: "#ff5c8a",
+    screens: [
+      { image: deutschFlowScreenshot, label: { ko: "학습 홈", en: "Learning home", de: "Lernübersicht" } },
+    ],
     description: {
       ko: "개인 단어장, 간격 반복, 발음 코칭과 실전 콘텐츠를 하나의 학습 흐름으로 연결한 독일어 학습 앱입니다.",
       en: "A German-learning app combining a personal vocabulary library, spaced repetition, pronunciation coaching, and real-world content in one continuous workflow.",
@@ -95,7 +114,10 @@ const PROJECTS: Project[] = [
     year: "BUILT",
     name: "TravelB",
     type: "TRAVEL · KOTLIN · COMPOSE",
-    image: travelbScreenshot,
+    accent: "#9c72ff",
+    screens: [
+      { image: travelbScreenshot, label: { ko: "여행 탐색 홈", en: "Travel discovery", de: "Reise-Entdeckung" } },
+    ],
     description: {
       ko: "처음 Kotlin과 Jetpack Compose로 만든 모듈형 국내 여행 앱으로, 지역·축제 정보와 Kakao Map, 위치 탐색, 여행 계획 기능을 한 흐름으로 구성했습니다.",
       en: "My first Kotlin and Jetpack Compose travel app, combining regional and festival discovery, Kakao Map exploration, location search, and trip planning in a modular Android architecture.",
@@ -118,7 +140,7 @@ const UI_COPY = {
     loading: "공간을 조립하는 중", building: "공개적으로 만드는 중 · 저장소 43개", sayHello: "인사하기", start: "탐험 시작", next: "다음 구역",
     brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
-    close: "닫기", dialog: "프로젝트 설명과 스크린샷", sourceLead: "자세한 내용은", sourceEnd: "에서 확인할 수 있습니다.",
+    close: "닫기", dialog: "프로젝트 전시 화면", sourceLead: "프로젝트 링크", sourceEnd: "에서 확인할 수 있습니다.", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
     pageTitle: "한원철 — Product Builder",
   },
@@ -126,7 +148,7 @@ const UI_COPY = {
     loading: "ASSEMBLING THE SPACE", building: "BUILDING IN PUBLIC · 43 REPOSITORIES", sayHello: "SAY HELLO", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
-    close: "Close", dialog: "Project description and screenshot", sourceLead: "Explore the", sourceEnd: "for more detail.",
+    close: "Close", dialog: "Project showcase", sourceLead: "Project links", sourceEnd: "for more detail.", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
     pageTitle: "Woncheol Han — Product Builder",
   },
@@ -134,14 +156,15 @@ const UI_COPY = {
     loading: "RAUM WIRD AUFGEBAUT", building: "OFFEN ENTWICKELT · 43 REPOSITORIES", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
-    close: "Schließen", dialog: "Projektbeschreibung und Screenshot", sourceLead: "Weitere Details:", sourceEnd: "",
+    close: "Schließen", dialog: "Projekt-Ausstellung", sourceLead: "Projekt-Links", sourceEnd: "", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
   loading: string; building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
-  close: string; dialog: string; sourceLead: string; sourceEnd: string; linkLabels: Record<ProjectLink["kind"], string>; pageTitle: string;
+  close: string; dialog: string; sourceLead: string; sourceEnd: string; previousScreen: string; nextScreen: string; screen: string;
+  linkLabels: Record<ProjectLink["kind"], string>; pageTitle: string;
 }>;
 
 type UiCopy = (typeof UI_COPY)[Locale];
@@ -210,15 +233,18 @@ export default function Home() {
   const canvasHostRef = useRef<HTMLDivElement>(null);
   const pressedRef = useRef(new Set<string>());
   const destinationRef = useRef<{ x: number; z: number } | null>(null);
+  const dialogOpenRef = useRef(false);
   const [locale, setLocale] = useState<Locale>("ko");
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
   const [ready, setReady] = useState(false);
   const [progress, setProgress] = useState(0);
 
   const zones = ZONES[locale];
   const copy = UI_COPY[locale];
   const activeZone = zones.find((zone) => zone.key === activeKey) ?? zones[0];
+  const activeProjectScreen = selectedProject?.screens[selectedScreenIndex] ?? selectedProject?.screens[0];
 
   const changeLocale = useCallback((nextLocale: Locale) => {
     setLocale(nextLocale);
@@ -245,6 +271,19 @@ export default function Home() {
     }
   }, []);
 
+  const openProject = useCallback((project: Project) => {
+    setSelectedScreenIndex(0);
+    setSelectedProject(project);
+  }, []);
+
+  const moveProjectScreen = useCallback((direction: -1 | 1) => {
+    setSelectedScreenIndex((current) => {
+      const screenCount = selectedProject?.screens.length ?? 0;
+      if (screenCount < 2) return 0;
+      return (current + direction + screenCount) % screenCount;
+    });
+  }, [selectedProject]);
+
   useEffect(() => {
     document.documentElement.lang = locale;
     document.title = copy.pageTitle;
@@ -252,11 +291,24 @@ export default function Home() {
 
   useEffect(() => {
     if (!selectedProject) return;
-    const closeOnEscape = (event: KeyboardEvent) => {
+    const handleDialogKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") setSelectedProject(null);
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        moveProjectScreen(-1);
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        moveProjectScreen(1);
+      }
     };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
+    window.addEventListener("keydown", handleDialogKey);
+    return () => window.removeEventListener("keydown", handleDialogKey);
+  }, [moveProjectScreen, selectedProject]);
+
+  useEffect(() => {
+    dialogOpenRef.current = Boolean(selectedProject);
+    if (selectedProject) pressedRef.current.clear();
   }, [selectedProject]);
 
   useEffect(() => {
@@ -505,6 +557,7 @@ export default function Home() {
       };
 
       const onKey = (event: KeyboardEvent, down: boolean) => {
+        if (dialogOpenRef.current) return;
         const key = event.key.toLowerCase();
         if (["arrowup", "arrowdown", "arrowleft", "arrowright", "w", "a", "s", "d"].includes(key)) {
           event.preventDefault();
@@ -685,7 +738,7 @@ export default function Home() {
         <p className="eyebrow">{activeZone.eyebrow}</p>
         <h1>{activeZone.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
         <p className="zone-description">{activeZone.description}</p>
-        <ZoneContent zone={activeZone} copy={copy} onExplore={goNext} onSelectProject={setSelectedProject} />
+        <ZoneContent zone={activeZone} copy={copy} onExplore={goNext} onSelectProject={openProject} />
       </section>
 
       <aside className="journey-rail" aria-label={copy.journey}>
@@ -758,35 +811,87 @@ export default function Home() {
             role="dialog"
             aria-modal="true"
             aria-label={`${selectedProject.name} — ${copy.dialog}`}
+            style={{ "--project-accent": selectedProject.accent } as CSSProperties}
           >
             <button className="project-dialog-close" type="button" onClick={() => setSelectedProject(null)} aria-label={copy.close}>
               <span aria-hidden="true">×</span>
             </button>
-            <div className="project-dialog-media">
-              <Image
-                src={selectedProject.image}
-                alt={`${selectedProject.name} — ${copy.dialog}`}
-                fill
-                sizes="(max-width: 720px) 92vw, 780px"
-                priority
-              />
+            <header className="project-dialog-header">
+              <div>
+                <span className="project-dialog-kicker">{selectedProject.year} · {selectedProject.type}</span>
+                <h2>{selectedProject.name}</h2>
+              </div>
+              <span className="project-dialog-count" aria-live="polite">
+                {String(selectedScreenIndex + 1).padStart(2, "0")} / {String(selectedProject.screens.length).padStart(2, "0")}
+              </span>
+            </header>
+
+            <div className="project-dialog-stage">
+              <div className="project-stage-architecture" aria-hidden="true">
+                <span className="project-stage-beam project-stage-beam-left" />
+                <span className="project-stage-beam project-stage-beam-right" />
+                <span className="project-stage-marquee">SELECTED PRODUCT · WONCHEOL HAN</span>
+                <span className="project-stage-floor" />
+              </div>
+
+              {selectedProject.screens.length > 1 && (
+                <button className="project-screen-nav project-screen-nav-prev" type="button" onClick={() => moveProjectScreen(-1)} aria-label={copy.previousScreen}>
+                  <span aria-hidden="true">←</span><small>PREV</small>
+                </button>
+              )}
+
+              {activeProjectScreen && (
+                <div className="project-screen-pedestal">
+                  <div className="project-screen-frame" key={`${selectedProject.key}-${selectedScreenIndex}`}>
+                    <Image
+                      src={activeProjectScreen.image}
+                      alt={`${selectedProject.name} — ${activeProjectScreen.label[locale]}`}
+                      fill
+                      sizes="(max-width: 720px) 68vw, 390px"
+                      priority
+                    />
+                  </div>
+                  <div className="project-screen-caption">
+                    <span>{activeProjectScreen.label[locale]}</span>
+                    <span>{copy.screen} {selectedScreenIndex + 1}</span>
+                  </div>
+                </div>
+              )}
+
+              {selectedProject.screens.length > 1 && (
+                <button className="project-screen-nav project-screen-nav-next" type="button" onClick={() => moveProjectScreen(1)} aria-label={copy.nextScreen}>
+                  <small>NEXT</small><span aria-hidden="true">→</span>
+                </button>
+              )}
+
+              {selectedProject.screens.length > 1 && (
+                <div className="project-screen-selector" aria-label={copy.screen}>
+                  {selectedProject.screens.map((screen, index) => (
+                    <button
+                      className={index === selectedScreenIndex ? "is-active" : ""}
+                      type="button"
+                      key={screen.label.en}
+                      onClick={() => setSelectedScreenIndex(index)}
+                      aria-label={screen.label[locale]}
+                      aria-current={index === selectedScreenIndex ? "true" : undefined}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
-            <div className="project-dialog-copy">
-              <h2>{selectedProject.name}</h2>
+
+            <footer className="project-dialog-copy">
               <p>
-                {selectedProject.description[locale]}{" "}
-                <span className="project-inline-sources">
-                  {copy.sourceLead}{" "}
-                  {selectedProject.links.map((link, index) => (
-                    <span key={link.kind}>
-                      {index > 0 && " · "}
-                      <a href={link.href} target="_blank" rel="noreferrer">{copy.linkLabels[link.kind]} ↗</a>
-                    </span>
-                  ))}{" "}
-                  {copy.sourceEnd}
-                </span>
+                {selectedProject.description[locale]}
               </p>
-            </div>
+              <nav className="project-source-links" aria-label={copy.sourceLead}>
+                {selectedProject.links.map((link) => (
+                  <a href={link.href} target="_blank" rel="noreferrer" key={link.kind}>
+                    {copy.linkLabels[link.kind]} <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </nav>
+            </footer>
           </article>
         </div>
       )}
