@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: "모바일 앱, 안전 중심 백엔드, AI 기능을 직접 설계하고 구현하는 한원철의 인터랙티브 포트폴리오.",
   openGraph: {
     title: "WONCHEOL HAN — PRODUCT BUILDER",
-    description: "From product definition to working code. Explore UniCal, Deutsch Flow, Friend and more.",
+    description: "From product definition to working code. Explore UniCal, Deutsch Flow, TravelB and more.",
     type: "website",
     locale: "ko_KR",
     url: siteUrl,

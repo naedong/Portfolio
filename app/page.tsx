@@ -4,11 +4,11 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import Image, { type StaticImageData } from "next/image";
 import unicalScreenshot from "../public/projects/unical.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
-import friendScreenshot from "../public/projects/friend.png";
+import travelbScreenshot from "../public/projects/travelb.png";
 
 type ZoneKey = "home" | "about" | "work" | "lab" | "contact";
 type Locale = "ko" | "en" | "de";
-type ProjectKey = "unical" | "deutsch-flow" | "friend";
+type ProjectKey = "unical" | "deutsch-flow" | "travelb";
 
 type Zone = {
   key: ZoneKey;
@@ -46,7 +46,7 @@ const ZONES: Record<Locale, Zone[]> = {
   ],
 };
 
-type ProjectLink = { kind: "github" | "notion" | "figma"; href: string };
+type ProjectLink = { kind: "github" | "notion"; href: string };
 type Project = {
   key: ProjectKey;
   year: string;
@@ -72,7 +72,6 @@ const PROJECTS: Project[] = [
     links: [
       { kind: "github", href: "https://github.com/naedong/unical" },
       { kind: "notion", href: "https://app.notion.com/p/3b2b8ce076a181759c3efe9b3908067c" },
-      { kind: "figma", href: "https://www.figma.com/design/VuCYqOPKmZbdsg14cx8P2Y" },
     ],
   },
   {
@@ -92,19 +91,19 @@ const PROJECTS: Project[] = [
     ],
   },
   {
-    key: "friend",
+    key: "travelb",
     year: "BUILT",
-    name: "Friend",
-    type: "SAFETY · FLUTTER · SPRING",
-    image: friendScreenshot,
+    name: "TravelB",
+    type: "TRAVEL · KOTLIN · COMPOSE",
+    image: travelbScreenshot,
     description: {
-      ko: "카페, 전시, 언어 연습, 중고거래와 행정 방문을 검증된 동행자와 안전하게 함께하는 목적 기반 서비스입니다.",
-      en: "A purpose-based service for safely sharing coffee, exhibitions, language practice, second-hand trades, and public appointments with a verified companion.",
-      de: "Ein zweckgebundener Dienst, mit dem Nutzer:innen Kaffee, Ausstellungen, Sprachpraxis, Gebrauchtkäufe und Behördentermine sicher mit einer verifizierten Begleitperson teilen.",
+      ko: "처음 Kotlin과 Jetpack Compose로 만든 모듈형 국내 여행 앱으로, 지역·축제 정보와 Kakao Map, 위치 탐색, 여행 계획 기능을 한 흐름으로 구성했습니다.",
+      en: "My first Kotlin and Jetpack Compose travel app, combining regional and festival discovery, Kakao Map exploration, location search, and trip planning in a modular Android architecture.",
+      de: "Meine erste Reise-App mit Kotlin und Jetpack Compose: regionale und Festival-Entdeckung, Kakao-Map-Erkundung, Standortsuche und Reiseplanung in einer modularen Android-Architektur.",
     },
     links: [
-      { kind: "github", href: "https://github.com/naedong/friend" },
-      { kind: "notion", href: "https://app.notion.com/p/581b8ce076a1822c996081024b00f406" },
+      { kind: "github", href: "https://github.com/naedong/travelB" },
+      { kind: "notion", href: "https://app.notion.com/p/359b8ce076a18061ab5ce533688f7263" },
     ],
   },
 ];
@@ -112,7 +111,6 @@ const PROJECTS: Project[] = [
 const LABS = [
   { name: "Life Archive", type: "AI MEMORY" },
   { name: "Outbound Coach", type: "CAREER AI" },
-  { name: "TravelB", type: "ANDROID" },
 ];
 
 const UI_COPY = {
@@ -121,7 +119,7 @@ const UI_COPY = {
     brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
     close: "닫기", dialog: "프로젝트 설명과 스크린샷", sourceLead: "자세한 내용은", sourceEnd: "에서 확인할 수 있습니다.",
-    linkLabels: { github: "GitHub 저장소", notion: "Notion 문서", figma: "Figma 화면" },
+    linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
@@ -129,7 +127,7 @@ const UI_COPY = {
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
     close: "Close", dialog: "Project description and screenshot", sourceLead: "Explore the", sourceEnd: "for more detail.",
-    linkLabels: { github: "GitHub repository", notion: "Notion brief", figma: "Figma file" },
+    linkLabels: { github: "GitHub repository", notion: "Notion brief" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
@@ -137,7 +135,7 @@ const UI_COPY = {
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
     close: "Schließen", dialog: "Projektbeschreibung und Screenshot", sourceLead: "Weitere Details:", sourceEnd: "",
-    linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument", figma: "Figma-Datei" },
+    linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
@@ -193,7 +191,6 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; c
         </a>
         <div className="social-row" aria-label={copy.social}>
           <a href="https://github.com/naedong" target="_blank" rel="noreferrer">GITHUB ↗</a>
-          <a href="https://www.figma.com/design/VuCYqOPKmZbdsg14cx8P2Y" target="_blank" rel="noreferrer">FIGMA ↗</a>
         </div>
       </div>
     );
