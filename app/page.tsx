@@ -250,8 +250,8 @@ export default function Home() {
 
       const grid = new THREE.GridHelper(100, 50, 0x18372d, 0x10251f);
       grid.position.set(24, -0.68, 0);
-      (grid.material as THREE.Material).transparent = true;
-      (grid.material as THREE.Material).opacity = 0.48;
+      grid.material.transparent = true;
+      grid.material.opacity = 0.48;
       world.add(grid);
 
       const glowMaterial = new THREE.MeshBasicMaterial({ color: 0xff6b35, transparent: true, opacity: 0.7 });
@@ -281,7 +281,7 @@ export default function Home() {
         return sprite;
       };
 
-      const zoneGroups: THREE.Group[] = [];
+      const zoneGroups: Array<InstanceType<typeof THREE.Group>> = [];
       ZONES.forEach((zone, zoneIndex) => {
         const group = new THREE.Group();
         group.position.set(zone.x, 0, zone.z);
