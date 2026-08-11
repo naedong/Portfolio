@@ -10,7 +10,7 @@ import unicalLoginScreenshot from "../public/projects/unical-login.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
 import travelbScreenshot from "../public/projects/travelb.png";
 
-type ZoneKey = "home" | "about" | "work" | "lab" | "contact";
+type ZoneKey = "home" | "about" | "work" | "contact";
 type Locale = "ko" | "en" | "de";
 type ProjectKey = "unical" | "deutsch-flow" | "travelb";
 
@@ -28,25 +28,22 @@ type Zone = {
 
 const ZONES: Record<Locale, Zone[]> = {
   ko: [
-    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "아이디어를\n작동하는 제품으로.", description: "사용자의 실제 문제에서 출발해 모바일 앱, 안전한 백엔드, AI 기능까지 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "아이디어를\n작동하는 제품으로.", description: "사용자의 실제 문제에서 출발해 모바일 앱과 안전한 백엔드를 제품으로 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "소개", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "가장 중요한 경계부터\n설계합니다.", description: "Flutter와 Kotlin으로 제품을 만들고 Spring Boot로 신뢰 경계를 세웁니다. 기술보다 먼저 사용자, 안전, 반복 사용의 이유를 봅니다.", x: 12, z: -2, accent: "#ffd166" },
-    { key: "work", index: "02", nav: "작업", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "기획에서 코드까지\n이어진 제품들.", description: "실제 구현, 제품 정의, 디자인 자료로 확인할 수 있는 프로젝트입니다. 프로젝트를 선택하면 설명과 실제 화면을 볼 수 있습니다.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "실험", eyebrow: "PRODUCT LAB · NOTION TO PROTOTYPE", title: "문제를 발견하면\n작게라도 만듭니다.", description: "기억 보존, 기회 창출, 여행 경험처럼 아직 답이 명확하지 않은 문제를 제품 가설과 프로토타입으로 발전시킵니다.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "연락", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "함께 작동하는 것을\n만들어볼까요?", description: "모바일 제품, 안전 중심 백엔드, AI 기반 학습 도구와 새로운 아이디어에 열려 있습니다.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "work", index: "02", nav: "작업", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "기획에서 코드까지\n이어진 제품들.", description: "실제 구현과 제품 정의로 확인할 수 있는 프로젝트입니다. 프로젝트를 선택하면 설명과 실제 화면을 볼 수 있습니다.", x: 24, z: 1.5, accent: "#3dd6a5" },
+    { key: "contact", index: "03", nav: "연락", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "함께 작동하는 것을\n만들어볼까요?", description: "모바일 제품, 안전 중심 백엔드, 학습 도구와 새로운 아이디어에 열려 있습니다.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
   en: [
-    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "Ideas into\nworking products.", description: "I start with real user problems and design and build mobile apps, secure backends, and AI features end to end.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "Ideas into\nworking products.", description: "I start with real user problems and design and build mobile apps and secure backends end to end.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "About", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "I design the boundaries\nthat matter first.", description: "I build products with Flutter and Kotlin and define trust boundaries with Spring Boot. Users, safety, and reasons to return come before technology.", x: 12, z: -2, accent: "#ffd166" },
-    { key: "work", index: "02", nav: "Work", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "Products carried\nfrom concept to code.", description: "These projects are grounded in working implementations, product definitions, and design evidence. Select one to see its story and actual screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "Lab", eyebrow: "PRODUCT LAB · NOTION TO PROTOTYPE", title: "When I find a problem,\nI build a small answer.", description: "I turn open questions around memory, opportunity, and travel into product hypotheses and working prototypes.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "Contact", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "Shall we build\nsomething that works?", description: "I am open to mobile products, safety-first backends, AI learning tools, and thoughtful new ideas.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "work", index: "02", nav: "Work", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "Products carried\nfrom concept to code.", description: "These projects are grounded in working implementations and product definitions. Select one to see its story and actual screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
+    { key: "contact", index: "03", nav: "Contact", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "Shall we build\nsomething that works?", description: "I am open to mobile products, safety-first backends, learning tools, and thoughtful new ideas.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
   de: [
-    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "Aus Ideen werden\nfunktionierende Produkte.", description: "Ich beginne bei echten Problemen von Nutzer:innen und entwickle mobile Apps, sichere Backends und KI-Funktionen durchgängig selbst.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "Aus Ideen werden\nfunktionierende Produkte.", description: "Ich beginne bei echten Problemen von Nutzer:innen und entwickle mobile Apps und sichere Backends durchgängig selbst.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "Über mich", eyebrow: "ÜBER MICH · PRODUCT ENGINEERING", title: "Zuerst entwerfe ich\ndie wichtigen Grenzen.", description: "Ich baue Produkte mit Flutter und Kotlin und definiere Vertrauensgrenzen mit Spring Boot. Menschen, Sicherheit und Wiederkehr kommen vor der Technologie.", x: 12, z: -2, accent: "#ffd166" },
-    { key: "work", index: "02", nav: "Projekte", eyebrow: "AUSGEWÄHLTE PRODUKTE · GEPRÜFTE QUELLEN", title: "Produkte – von der Idee\nbis zum Code.", description: "Diese Projekte sind durch funktionierende Implementierungen, Produktdefinitionen und Designmaterial belegt. Wähle ein Projekt für Beschreibung und echten Screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "Labor", eyebrow: "PRODUCT LAB · VON NOTION ZUM PROTOTYP", title: "Wenn ich ein Problem sehe,\nbaue ich eine kleine Lösung.", description: "Offene Fragen zu Erinnerung, Chancen und Reisen entwickle ich zu Produkthypothesen und funktionierenden Prototypen weiter.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "Kontakt", eyebrow: "KONTAKT · LET’S MAKE A SIGNAL", title: "Bauen wir etwas,\ndas wirklich funktioniert.", description: "Ich bin offen für mobile Produkte, sicherheitsorientierte Backends, KI-Lernwerkzeuge und durchdachte neue Ideen.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "work", index: "02", nav: "Projekte", eyebrow: "AUSGEWÄHLTE PRODUKTE · GEPRÜFTE QUELLEN", title: "Produkte – von der Idee\nbis zum Code.", description: "Diese Projekte sind durch funktionierende Implementierungen und Produktdefinitionen belegt. Wähle ein Projekt für Beschreibung und echten Screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
+    { key: "contact", index: "03", nav: "Kontakt", eyebrow: "KONTAKT · LET’S MAKE A SIGNAL", title: "Bauen wir etwas,\ndas wirklich funktioniert.", description: "Ich bin offen für mobile Produkte, sicherheitsorientierte Backends, Lernwerkzeuge und durchdachte neue Ideen.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
 };
 
@@ -94,7 +91,7 @@ const PROJECTS: Project[] = [
     key: "deutsch-flow",
     year: "BUILT",
     name: "Deutsch Flow",
-    type: "EDTECH · FLUTTER · AI",
+    type: "EDTECH · FLUTTER",
     accent: "#ff5c8a",
     screens: [
       { image: deutschFlowScreenshot, label: { ko: "학습 홈", en: "Learning home", de: "Lernübersicht" } },
@@ -130,40 +127,35 @@ const PROJECTS: Project[] = [
   },
 ];
 
-const LABS = [
-  { name: "Life Archive", type: "AI MEMORY" },
-  { name: "Outbound Coach", type: "CAREER AI" },
-];
-
 const UI_COPY = {
   ko: {
-    loading: "공간을 조립하는 중", building: "공개적으로 만드는 중 · 저장소 43개", sayHello: "인사하기", start: "탐험 시작", next: "다음 구역",
+    loading: "공간을 조립하는 중", building: "직접 설계하고 구현하는 중", sayHello: "인사하기", start: "탐험 시작", next: "다음 구역",
     brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
-    close: "닫기", dialog: "프로젝트 전시 화면", sourceLead: "프로젝트 링크", sourceEnd: "에서 확인할 수 있습니다.", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
+    close: "닫기", sourceLead: "프로젝트 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
-    loading: "ASSEMBLING THE SPACE", building: "BUILDING IN PUBLIC · 43 REPOSITORIES", sayHello: "SAY HELLO", start: "START EXPLORING", next: "NEXT ZONE",
+    loading: "ASSEMBLING THE SPACE", building: "DESIGNED AND BUILT END TO END", sayHello: "SAY HELLO", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
-    close: "Close", dialog: "Project showcase", sourceLead: "Project links", sourceEnd: "for more detail.", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
+    close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
-    loading: "RAUM WIRD AUFGEBAUT", building: "OFFEN ENTWICKELT · 43 REPOSITORIES", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
+    loading: "RAUM WIRD AUFGEBAUT", building: "END-TO-END ENTWICKELT", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
-    close: "Schließen", dialog: "Projekt-Ausstellung", sourceLead: "Projekt-Links", sourceEnd: "", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen",
+    close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
   loading: string; building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
-  close: string; dialog: string; sourceLead: string; sourceEnd: string; previousScreen: string; nextScreen: string; screen: string;
+  close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string;
   linkLabels: Record<ProjectLink["kind"], string>; pageTitle: string;
 }>;
 
@@ -187,20 +179,6 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; c
             <span className="project-type">{project.type}</span>
             <span className="project-arrow" aria-hidden="true">→</span>
           </button>
-        ))}
-      </div>
-    );
-  }
-
-  if (zone.key === "lab") {
-    return (
-      <div className="zone-extra lab-list">
-        {LABS.map((item, index) => (
-          <div className="lab-pill" key={item.name}>
-            <span>0{index + 1}</span>
-            {item.name}
-            <em>{item.type}</em>
-          </div>
         ))}
       </div>
     );
@@ -234,6 +212,8 @@ export default function Home() {
   const pressedRef = useRef(new Set<string>());
   const destinationRef = useRef<{ x: number; z: number } | null>(null);
   const dialogOpenRef = useRef(false);
+  const projectDialogRef = useRef<HTMLElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const [locale, setLocale] = useState<Locale>("ko");
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -272,8 +252,14 @@ export default function Home() {
   }, []);
 
   const openProject = useCallback((project: Project) => {
+    previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     setSelectedScreenIndex(0);
     setSelectedProject(project);
+  }, []);
+
+  const closeProject = useCallback(() => {
+    setSelectedProject(null);
+    setSelectedScreenIndex(0);
   }, []);
 
   const moveProjectScreen = useCallback((direction: -1 | 1) => {
@@ -291,8 +277,13 @@ export default function Home() {
 
   useEffect(() => {
     if (!selectedProject) return;
+    const dialog = projectDialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog?.querySelector<HTMLButtonElement>(".project-dialog-close")?.focus();
+
     const handleDialogKey = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedProject(null);
+      if (event.key === "Escape") closeProject();
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         moveProjectScreen(-1);
@@ -301,10 +292,27 @@ export default function Home() {
         event.preventDefault();
         moveProjectScreen(1);
       }
+      if (event.key === "Tab" && dialog) {
+        const focusable = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
     window.addEventListener("keydown", handleDialogKey);
-    return () => window.removeEventListener("keydown", handleDialogKey);
-  }, [moveProjectScreen, selectedProject]);
+    return () => {
+      window.removeEventListener("keydown", handleDialogKey);
+      document.body.style.overflow = previousOverflow;
+      requestAnimationFrame(() => previouslyFocusedRef.current?.focus());
+    };
+  }, [closeProject, moveProjectScreen, selectedProject]);
 
   useEffect(() => {
     dialogOpenRef.current = Boolean(selectedProject);
@@ -715,7 +723,7 @@ export default function Home() {
         <div className="availability"><span /> {copy.building}</div>
 
         <div className="top-actions">
-          <div className="language-switch" aria-label="Language">
+          <div className="language-switch" aria-label="언어 / Language / Sprache">
             {(["ko", "en", "de"] as Locale[]).map((language) => (
               <button
                 type="button"
@@ -803,23 +811,25 @@ export default function Home() {
         <div
           className="project-dialog-backdrop"
           onPointerDown={(event) => {
-            if (event.target === event.currentTarget) setSelectedProject(null);
+            if (event.target === event.currentTarget) closeProject();
           }}
         >
           <article
+            ref={projectDialogRef}
             className="project-dialog"
             role="dialog"
             aria-modal="true"
-            aria-label={`${selectedProject.name} — ${copy.dialog}`}
+            aria-labelledby={`project-title-${selectedProject.key}`}
+            aria-describedby={`project-description-${selectedProject.key}`}
             style={{ "--project-accent": selectedProject.accent } as CSSProperties}
           >
-            <button className="project-dialog-close" type="button" onClick={() => setSelectedProject(null)} aria-label={copy.close}>
+            <button className="project-dialog-close" type="button" onClick={closeProject} aria-label={copy.close}>
               <span aria-hidden="true">×</span>
             </button>
             <header className="project-dialog-header">
               <div>
                 <span className="project-dialog-kicker">{selectedProject.year} · {selectedProject.type}</span>
-                <h2>{selectedProject.name}</h2>
+                <h2 id={`project-title-${selectedProject.key}`}>{selectedProject.name}</h2>
               </div>
               <span className="project-dialog-count" aria-live="polite">
                 {String(selectedScreenIndex + 1).padStart(2, "0")} / {String(selectedProject.screens.length).padStart(2, "0")}
@@ -865,7 +875,7 @@ export default function Home() {
               )}
 
               {selectedProject.screens.length > 1 && (
-                <div className="project-screen-selector" aria-label={copy.screen}>
+                <div className="project-screen-selector" role="group" aria-label={copy.screen}>
                   {selectedProject.screens.map((screen, index) => (
                     <button
                       className={index === selectedScreenIndex ? "is-active" : ""}
@@ -873,7 +883,7 @@ export default function Home() {
                       key={screen.label.en}
                       onClick={() => setSelectedScreenIndex(index)}
                       aria-label={screen.label[locale]}
-                      aria-current={index === selectedScreenIndex ? "true" : undefined}
+                      aria-pressed={index === selectedScreenIndex}
                     />
                   ))}
                 </div>
@@ -881,7 +891,7 @@ export default function Home() {
             </div>
 
             <footer className="project-dialog-copy">
-              <p>
+              <p id={`project-description-${selectedProject.key}`}>
                 {selectedProject.description[locale]}
               </p>
               <nav className="project-source-links" aria-label={copy.sourceLead}>
@@ -898,7 +908,7 @@ export default function Home() {
 
       <footer className="footer-note">
         <span>© 2026 WONCHEOL HAN</span>
-        <span>PRODUCT · ENGINEERING · AI</span>
+        <span>PRODUCT · ENGINEERING · MOBILE</span>
       </footer>
     </main>
   );
