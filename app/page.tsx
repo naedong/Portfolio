@@ -8,7 +8,9 @@ import unicalWeekScreenshot from "../public/projects/unical-week.png";
 import unicalDayScreenshot from "../public/projects/unical-day.png";
 import unicalLoginScreenshot from "../public/projects/unical-login.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
-import travelbScreenshot from "../public/projects/travelb.png";
+import travelbDiscoverScreenshot from "../public/projects/travelb-discover.webp";
+import travelbPlanScreenshot from "../public/projects/travelb-plan.webp";
+import travelbMapScreenshot from "../public/projects/travelb-map.webp";
 
 type ZoneKey = "home" | "about" | "work" | "contact";
 type Locale = "ko" | "en" | "de";
@@ -113,7 +115,9 @@ const PROJECTS: Project[] = [
     type: "TRAVEL · KOTLIN · COMPOSE",
     accent: "#9c72ff",
     screens: [
-      { image: travelbScreenshot, label: { ko: "여행 탐색 홈", en: "Travel discovery", de: "Reise-Entdeckung" } },
+      { image: travelbDiscoverScreenshot, label: { ko: "축제·여행 탐색", en: "Festival discovery", de: "Festival-Entdeckung" } },
+      { image: travelbPlanScreenshot, label: { ko: "여행 일정 계획", en: "Trip planner", de: "Reiseplanung" } },
+      { image: travelbMapScreenshot, label: { ko: "지도·주변 탐색", en: "Map exploration", de: "Karten-Erkundung" } },
     ],
     description: {
       ko: "처음 Kotlin과 Jetpack Compose로 만든 모듈형 국내 여행 앱으로, 지역·축제 정보와 Kakao Map, 위치 탐색, 여행 계획 기능을 한 흐름으로 구성했습니다.",
@@ -129,7 +133,7 @@ const PROJECTS: Project[] = [
 
 const UI_COPY = {
   ko: {
-    loading: "공간을 조립하는 중", building: "직접 설계하고 구현하는 중", sayHello: "인사하기", start: "탐험 시작", next: "다음 구역",
+    loading: "공간을 조립하는 중", building: "직접 설계하고 구현하는 중", sayHello: "연락하기", start: "탐험 시작", next: "다음 구역",
     brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
     close: "닫기", sourceLead: "프로젝트 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
@@ -137,7 +141,7 @@ const UI_COPY = {
     pageTitle: "한원철 — Product Builder",
   },
   en: {
-    loading: "ASSEMBLING THE SPACE", building: "DESIGNED AND BUILT END TO END", sayHello: "SAY HELLO", start: "START EXPLORING", next: "NEXT ZONE",
+    loading: "ASSEMBLING THE SPACE", building: "DESIGNED AND BUILT END TO END", sayHello: "CONTACT", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
     close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
