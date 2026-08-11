@@ -55,6 +55,24 @@ const ZONES: Record<Locale, Zone[]> = {
   ],
 };
 
+const END_SIGNAL_COPY: Record<Locale, { eyebrow: string; title: string; description: string }> = {
+  ko: {
+    eyebrow: "NEXT SIGNAL",
+    title: "함께, 다음 궤도로",
+    description: "좋은 제품은 사람과 사람 사이에서 더 멀리 갑니다.",
+  },
+  en: {
+    eyebrow: "NEXT SIGNAL",
+    title: "Together, into the next orbit",
+    description: "Good products travel farther when people build them together.",
+  },
+  de: {
+    eyebrow: "NÄCHSTES SIGNAL",
+    title: "Gemeinsam in die nächste Umlaufbahn",
+    description: "Gute Produkte kommen weiter, wenn Menschen sie gemeinsam bauen.",
+  },
+};
+
 type ProjectLink = { kind: "github" | "notion"; href: string };
 type ProjectScreen = {
   image: StaticImageData;
@@ -227,6 +245,7 @@ export default function Home() {
   const canvasHostRef = useRef<HTMLDivElement>(null);
   const pressedRef = useRef(new Set<string>());
   const destinationRef = useRef<{ x: number; z: number } | null>(null);
+  const playerPositionRef = useRef({ x: 0, z: 2.5 });
   const dialogOpenRef = useRef(false);
   const projectDialogRef = useRef<HTMLElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
@@ -239,6 +258,7 @@ export default function Home() {
 
   const zones = ZONES[locale];
   const copy = UI_COPY[locale];
+  const endSignal = END_SIGNAL_COPY[locale];
   const activeZone = zones.find((zone) => zone.key === activeKey) ?? zones[0];
   const activeProjectScreen = selectedProject?.screens[selectedScreenIndex] ?? selectedProject?.screens[0];
 
@@ -392,7 +412,7 @@ export default function Home() {
       world.add(grid);
 
       const glowMaterial = new THREE.MeshBasicMaterial({ color: 0xff6b35, transparent: true, opacity: 0.7 });
-      for (let index = -2; index < 54; index += 1.5) {
+      for (let index = -2; index < 40; index += 1.5) {
         const dot = new THREE.Mesh(new THREE.SphereGeometry(0.055, 8, 8), glowMaterial);
         dot.position.set(index, -0.42, Math.sin(index * 0.55) * 0.5);
         world.add(dot);
@@ -415,6 +435,35 @@ export default function Home() {
         texture.colorSpace = THREE.SRGBColorSpace;
         const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, depthWrite: false }));
         sprite.scale.set(6.4, 1.6, 1);
+        return sprite;
+      };
+
+      const makeEndLabel = () => {
+        const labelCanvas = document.createElement("canvas");
+        labelCanvas.width = 1200;
+        labelCanvas.height = 360;
+        const context = labelCanvas.getContext("2d");
+        if (!context) return null;
+
+        context.clearRect(0, 0, labelCanvas.width, labelCanvas.height);
+        context.textAlign = "center";
+        context.fillStyle = "#ff84a6";
+        context.font = "700 30px Arial, sans-serif";
+        context.fillText(endSignal.eyebrow, 600, 66);
+
+        const titleSize = endSignal.title.length > 28 ? 52 : 68;
+        context.fillStyle = "#f0f6ef";
+        context.font = `800 ${titleSize}px Arial, sans-serif`;
+        context.fillText(endSignal.title, 600, 172);
+
+        context.fillStyle = "#a9b8af";
+        context.font = "500 27px Arial, sans-serif";
+        context.fillText(endSignal.description, 600, 245);
+
+        const texture = new THREE.CanvasTexture(labelCanvas);
+        texture.colorSpace = THREE.SRGBColorSpace;
+        const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0, depthWrite: false }));
+        sprite.scale.set(8.4, 2.52, 1);
         return sprite;
       };
 
@@ -519,27 +568,117 @@ export default function Home() {
             spark.position.set(Math.cos(angle) * (1.5 + (i % 3) * 0.35), 1.3 + (i % 4) * 0.25, Math.sin(angle) * 1.6);
             group.add(spark);
           }
-        } else {
-          const towerMaterial = new THREE.MeshStandardMaterial({ color: 0xe7eee8, roughness: 0.28, metalness: 0.65 });
-          const tower = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.52, 3.1, 6), towerMaterial);
-          tower.position.y = 1.55;
-          tower.castShadow = true;
-          group.add(tower);
-          const beacon = new THREE.Mesh(
-            new THREE.SphereGeometry(0.34, 18, 12),
-            new THREE.MeshBasicMaterial({ color: accent })
-          );
-          beacon.position.y = 3.15;
-          beacon.userData.pulse = true;
-          group.add(beacon);
-          const light = new THREE.PointLight(accent, 4.5, 10, 2);
-          light.position.y = 3.15;
-          group.add(light);
         }
       });
 
+      const signalCurves = [
+        new THREE.CatmullRomCurve3([
+          new THREE.Vector3(38.8, -0.43, -0.15),
+          new THREE.Vector3(43.1, -0.32, 1.35),
+          new THREE.Vector3(47.2, -0.2, 1.55),
+          new THREE.Vector3(49.7, 0.15, 2.2),
+        ]),
+        new THREE.CatmullRomCurve3([
+          new THREE.Vector3(38.8, -0.43, 0.45),
+          new THREE.Vector3(43.2, -0.32, -1.25),
+          new THREE.Vector3(47.2, -0.2, 0.75),
+          new THREE.Vector3(49.7, 0.15, 2.2),
+        ]),
+      ];
+      const signalColors = [0xff5c8a, 0x3dd6a5];
+      const signalPathDots: Array<InstanceType<typeof THREE.Mesh>> = [];
+      signalCurves.forEach((curve, curveIndex) => {
+        const path = new THREE.Mesh(
+          new THREE.TubeGeometry(curve, 72, 0.025, 6, false),
+          new THREE.MeshBasicMaterial({ color: signalColors[curveIndex], transparent: true, opacity: 0.62 })
+        );
+        world.add(path);
+
+        for (let pointIndex = 1; pointIndex < 12; pointIndex += 1) {
+          const point = curve.getPoint(pointIndex / 12);
+          const signalDot = new THREE.Mesh(
+            new THREE.SphereGeometry(pointIndex > 9 ? 0.09 : 0.065, 10, 8),
+            new THREE.MeshBasicMaterial({ color: signalColors[curveIndex], transparent: true, opacity: 0.9 })
+          );
+          signalDot.position.copy(point);
+          signalDot.userData.pulseOffset = pointIndex * 0.45 + curveIndex;
+          signalPathDots.push(signalDot);
+          world.add(signalDot);
+        }
+      });
+
+      const terminus = new THREE.Group();
+      terminus.position.set(49.7, 0, 2.2);
+      world.add(terminus);
+
+      const terminusBase = new THREE.Mesh(
+        new THREE.CylinderGeometry(3.2, 3.85, 0.48, 12),
+        new THREE.MeshStandardMaterial({ color: 0x0d2019, roughness: 0.68, metalness: 0.3 })
+      );
+      terminusBase.position.y = -0.4;
+      terminusBase.castShadow = true;
+      terminusBase.receiveShadow = true;
+      terminus.add(terminusBase);
+
+      const terminusEdge = new THREE.Mesh(
+        new THREE.TorusGeometry(3.24, 0.04, 8, 120),
+        new THREE.MeshBasicMaterial({ color: 0xff5c8a, transparent: true, opacity: 0.68 })
+      );
+      terminusEdge.position.y = -0.14;
+      terminusEdge.rotation.x = Math.PI / 2;
+      terminus.add(terminusEdge);
+
+      const gateway = new THREE.Group();
+      gateway.position.y = 2.15;
+      gateway.rotation.y = -0.28;
+      terminus.add(gateway);
+
+      const outerGate = new THREE.Mesh(
+        new THREE.TorusGeometry(2.18, 0.075, 12, 128),
+        new THREE.MeshStandardMaterial({ color: 0xff7ba1, emissive: 0xff315f, emissiveIntensity: 1.2, roughness: 0.22, metalness: 0.38 })
+      );
+      outerGate.castShadow = true;
+      gateway.add(outerGate);
+
+      const innerGate = new THREE.Mesh(
+        new THREE.TorusGeometry(1.58, 0.045, 10, 112),
+        new THREE.MeshBasicMaterial({ color: 0x7fffd4, transparent: true, opacity: 0.82 })
+      );
+      innerGate.rotation.x = 0.2;
+      innerGate.rotation.y = -0.12;
+      gateway.add(innerGate);
+
+      const signalCore = new THREE.Mesh(
+        new THREE.IcosahedronGeometry(0.22, 1),
+        new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xff7ba1, emissiveIntensity: 2.8, roughness: 0.16 })
+      );
+      gateway.add(signalCore);
+
+      const terminalLight = new THREE.PointLight(0xff5c8a, 6.5, 12, 2);
+      gateway.add(terminalLight);
+      const companionLight = new THREE.PointLight(0x3dd6a5, 3.2, 9, 2);
+      companionLight.position.set(0, -0.4, 0.8);
+      gateway.add(companionLight);
+
+      const signalMotes: Array<InstanceType<typeof THREE.Mesh>> = [];
+      for (let moteIndex = 0; moteIndex < 18; moteIndex += 1) {
+        const mote = new THREE.Mesh(
+          new THREE.OctahedronGeometry(moteIndex % 4 === 0 ? 0.085 : 0.05, 0),
+          new THREE.MeshBasicMaterial({ color: moteIndex % 2 ? 0xff8fab : 0x7fffd4, transparent: true, opacity: 0.82 })
+        );
+        mote.userData.phase = (moteIndex / 18) * Math.PI * 2;
+        signalMotes.push(mote);
+        gateway.add(mote);
+      }
+
+      const endLabel = makeEndLabel();
+      if (endLabel) {
+        endLabel.position.set(0, 4.75, -0.35);
+        terminus.add(endLabel);
+      }
+
       const rover = new THREE.Group();
-      rover.position.set(0, 0.65, 2.5);
+      rover.position.set(playerPositionRef.current.x, 0.65, playerPositionRef.current.z);
       world.add(rover);
 
       const roverCore = new THREE.Mesh(
@@ -570,7 +709,7 @@ export default function Home() {
 
       const startedAt = performance.now();
       let previousFrame = startedAt;
-      const player = { x: 0, z: 2.5, vx: 0, vz: 0 };
+      const player = { x: playerPositionRef.current.x, z: playerPositionRef.current.z, vx: 0, vz: 0 };
       const pointer = { x: 0, y: 0 };
       let lastZone: ZoneKey = "home";
       let animationFrame = 0;
@@ -639,8 +778,9 @@ export default function Home() {
           player.vx = (player.vx / speed) * 0.26;
           player.vz = (player.vz / speed) * 0.26;
         }
-        player.x = THREE.MathUtils.clamp(player.x + player.vx * delta * 60, -2.5, 50.5);
+        player.x = THREE.MathUtils.clamp(player.x + player.vx * delta * 60, -2.5, 48.9);
         player.z = THREE.MathUtils.clamp(player.z + player.vz * delta * 60, -5.2, 5.2);
+        playerPositionRef.current = { x: player.x, z: player.z };
 
         rover.position.x = THREE.MathUtils.lerp(rover.position.x, player.x, 0.18);
         rover.position.z = THREE.MathUtils.lerp(rover.position.z, player.z, 0.18);
@@ -672,6 +812,30 @@ export default function Home() {
           });
           group.position.y = reducedMotion ? 0 : Math.sin(elapsed * 0.55 + groupIndex) * 0.035;
         });
+
+        outerGate.rotation.z = reducedMotion ? 0 : elapsed * 0.12;
+        innerGate.rotation.z = reducedMotion ? 0.18 : -elapsed * 0.2;
+        const corePulse = reducedMotion ? 1 : 1 + Math.sin(elapsed * 2.8) * 0.2;
+        signalCore.scale.setScalar(corePulse);
+        gateway.position.y = 2.15 + (reducedMotion ? 0 : Math.sin(elapsed * 0.7) * 0.06);
+        signalMotes.forEach((mote, moteIndex) => {
+          const angle = mote.userData.phase + (reducedMotion ? 0 : elapsed * (0.2 + (moteIndex % 3) * 0.035));
+          const radius = 2.48 + (moteIndex % 4) * 0.16;
+          mote.position.set(
+            Math.sin(angle * 0.7) * 0.32,
+            Math.sin(angle) * radius,
+            Math.cos(angle) * radius
+          );
+        });
+        signalPathDots.forEach((dot) => {
+          const pulse = reducedMotion ? 1 : 0.82 + Math.sin(elapsed * 2.4 - dot.userData.pulseOffset) * 0.28;
+          dot.scale.setScalar(Math.max(0.42, pulse));
+        });
+        if (endLabel) {
+          const reveal = THREE.MathUtils.smoothstep(player.x, 38.5, 44);
+          endLabel.visible = reveal > 0.01;
+          endLabel.material.opacity = reveal * 0.94;
+        }
 
         dust.rotation.y = elapsed * 0.004;
         const cameraX = player.x - 6 + pointer.x * 0.75;
@@ -718,7 +882,7 @@ export default function Home() {
       disposed = true;
       cleanup();
     };
-  }, [setControl, zones]);
+  }, [endSignal, setControl, zones]);
 
   return (
     <main className="portfolio-shell" style={{ "--zone-accent": activeZone.accent } as React.CSSProperties}>
