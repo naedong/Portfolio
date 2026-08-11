@@ -167,6 +167,8 @@ const UI_COPY = {
     brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
     close: "닫기", sourceLead: "프로젝트 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
+    contactTitle: "좋은 제품의 다음 장면을\n함께 만들어요.", contactIntro: "아이디어, 모바일 제품, 안전한 백엔드에 관해 편하게 이야기해 주세요.",
+    copyEmail: "이메일 복사", copied: "복사 완료", openMail: "메일 보내기", viewGithub: "GitHub 보기",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
     pageTitle: "한원철 — Product Builder",
   },
@@ -175,6 +177,8 @@ const UI_COPY = {
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
     close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
+    contactTitle: "Let’s build the next\ngood thing together.", contactIntro: "Reach out about thoughtful ideas, mobile products, or safety-first backends.",
+    copyEmail: "Copy email", copied: "Copied", openMail: "Open email", viewGithub: "View GitHub",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
     pageTitle: "Woncheol Han — Product Builder",
   },
@@ -183,6 +187,8 @@ const UI_COPY = {
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
     close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen",
+    contactTitle: "Lass uns gemeinsam\ndas Nächste bauen.", contactIntro: "Schreib mir über durchdachte Ideen, mobile Produkte oder sicherheitsorientierte Backends.",
+    copyEmail: "E-Mail kopieren", copied: "Kopiert", openMail: "E-Mail öffnen", viewGithub: "GitHub ansehen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
     pageTitle: "Woncheol Han — Product Builder",
   },
@@ -190,12 +196,13 @@ const UI_COPY = {
   loading: string; building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
   close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string;
+  contactTitle: string; contactIntro: string; copyEmail: string; copied: string; openMail: string; viewGithub: string;
   linkLabels: Record<ProjectLink["kind"], string>; pageTitle: string;
 }>;
 
 type UiCopy = (typeof UI_COPY)[Locale];
 
-function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; copy: UiCopy; onExplore: () => void; onSelectProject: (project: Project) => void }) {
+function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zone: Zone; copy: UiCopy; onExplore: () => void; onSelectProject: (project: Project) => void; onContact: () => void }) {
   if (zone.key === "work") {
     return (
       <div className="zone-extra project-list" aria-label={copy.projectList}>
@@ -221,9 +228,9 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; c
   if (zone.key === "contact") {
     return (
       <div className="zone-extra contact-actions">
-        <a className="primary-link" href="mailto:gim21041@gmail.com">
+        <button className="primary-link" type="button" onClick={onContact} aria-haspopup="dialog">
           gim21041@gmail.com <span aria-hidden="true">↗</span>
-        </a>
+        </button>
         <div className="social-row" aria-label={copy.social}>
           <a href="https://github.com/naedong" target="_blank" rel="noreferrer">GITHUB ↗</a>
         </div>
@@ -244,15 +251,19 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; c
 export default function Home() {
   const canvasHostRef = useRef<HTMLDivElement>(null);
   const pressedRef = useRef(new Set<string>());
+  const movementImpulseRef = useRef({ x: 0, z: 0 });
   const destinationRef = useRef<{ x: number; z: number } | null>(null);
   const playerPositionRef = useRef({ x: 0, z: 2.5 });
   const dialogOpenRef = useRef(false);
   const projectDialogRef = useRef<HTMLElement>(null);
+  const contactDialogRef = useRef<HTMLElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const [locale, setLocale] = useState<Locale>("ko");
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
+  const [contactOpen, setContactOpen] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
   const [ready, setReady] = useState(false);
   const [progress, setProgress] = useState(0);
 
@@ -282,6 +293,10 @@ export default function Home() {
     if (isPressed) {
       pressedRef.current.add(control);
       destinationRef.current = null;
+      if (control === "d" || control === "arrowright") movementImpulseRef.current.x += 0.075;
+      if (control === "a" || control === "arrowleft") movementImpulseRef.current.x -= 0.075;
+      if (control === "s" || control === "arrowdown") movementImpulseRef.current.z += 0.065;
+      if (control === "w" || control === "arrowup") movementImpulseRef.current.z -= 0.065;
     } else {
       pressedRef.current.delete(control);
     }
@@ -289,6 +304,7 @@ export default function Home() {
 
   const openProject = useCallback((project: Project) => {
     previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setContactOpen(false);
     setSelectedScreenIndex(0);
     setSelectedProject(project);
   }, []);
@@ -296,6 +312,40 @@ export default function Home() {
   const closeProject = useCallback(() => {
     setSelectedProject(null);
     setSelectedScreenIndex(0);
+  }, []);
+
+  const openContact = useCallback(() => {
+    previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setSelectedProject(null);
+    setEmailCopied(false);
+    setContactOpen(true);
+  }, []);
+
+  const closeContact = useCallback(() => {
+    setContactOpen(false);
+    setEmailCopied(false);
+  }, []);
+
+  const copyEmailAddress = useCallback(async () => {
+    const email = "gim21041@gmail.com";
+    try {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        textArea.style.position = "fixed";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand("copy");
+        textArea.remove();
+      }
+      setEmailCopied(true);
+      window.setTimeout(() => setEmailCopied(false), 2200);
+    } catch {
+      setEmailCopied(false);
+    }
   }, []);
 
   const moveProjectScreen = useCallback((direction: -1 | 1) => {
@@ -351,9 +401,41 @@ export default function Home() {
   }, [closeProject, moveProjectScreen, selectedProject]);
 
   useEffect(() => {
-    dialogOpenRef.current = Boolean(selectedProject);
-    if (selectedProject) pressedRef.current.clear();
-  }, [selectedProject]);
+    if (!contactOpen) return;
+    const dialog = contactDialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialog?.querySelector<HTMLButtonElement>(".contact-dialog-close")?.focus();
+
+    const handleContactKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeContact();
+      if (event.key === "Tab" && dialog) {
+        const focusable = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleContactKey);
+    return () => {
+      window.removeEventListener("keydown", handleContactKey);
+      document.body.style.overflow = previousOverflow;
+      requestAnimationFrame(() => previouslyFocusedRef.current?.focus());
+    };
+  }, [closeContact, contactOpen]);
+
+  useEffect(() => {
+    dialogOpenRef.current = Boolean(selectedProject || contactOpen);
+    if (selectedProject || contactOpen) pressedRef.current.clear();
+  }, [contactOpen, selectedProject]);
 
   useEffect(() => {
     let disposed = false;
@@ -468,6 +550,7 @@ export default function Home() {
       };
 
       const zoneGroups: Array<InstanceType<typeof THREE.Group>> = [];
+      const zoneLabelSprites: Array<InstanceType<typeof THREE.Sprite>> = [];
       zones.forEach((zone, zoneIndex) => {
         const group = new THREE.Group();
         group.position.set(zone.x, 0, zone.z);
@@ -496,6 +579,7 @@ export default function Home() {
         const label = makeLabel(zone);
         if (label) {
           label.position.set(0, 3.7, -0.8);
+          zoneLabelSprites.push(label);
           group.add(label);
         }
 
@@ -734,13 +818,20 @@ export default function Home() {
       window.addEventListener("keydown", onKeyDown);
       window.addEventListener("keyup", onKeyUp);
 
+      let compactScene = host.clientWidth <= 700;
       const onResize = () => {
         if (!host) return;
+        compactScene = host.clientWidth <= 700;
         camera.aspect = host.clientWidth / host.clientHeight;
         camera.updateProjectionMatrix();
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, compactScene ? 1.35 : 1.8));
         renderer.setSize(host.clientWidth, host.clientHeight);
+        zoneLabelSprites.forEach((label) => {
+          label.visible = !compactScene;
+        });
       };
       window.addEventListener("resize", onResize);
+      onResize();
 
       const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -753,6 +844,10 @@ export default function Home() {
         const horizontal = Number(controls.has("d") || controls.has("arrowright")) - Number(controls.has("a") || controls.has("arrowleft"));
         const vertical = Number(controls.has("s") || controls.has("arrowdown")) - Number(controls.has("w") || controls.has("arrowup"));
         const hasManualInput = horizontal !== 0 || vertical !== 0;
+
+        player.vx += movementImpulseRef.current.x;
+        player.vz += movementImpulseRef.current.z;
+        movementImpulseRef.current = { x: 0, z: 0 };
 
         if (hasManualInput) {
           destinationRef.current = null;
@@ -833,7 +928,7 @@ export default function Home() {
         });
         if (endLabel) {
           const reveal = THREE.MathUtils.smoothstep(player.x, 38.5, 44);
-          endLabel.visible = reveal > 0.01;
+          endLabel.visible = !compactScene && reveal > 0.01;
           endLabel.material.opacity = reveal * 0.94;
         }
 
@@ -917,16 +1012,18 @@ export default function Home() {
             ))}
           </div>
           <a href="https://github.com/naedong" target="_blank" rel="noreferrer" className="github-link">GITHUB / NAEDONG ↗</a>
-          <a href="mailto:gim21041@gmail.com" className="say-hi">{copy.sayHello} <span>↗</span></a>
+          <button className="say-hi" type="button" onClick={openContact} aria-haspopup="dialog" aria-expanded={contactOpen}>
+            {copy.sayHello} <span aria-hidden="true">↗</span>
+          </button>
         </div>
       </header>
 
-      <section className="content-panel" key={`${activeZone.key}-${locale}`} aria-live="polite">
+      <section className="content-panel" data-zone={activeZone.key} key={`${activeZone.key}-${locale}`} aria-live="polite">
         <div className="zone-index"><span>{activeZone.index}</span><i /></div>
         <p className="eyebrow">{activeZone.eyebrow}</p>
         <h1>{activeZone.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
         <p className="zone-description">{activeZone.description}</p>
-        <ZoneContent zone={activeZone} copy={copy} onExplore={goNext} onSelectProject={openProject} />
+        <ZoneContent zone={activeZone} copy={copy} onExplore={goNext} onSelectProject={openProject} onContact={openContact} />
       </section>
 
       <aside className="journey-rail" aria-label={copy.journey}>
@@ -986,6 +1083,57 @@ export default function Home() {
           onPointerCancel={() => setControl("d", false)}
         >→</button>
       </div>
+
+      {contactOpen && (
+        <div
+          className="contact-dialog-backdrop"
+          onPointerDown={(event) => {
+            if (event.target === event.currentTarget) closeContact();
+          }}
+        >
+          <article
+            ref={contactDialogRef}
+            className="contact-dialog"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-dialog-title"
+            aria-describedby="contact-dialog-description"
+          >
+            <div className="contact-dialog-visual" aria-hidden="true">
+              <span className="contact-orbit contact-orbit-one" />
+              <span className="contact-orbit contact-orbit-two" />
+              <span className="contact-orbit-core" />
+            </div>
+            <button className="contact-dialog-close" type="button" onClick={closeContact} aria-label={copy.close}>
+              <span aria-hidden="true">×</span>
+            </button>
+            <div className="contact-dialog-copy">
+              <span className="contact-dialog-kicker"><i /> CONTACT CHANNEL · EUROPE / BERLIN</span>
+              <h2 id="contact-dialog-title">
+                {copy.contactTitle.split("\n").map((line) => <span key={line}>{line}</span>)}
+              </h2>
+              <p id="contact-dialog-description">{copy.contactIntro}</p>
+            </div>
+            <div className="contact-email-card">
+              <div>
+                <span>EMAIL</span>
+                <strong>gim21041@gmail.com</strong>
+              </div>
+              <button type="button" onClick={copyEmailAddress} aria-live="polite" className={emailCopied ? "is-copied" : ""}>
+                {emailCopied ? copy.copied : copy.copyEmail}
+              </button>
+            </div>
+            <nav className="contact-dialog-actions" aria-label={copy.social}>
+              <a className="contact-action-primary" href="mailto:gim21041@gmail.com">
+                {copy.openMail} <span aria-hidden="true">↗</span>
+              </a>
+              <a href="https://github.com/naedong" target="_blank" rel="noreferrer">
+                {copy.viewGithub} <span aria-hidden="true">↗</span>
+              </a>
+            </nav>
+          </article>
+        </div>
+      )}
 
       {selectedProject && (
         <div
