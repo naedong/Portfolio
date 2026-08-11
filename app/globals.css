@@ -416,36 +416,6 @@ a {
   font-size: 13px;
 }
 
-.lab-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.lab-pill {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 13px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: rgba(3, 9, 7, 0.42);
-  color: #d7e0da;
-  font-size: 11px;
-}
-
-.lab-pill span {
-  color: var(--zone-accent);
-  font: 650 8px/1 var(--font-geist-mono), monospace;
-}
-
-.lab-pill em {
-  color: #7f8e85;
-  font: 600 7px/1 var(--font-geist-mono), monospace;
-  font-style: normal;
-  letter-spacing: 0.1em;
-}
-
 .contact-actions {
   display: flex;
   align-items: center;
@@ -1167,8 +1137,6 @@ a {
 
   .project-type { display: none; }
   .project-name { font-size: 12px; }
-  .lab-pill { padding: 8px 10px; font-size: 9px; }
-
   .contact-actions { display: block; }
   .social-row { margin-top: 14px; }
 

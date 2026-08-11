@@ -10,7 +10,7 @@ import unicalLoginScreenshot from "../public/projects/unical-login.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
 import travelbScreenshot from "../public/projects/travelb.png";
 
-type ZoneKey = "home" | "about" | "work" | "lab" | "contact";
+type ZoneKey = "home" | "about" | "work" | "contact";
 type Locale = "ko" | "en" | "de";
 type ProjectKey = "unical" | "deutsch-flow" | "travelb";
 
@@ -28,25 +28,22 @@ type Zone = {
 
 const ZONES: Record<Locale, Zone[]> = {
   ko: [
-    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "아이디어를\n작동하는 제품으로.", description: "사용자의 실제 문제에서 출발해 모바일 앱, 안전한 백엔드, AI 기능까지 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "아이디어를\n작동하는 제품으로.", description: "사용자의 실제 문제에서 출발해 모바일 앱과 안전한 백엔드를 제품으로 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "소개", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "가장 중요한 경계부터\n설계합니다.", description: "Flutter와 Kotlin으로 제품을 만들고 Spring Boot로 신뢰 경계를 세웁니다. 기술보다 먼저 사용자, 안전, 반복 사용의 이유를 봅니다.", x: 12, z: -2, accent: "#ffd166" },
     { key: "work", index: "02", nav: "작업", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "기획에서 코드까지\n이어진 제품들.", description: "실제 구현, 제품 정의, 디자인 자료로 확인할 수 있는 프로젝트입니다. 프로젝트를 선택하면 설명과 실제 화면을 볼 수 있습니다.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "실험", eyebrow: "PRODUCT LAB · NOTION TO PROTOTYPE", title: "문제를 발견하면\n작게라도 만듭니다.", description: "기억 보존, 기회 창출, 여행 경험처럼 아직 답이 명확하지 않은 문제를 제품 가설과 프로토타입으로 발전시킵니다.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "연락", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "함께 작동하는 것을\n만들어볼까요?", description: "모바일 제품, 안전 중심 백엔드, AI 기반 학습 도구와 새로운 아이디어에 열려 있습니다.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "contact", index: "03", nav: "연락", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "함께 작동하는 것을\n만들어볼까요?", description: "모바일 제품, 안전 중심 백엔드, 학습 도구와 새로운 아이디어에 열려 있습니다.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
   en: [
-    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "Ideas into\nworking products.", description: "I start with real user problems and design and build mobile apps, secure backends, and AI features end to end.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "Ideas into\nworking products.", description: "I start with real user problems and design and build mobile apps and secure backends end to end.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "About", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "I design the boundaries\nthat matter first.", description: "I build products with Flutter and Kotlin and define trust boundaries with Spring Boot. Users, safety, and reasons to return come before technology.", x: 12, z: -2, accent: "#ffd166" },
     { key: "work", index: "02", nav: "Work", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "Products carried\nfrom concept to code.", description: "These projects are grounded in working implementations, product definitions, and design evidence. Select one to see its story and actual screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "Lab", eyebrow: "PRODUCT LAB · NOTION TO PROTOTYPE", title: "When I find a problem,\nI build a small answer.", description: "I turn open questions around memory, opportunity, and travel into product hypotheses and working prototypes.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "Contact", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "Shall we build\nsomething that works?", description: "I am open to mobile products, safety-first backends, AI learning tools, and thoughtful new ideas.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "contact", index: "03", nav: "Contact", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "Shall we build\nsomething that works?", description: "I am open to mobile products, safety-first backends, learning tools, and thoughtful new ideas.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
   de: [
-    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / AI", title: "Aus Ideen werden\nfunktionierende Produkte.", description: "Ich beginne bei echten Problemen von Nutzer:innen und entwickle mobile Apps, sichere Backends und KI-Funktionen durchgängig selbst.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "Aus Ideen werden\nfunktionierende Produkte.", description: "Ich beginne bei echten Problemen von Nutzer:innen und entwickle mobile Apps und sichere Backends durchgängig selbst.", x: 0, z: 0, accent: "#ff6b35" },
     { key: "about", index: "01", nav: "Über mich", eyebrow: "ÜBER MICH · PRODUCT ENGINEERING", title: "Zuerst entwerfe ich\ndie wichtigen Grenzen.", description: "Ich baue Produkte mit Flutter und Kotlin und definiere Vertrauensgrenzen mit Spring Boot. Menschen, Sicherheit und Wiederkehr kommen vor der Technologie.", x: 12, z: -2, accent: "#ffd166" },
     { key: "work", index: "02", nav: "Projekte", eyebrow: "AUSGEWÄHLTE PRODUKTE · GEPRÜFTE QUELLEN", title: "Produkte – von der Idee\nbis zum Code.", description: "Diese Projekte sind durch funktionierende Implementierungen, Produktdefinitionen und Designmaterial belegt. Wähle ein Projekt für Beschreibung und echten Screen.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "lab", index: "03", nav: "Labor", eyebrow: "PRODUCT LAB · VON NOTION ZUM PROTOTYP", title: "Wenn ich ein Problem sehe,\nbaue ich eine kleine Lösung.", description: "Offene Fragen zu Erinnerung, Chancen und Reisen entwickle ich zu Produkthypothesen und funktionierenden Prototypen weiter.", x: 36, z: -1, accent: "#70a1ff" },
-    { key: "contact", index: "04", nav: "Kontakt", eyebrow: "KONTAKT · LET’S MAKE A SIGNAL", title: "Bauen wir etwas,\ndas wirklich funktioniert.", description: "Ich bin offen für mobile Produkte, sicherheitsorientierte Backends, KI-Lernwerkzeuge und durchdachte neue Ideen.", x: 48, z: 0, accent: "#ff5c8a" },
+    { key: "contact", index: "03", nav: "Kontakt", eyebrow: "KONTAKT · LET’S MAKE A SIGNAL", title: "Bauen wir etwas,\ndas wirklich funktioniert.", description: "Ich bin offen für mobile Produkte, sicherheitsorientierte Backends, Lernwerkzeuge und durchdachte neue Ideen.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
 };
 
@@ -94,7 +91,7 @@ const PROJECTS: Project[] = [
     key: "deutsch-flow",
     year: "BUILT",
     name: "Deutsch Flow",
-    type: "EDTECH · FLUTTER · AI",
+    type: "EDTECH · FLUTTER",
     accent: "#ff5c8a",
     screens: [
       { image: deutschFlowScreenshot, label: { ko: "학습 홈", en: "Learning home", de: "Lernübersicht" } },
@@ -128,11 +125,6 @@ const PROJECTS: Project[] = [
       { kind: "notion", href: "https://app.notion.com/p/359b8ce076a18061ab5ce533688f7263" },
     ],
   },
-];
-
-const LABS = [
-  { name: "Life Archive", type: "AI MEMORY" },
-  { name: "Outbound Coach", type: "CAREER AI" },
 ];
 
 const UI_COPY = {
@@ -187,20 +179,6 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject }: { zone: Zone; c
             <span className="project-type">{project.type}</span>
             <span className="project-arrow" aria-hidden="true">→</span>
           </button>
-        ))}
-      </div>
-    );
-  }
-
-  if (zone.key === "lab") {
-    return (
-      <div className="zone-extra lab-list">
-        {LABS.map((item, index) => (
-          <div className="lab-pill" key={item.name}>
-            <span>0{index + 1}</span>
-            {item.name}
-            <em>{item.type}</em>
-          </div>
         ))}
       </div>
     );
@@ -898,7 +876,7 @@ export default function Home() {
 
       <footer className="footer-note">
         <span>© 2026 WONCHEOL HAN</span>
-        <span>PRODUCT · ENGINEERING · AI</span>
+        <span>PRODUCT · ENGINEERING · MOBILE</span>
       </footer>
     </main>
   );

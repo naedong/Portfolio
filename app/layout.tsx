@@ -11,7 +11,7 @@ const siteUrl = (
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "한원철 — Product Builder",
-  description: "모바일 앱, 안전 중심 백엔드, AI 기능을 직접 설계하고 구현하는 한원철의 인터랙티브 포트폴리오.",
+  description: "모바일 앱과 안전 중심 백엔드를 직접 설계하고 구현하는 한원철의 인터랙티브 포트폴리오.",
   openGraph: {
     title: "WONCHEOL HAN — PRODUCT BUILDER",
     description: "From product definition to working code. Explore UniCal, Deutsch Flow, TravelB and more.",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WONCHEOL HAN — PRODUCT BUILDER",
-    description: "Mobile, backend and AI products — designed and built end to end.",
+    description: "Mobile products and secure backends — designed and built end to end.",
     images: [`${siteUrl}/og.png`],
   },
 };
