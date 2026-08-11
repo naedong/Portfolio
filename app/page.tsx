@@ -818,10 +818,11 @@ export default function Home() {
       window.addEventListener("keydown", onKeyDown);
       window.addEventListener("keyup", onKeyUp);
 
-      let compactScene = host.clientWidth <= 700;
+      const usesCompactScene = () => host.clientWidth <= 1600 || host.clientHeight <= 800;
+      let compactScene = usesCompactScene();
       const onResize = () => {
         if (!host) return;
-        compactScene = host.clientWidth <= 700;
+        compactScene = usesCompactScene();
         camera.aspect = host.clientWidth / host.clientHeight;
         camera.updateProjectionMatrix();
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, compactScene ? 1.35 : 1.8));
