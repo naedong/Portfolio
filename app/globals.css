@@ -277,21 +277,42 @@ a:focus-visible {
 .github-link:hover { color: var(--ink); }
 
 .say-hi {
-  min-width: 115px;
-  padding: 12px 16px;
-  display: flex;
+  min-width: 124px;
+  min-height: 40px;
+  padding: 7px 9px 7px 16px;
+  display: inline-flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 16px;
   border: 1px solid rgba(255, 255, 255, 0.29);
   border-radius: 999px;
+  background: rgba(5, 13, 10, 0.42);
   font: 700 9px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.13em;
   transition: background 180ms ease, color 180ms ease, border-color 180ms ease;
+}
+
+.say-hi span {
+  width: 25px;
+  height: 25px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: #07100d;
+  background: var(--zone-accent);
+  transition: transform 180ms ease, background 180ms ease;
 }
 
 .say-hi:hover {
   border-color: var(--zone-accent);
   background: var(--zone-accent);
   color: #07100d;
+}
+
+.say-hi:hover span {
+  background: #07100d;
+  color: var(--zone-accent);
+  transform: translate(1px, -1px);
 }
 
 .content-panel {
