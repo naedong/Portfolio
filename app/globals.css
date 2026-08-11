@@ -200,9 +200,9 @@ a:focus-visible {
 }
 
 .brand-copy {
-  font-size: 12px;
+  font-size: clamp(13px, 0.78vw, 15px);
   font-weight: 750;
-  line-height: 0.96;
+  line-height: 1;
   letter-spacing: 0.08em;
 }
 
@@ -211,8 +211,8 @@ a:focus-visible {
   align-items: center;
   gap: 9px;
   color: #b9c6bd;
-  font: 600 10px/1 var(--font-geist-mono), monospace;
-  letter-spacing: 0.12em;
+  font: 600 clamp(12px, 0.72vw, 14px)/1.2 var(--font-geist-mono), monospace;
+  letter-spacing: 0.1em;
 }
 
 .availability span {
@@ -231,7 +231,7 @@ a:focus-visible {
 .top-actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(12px, 1.2vw, 22px);
 }
 
 .language-switch {
@@ -245,14 +245,14 @@ a:focus-visible {
 }
 
 .language-switch button {
-  min-width: 34px;
-  height: 30px;
-  padding: 0 8px;
+  min-width: 40px;
+  height: 34px;
+  padding: 0 10px;
   border: 0;
   border-radius: 999px;
   color: #78877e;
   background: transparent;
-  font: 700 9px/1 var(--font-geist-mono), monospace;
+  font: 700 clamp(10.5px, 0.65vw, 12px)/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.08em;
   cursor: pointer;
   transition: color 180ms ease, background 180ms ease;
@@ -272,17 +272,17 @@ a:focus-visible {
   align-items: center;
   padding: 8px 0;
   color: #89968e;
-  font: 650 10px/1 var(--font-geist-mono), monospace;
-  letter-spacing: 0.11em;
+  font: 650 clamp(11.5px, 0.7vw, 13px)/1.2 var(--font-geist-mono), monospace;
+  letter-spacing: 0.09em;
   transition: color 180ms ease;
 }
 
 .github-link:hover { color: var(--ink); }
 
 .say-hi {
-  min-width: 132px;
-  min-height: 44px;
-  padding: 7px 9px 7px 16px;
+  min-width: 150px;
+  min-height: 48px;
+  padding: 7px 9px 7px 18px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -290,15 +290,15 @@ a:focus-visible {
   border: 1px solid rgba(255, 255, 255, 0.29);
   border-radius: 999px;
   background: rgba(5, 13, 10, 0.42);
-  font: 700 10px/1 var(--font-geist-mono), monospace;
-  letter-spacing: 0.11em;
+  font: 700 clamp(12px, 0.74vw, 13.5px)/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
   cursor: pointer;
   transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
 }
 
 .say-hi span {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -1137,19 +1137,28 @@ a:focus-visible {
   position: absolute;
   z-index: 5;
   top: 50%;
-  right: 4.5vw;
+  right: 3.5vw;
+  width: 178px;
   display: grid;
-  grid-template-columns: auto 1px auto;
+  grid-template-columns: 12px 1px minmax(0, 1fr);
   align-items: stretch;
-  gap: 17px;
-  height: 270px;
+  gap: 13px;
+  height: 316px;
+  padding: 18px 14px;
+  border: 1px solid rgba(226, 241, 231, 0.16);
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--zone-accent) 8%, transparent), transparent 46%),
+    rgba(5, 13, 10, 0.7);
+  box-shadow: 0 24px 65px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(14px) saturate(0.86);
   transform: translateY(-50%);
 }
 
 .rail-label {
   align-self: start;
   color: #69776e;
-  font: 650 9px/1 var(--font-geist-mono), monospace;
+  font: 650 10px/1 var(--font-geist-mono), monospace;
   letter-spacing: 0.16em;
   writing-mode: vertical-rl;
   transform: rotate(180deg);
@@ -1176,33 +1185,37 @@ a:focus-visible {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1px 0;
+  gap: 4px;
+  padding: 0;
 }
 
 .journey-rail button {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 34px;
-  padding: 6px 0;
-  border: 0;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
   color: #6f7d74;
   background: transparent;
-  font-size: 11.5px;
+  font-size: clamp(12.5px, 0.76vw, 14px);
   font-weight: 650;
   cursor: pointer;
   text-align: left;
-  transition: color 180ms ease, transform 180ms ease;
+  transition: color 180ms ease, transform 180ms ease, background 180ms ease, border-color 180ms ease;
 }
 
 .journey-rail button span {
-  font: 650 9px/1 var(--font-geist-mono), monospace;
+  font: 650 10px/1 var(--font-geist-mono), monospace;
 }
 
 .journey-rail button:hover,
 .journey-rail button.is-active {
   color: var(--ink);
-  transform: translateX(3px);
+  border-color: color-mix(in srgb, var(--zone-accent) 32%, transparent);
+  background: color-mix(in srgb, var(--zone-accent) 12%, rgba(255, 255, 255, 0.025));
+  transform: translateX(2px);
 }
 
 .journey-rail button.is-active span { color: var(--zone-accent); }
@@ -1271,6 +1284,24 @@ a:focus-visible {
   letter-spacing: 0.11em;
 }
 
+@media (max-width: 1280px) and (min-width: 901px) {
+  .topbar {
+    height: 88px;
+    padding-inline: 3vw;
+  }
+
+  .availability { display: none; }
+  .content-panel { left: 3vw; width: min(570px, 50vw); }
+  .journey-rail { right: 2vw; }
+  .control-hint { left: 3vw; }
+  .footer-note { right: 3vw; }
+}
+
+@media (max-width: 1120px) and (min-width: 901px) {
+  .github-link { display: none; }
+  .content-panel { width: min(540px, 55vw); }
+}
+
 @media (max-width: 900px) {
   .topbar {
     height: 82px;
@@ -1286,8 +1317,9 @@ a:focus-visible {
 
   .brand-mark { width: 42px; height: 42px; }
   .top-actions { gap: 8px; }
-  .language-switch button { min-width: 34px; padding-inline: 7px; }
-  .say-hi { min-width: 106px; min-height: 40px; padding-inline: 14px 8px; }
+  .language-switch button { min-width: 36px; height: 32px; padding-inline: 8px; }
+  .say-hi { min-width: 112px; min-height: 42px; padding-inline: 15px 7px; }
+  .say-hi span { width: 28px; height: 28px; }
 
   .content-panel {
     top: 98px;
@@ -1363,7 +1395,7 @@ a:focus-visible {
     min-height: 44px;
     padding: 3px 6px;
     border-radius: 12px;
-    font-size: 10.5px;
+    font-size: 11.5px;
   }
 
   .journey-rail button.is-active {
@@ -1452,13 +1484,13 @@ a:focus-visible {
   .brand-mark { width: 40px; height: 40px; }
   .top-actions { gap: 6px; }
   .language-switch { padding: 3px; }
-  .language-switch button { min-width: 30px; height: 29px; padding-inline: 5px; font-size: 8.5px; }
+  .language-switch button { min-width: 31px; height: 30px; padding-inline: 5px; font-size: 9.5px; }
   .say-hi {
-    min-width: 72px;
-    min-height: 36px;
+    min-width: 82px;
+    min-height: 38px;
     gap: 8px;
     padding: 5px 6px 5px 11px;
-    font-size: 9px;
+    font-size: 10.5px;
     letter-spacing: 0.04em;
   }
   .say-hi span { width: 24px; height: 24px; }
@@ -1510,7 +1542,7 @@ a:focus-visible {
     padding-inline: 7px;
   }
 
-  .journey-rail button { min-width: 0; padding-inline: 3px; font-size: 10px; }
+  .journey-rail button { min-width: 0; padding-inline: 3px; font-size: 11px; }
   .journey-rail button span { font-size: 8.5px; }
   .touch-controls { right: 12px; bottom: 80px; }
 
