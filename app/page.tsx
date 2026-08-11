@@ -8,6 +8,12 @@ import unicalWeekScreenshot from "../public/projects/unical-week.png";
 import unicalDayScreenshot from "../public/projects/unical-day.png";
 import unicalLoginScreenshot from "../public/projects/unical-login.png";
 import deutschFlowScreenshot from "../public/projects/deutsch-flow.png";
+import deutschFlowWordScreenshot from "../public/projects/deutsch-flow-word.webp";
+import deutschFlowLibraryScreenshot from "../public/projects/deutsch-flow-library.webp";
+import deutschFlowPracticeScreenshot from "../public/projects/deutsch-flow-practice.webp";
+import deutschFlowArticleScreenshot from "../public/projects/deutsch-flow-article.webp";
+import deutschFlowSpeakingScreenshot from "../public/projects/deutsch-flow-speaking.webp";
+import deutschFlowDictionaryScreenshot from "../public/projects/deutsch-flow-dictionary.webp";
 import travelbDiscoverScreenshot from "../public/projects/travelb-discover.webp";
 import travelbPlanScreenshot from "../public/projects/travelb-plan.webp";
 import travelbMapScreenshot from "../public/projects/travelb-map.webp";
@@ -97,6 +103,12 @@ const PROJECTS: Project[] = [
     accent: "#ff5c8a",
     screens: [
       { image: deutschFlowScreenshot, label: { ko: "학습 홈", en: "Learning home", de: "Lernübersicht" } },
+      { image: deutschFlowWordScreenshot, label: { ko: "단어 상세·발음", en: "Word details & pronunciation", de: "Wortdetails & Aussprache" } },
+      { image: deutschFlowLibraryScreenshot, label: { ko: "단어 검색·덱 필터", en: "Word search & deck filters", de: "Wortsuche & Deck-Filter" } },
+      { image: deutschFlowPracticeScreenshot, label: { ko: "B1 읽기 연습", en: "B1 reading practice", de: "B1-Leseübung" } },
+      { image: deutschFlowArticleScreenshot, label: { ko: "기사 읽기", en: "Article reading", de: "Artikellektüre" } },
+      { image: deutschFlowSpeakingScreenshot, label: { ko: "말하기 발음 점검", en: "Speaking check", de: "Sprechübung" } },
+      { image: deutschFlowDictionaryScreenshot, label: { ko: "실시간 문맥 사전", en: "Context dictionary", de: "Kontextwörterbuch" } },
     ],
     description: {
       ko: "개인 단어장, 간격 반복, 발음 코칭과 실전 콘텐츠를 하나의 학습 흐름으로 연결한 독일어 학습 앱입니다.",
