@@ -43,6 +43,17 @@ a {
   text-decoration: none;
 }
 
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--zone-accent);
+  outline-offset: 4px;
+}
+
+.project-dialog button:focus-visible,
+.project-dialog a:focus-visible {
+  outline-color: var(--project-accent);
+}
+
 .portfolio-shell {
   position: relative;
   width: 100%;
@@ -786,7 +797,7 @@ a {
   gap: 34px;
   padding: 20px 32px 22px;
   border-top: 1px solid var(--line);
-  background: rgba(5, 13, 10, 0.94);
+  background: #050d0a;
 }
 
 .project-dialog-copy p {
@@ -1178,6 +1189,11 @@ a {
   .project-source-links a { padding: 8px 9px; font-size: 9px; }
 }
 
+@media (max-height: 820px) and (min-width: 901px) {
+  .project-screen-pedestal { height: min(46svh, 400px); margin-top: -8px; }
+  .project-screen-caption { bottom: -46px; }
+}
+
 @media (max-height: 710px) and (min-width: 901px) {
   .topbar { height: 76px; }
   .content-panel { transform: translateY(-44%); }
@@ -1190,7 +1206,7 @@ a {
   .project-dialog { height: calc(100svh - 20px); }
   .project-dialog-header { min-height: 82px; padding-block: 16px; }
   .project-dialog-header h2 { font-size: 38px; }
-  .project-screen-pedestal { height: min(49svh, 360px); }
+  .project-screen-pedestal { height: min(43svh, 340px); }
   .project-screen-caption { bottom: -46px; }
   .project-dialog-copy { padding-block: 14px; }
 }

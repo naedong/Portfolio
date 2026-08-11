@@ -3,10 +3,9 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 
-const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://signal-garden-hwc.gim21041.chatgpt.site"
-).replace(/\/$/, "");
+const repositoryName = process.env.GITHUB_REPOSITORY?.split("/").at(-1) ?? "Portfolio";
+const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "naedong";
+const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? `https://${repositoryOwner}.github.io/${repositoryName}`).replace(/\/$/, "");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

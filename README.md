@@ -4,7 +4,7 @@
 
 ## Live
 
-[naedong.github.io/UniCal-portfolio](https://naedong.github.io/UniCal-portfolio/)
+[naedong.github.io/Portfolio](https://naedong.github.io/Portfolio/)
 
 ## Featured projects
 
