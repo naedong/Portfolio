@@ -55,27 +55,34 @@ const ZONES: Record<Locale, Zone[]> = {
   ],
 };
 
-const END_SIGNAL_COPY: Record<Locale, { eyebrow: string; title: string; description: string }> = {
+const END_SIGNAL_COPY: Record<Locale, { eyebrow: string; title: string; description: string; goalLabel: string; goal: string }> = {
   ko: {
     eyebrow: "NEXT SIGNAL",
-    title: "다음 제품도 함께",
-    description: "좋은 아이디어는 함께 만들 때 더 멀리 갑니다.",
+    title: "함께, 다음 궤도로",
+    description: "좋은 제품은 함께 만들 때 더 멀리 갑니다.",
+    goalLabel: "MY GOAL",
+    goal: "사용자에게 오래 쓰이는 제품을, 기획부터 배포까지 완성합니다.",
   },
   en: {
     eyebrow: "NEXT SIGNAL",
     title: "Together, into the next orbit",
     description: "Good products travel farther when people build them together.",
+    goalLabel: "MY GOAL",
+    goal: "Build useful products from the first idea through a thoughtful release.",
   },
   de: {
     eyebrow: "NÄCHSTES SIGNAL",
     title: "Gemeinsam in die nächste Umlaufbahn",
     description: "Gute Produkte kommen weiter, wenn Menschen sie gemeinsam bauen.",
+    goalLabel: "MEIN ZIEL",
+    goal: "Nützliche Produkte von der ersten Idee bis zum durchdachten Release bauen.",
   },
 };
 
 type ProjectLink = { kind: "github" | "notion"; href: string };
 type ProjectScreen = {
   image: StaticImageData;
+  video?: string;
   label: Record<Locale, string>;
 };
 type LocalizedCopy = Record<Locale, string>;
@@ -162,9 +169,9 @@ const PROJECTS: Project[] = [
     type: "TRAVEL · KOTLIN · COMPOSE",
     accent: "#9c72ff",
     screens: [
-      { image: travelbDiscoverScreenshot, label: { ko: "축제·여행 탐색", en: "Festival discovery", de: "Festival-Entdeckung" } },
-      { image: travelbPlanScreenshot, label: { ko: "여행 일정 계획", en: "Trip planner", de: "Reiseplanung" } },
-      { image: travelbMapScreenshot, label: { ko: "지도·주변 탐색", en: "Map exploration", de: "Karten-Erkundung" } },
+      { image: travelbDiscoverScreenshot, video: "projects/travelb-main.mp4", label: { ko: "축제·여행 탐색", en: "Festival discovery", de: "Festival-Entdeckung" } },
+      { image: travelbPlanScreenshot, video: "projects/travelb-plan.mp4", label: { ko: "여행 일정 계획", en: "Trip planner", de: "Reiseplanung" } },
+      { image: travelbMapScreenshot, video: "projects/travelb-map.mp4", label: { ko: "지도·주변 탐색", en: "Map exploration", de: "Karten-Erkundung" } },
     ],
     description: {
       ko: "Kotlin과 Jetpack Compose로 처음 만든 국내 여행 앱입니다. 여행지와 축제를 찾고, Kakao Map에서 위치를 확인한 뒤 여행 일정을 만들 수 있도록 구현했습니다.",
@@ -188,7 +195,7 @@ const UI_COPY = {
     loading: "포트폴리오를 불러오는 중", building: "직접 설계하고 개발합니다", sayHello: "연락하기", start: "프로젝트 둘러보기", next: "다음으로",
     brandHome: "처음으로 이동", projectList: "주요 프로젝트", projectOpen: "프로젝트 자세히 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n화면을 둘러보세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
-    close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면",
+    close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면", videoUnsupported: "이 브라우저에서는 영상을 재생할 수 없습니다.",
     contactTitle: "아이디어가 있다면\n편하게 연락해 주세요.", contactIntro: "모바일 앱과 백엔드, 학습 도구에 관한 이야기라면 언제든 환영합니다.",
     copyEmail: "이메일 복사", copied: "복사 완료", openMail: "메일 보내기", viewGithub: "GitHub 보기",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
@@ -209,7 +216,7 @@ const UI_COPY = {
     loading: "ASSEMBLING THE SPACE", building: "DESIGNED AND BUILT END TO END", sayHello: "CONTACT", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
-    close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen",
+    close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen", videoUnsupported: "This browser cannot play the video.",
     contactTitle: "Let’s build the next\ngood thing together.", contactIntro: "Reach out about thoughtful ideas, mobile products, or safety-first backends.",
     copyEmail: "Copy email", copied: "Copied", openMail: "Open email", viewGithub: "View GitHub",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
@@ -230,7 +237,7 @@ const UI_COPY = {
     loading: "RAUM WIRD AUFGEBAUT", building: "END-TO-END ENTWICKELT", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
-    close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen",
+    close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen", videoUnsupported: "Dieser Browser kann das Video nicht abspielen.",
     contactTitle: "Lass uns gemeinsam\ndas Nächste bauen.", contactIntro: "Schreib mir über durchdachte Ideen, mobile Produkte oder sicherheitsorientierte Backends.",
     copyEmail: "E-Mail kopieren", copied: "Kopiert", openMail: "E-Mail öffnen", viewGithub: "GitHub ansehen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
@@ -250,7 +257,7 @@ const UI_COPY = {
 } satisfies Record<Locale, {
   loading: string; building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
-  close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string;
+  close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string; videoUnsupported: string;
   contactTitle: string; contactIntro: string; copyEmail: string; copied: string; openMail: string; viewGithub: string;
   linkLabels: Record<ProjectLink["kind"], string>;
   homeSignals: Array<{ label: string; value: string }>;
@@ -536,9 +543,13 @@ export default function Home() {
   useEffect(() => {
     let disposed = false;
     let cleanup = () => {};
+    const readinessFallback = window.setTimeout(() => {
+      if (!disposed) setReady(true);
+    }, 2600);
 
     async function startScene() {
       const THREE = await import("three");
+      await document.fonts.ready;
       const host = canvasHostRef.current;
       if (!host || disposed) return;
 
@@ -603,10 +614,10 @@ export default function Home() {
         const context = labelCanvas.getContext("2d");
         if (!context) return null;
         context.clearRect(0, 0, 768, 192);
-        context.font = "700 34px Arial";
+        context.font = '700 34px "Pretendard Variable", Arial, sans-serif';
         context.fillStyle = zone.accent;
         context.fillText(zone.index, 30, 65);
-        context.font = "800 72px Arial";
+        context.font = '750 72px "Pretendard Variable", Arial, sans-serif';
         context.fillStyle = "#f0f6ef";
         context.fillText(zone.nav.toUpperCase(), 30, 145);
         const texture = new THREE.CanvasTexture(labelCanvas);
@@ -619,29 +630,37 @@ export default function Home() {
       const makeEndLabel = () => {
         const labelCanvas = document.createElement("canvas");
         labelCanvas.width = 1200;
-        labelCanvas.height = 360;
+        labelCanvas.height = 420;
         const context = labelCanvas.getContext("2d");
         if (!context) return null;
 
         context.clearRect(0, 0, labelCanvas.width, labelCanvas.height);
         context.textAlign = "center";
         context.fillStyle = "#ff84a6";
-        context.font = "700 30px Arial, sans-serif";
+        context.font = '700 30px "Pretendard Variable", Arial, sans-serif';
         context.fillText(endSignal.eyebrow, 600, 66);
 
         const titleSize = endSignal.title.length > 28 ? 52 : 68;
         context.fillStyle = "#f0f6ef";
-        context.font = `800 ${titleSize}px Arial, sans-serif`;
+        context.font = `750 ${titleSize}px "Pretendard Variable", Arial, sans-serif`;
         context.fillText(endSignal.title, 600, 172);
 
         context.fillStyle = "#a9b8af";
-        context.font = "500 27px Arial, sans-serif";
+        context.font = '500 27px "Pretendard Variable", Arial, sans-serif';
         context.fillText(endSignal.description, 600, 245);
+
+        context.fillStyle = "#ff84a6";
+        context.font = '700 20px "Pretendard Variable", Arial, sans-serif';
+        context.fillText(endSignal.goalLabel, 600, 305);
+
+        context.fillStyle = "#d9e3dc";
+        context.font = '620 27px "Pretendard Variable", Arial, sans-serif';
+        context.fillText(endSignal.goal, 600, 350, 1080);
 
         const texture = new THREE.CanvasTexture(labelCanvas);
         texture.colorSpace = THREE.SRGBColorSpace;
         const sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: texture, transparent: true, opacity: 0, depthWrite: false }));
-        sprite.scale.set(8.4, 2.52, 1);
+        sprite.scale.set(9.2, 3.22, 1);
         return sprite;
       };
 
@@ -1043,6 +1062,7 @@ export default function Home() {
       };
 
       setReady(true);
+      window.clearTimeout(readinessFallback);
       animate();
 
       cleanup = () => {
@@ -1069,9 +1089,13 @@ export default function Home() {
       };
     }
 
-    startScene();
+    startScene().catch((error) => {
+      console.error("The 3D scene could not be initialized.", error);
+      if (!disposed) setReady(true);
+    });
     return () => {
       disposed = true;
+      window.clearTimeout(readinessFallback);
       cleanup();
     };
   }, [endSignal, setControl, zones]);
@@ -1276,15 +1300,31 @@ export default function Home() {
               )}
 
               {activeProjectScreen && (
-                <div className="project-screen-pedestal">
-                  <div className="project-screen-frame" key={`${selectedProject.key}-${selectedScreenIndex}`}>
-                    <Image
-                      src={activeProjectScreen.image}
-                      alt={`${selectedProject.name} — ${activeProjectScreen.label[locale]}`}
-                      fill
-                      sizes="(max-width: 720px) 68vw, 390px"
-                      priority
-                    />
+                <div className="project-screen-display">
+                  <div className="project-screen-pedestal">
+                    <div className="project-screen-frame" key={`${selectedProject.key}-${selectedScreenIndex}`}>
+                      {activeProjectScreen.video ? (
+                        <video
+                          src={activeProjectScreen.video}
+                          poster={activeProjectScreen.image.src}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          aria-label={`${selectedProject.name} — ${activeProjectScreen.label[locale]}`}
+                        >
+                          <track kind="captions" src="projects/travelb-captions.vtt" srcLang="en" label="Interface demo" />
+                          {copy.videoUnsupported}
+                        </video>
+                      ) : (
+                        <Image
+                          src={activeProjectScreen.image}
+                          alt={`${selectedProject.name} — ${activeProjectScreen.label[locale]}`}
+                          fill
+                          sizes="(max-width: 720px) 68vw, 390px"
+                          priority
+                        />
+                      )}
+                    </div>
                   </div>
                   <div className="project-screen-caption">
                     <span>{activeProjectScreen.label[locale]}</span>
