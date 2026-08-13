@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 
 const repositoryName = process.env.GITHUB_REPOSITORY?.split("/").at(-1) ?? "Portfolio";
@@ -10,7 +11,7 @@ const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? `https://${repositoryOwner}
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "한원철 — Product Builder",
-  description: "모바일 앱과 안전 중심 백엔드를 직접 설계하고 구현하는 한원철의 인터랙티브 포트폴리오.",
+  description: "모바일 앱과 백엔드를 직접 설계하고 개발하는 한원철의 포트폴리오.",
   openGraph: {
     title: "WONCHEOL HAN — PRODUCT BUILDER",
     description: "From product definition to working code. Explore UniCal, Deutsch Flow, TravelB and more.",
