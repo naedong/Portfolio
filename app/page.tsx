@@ -84,6 +84,7 @@ type ProjectBrief = {
   focus: LocalizedCopy;
   evidence: LocalizedCopy;
 };
+type ProjectFactKey = Exclude<keyof ProjectBrief, "role">;
 type Project = {
   key: ProjectKey;
   year: string;
@@ -201,7 +202,7 @@ const UI_COPY = {
       { index: "02", title: "모바일 개발", detail: "Flutter와 Kotlin으로 화면과 기능을 직접 구현합니다." },
       { index: "03", title: "백엔드 설계", detail: "Spring Boot로 인증과 데이터 흐름을 안전하게 구성합니다." },
     ],
-    briefLabels: { role: "담당", focus: "핵심 기능", evidence: "기술 구성" },
+    briefLabels: { focus: "핵심 기능", evidence: "기술 구성" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
@@ -222,7 +223,7 @@ const UI_COPY = {
       { index: "02", title: "Mobile craft", detail: "I build real screens and interactions with Flutter and Kotlin." },
       { index: "03", title: "Safe boundaries", detail: "I define authentication and data boundaries with Spring Boot." },
     ],
-    briefLabels: { role: "My role", focus: "Design focus", evidence: "Build evidence" },
+    briefLabels: { focus: "Design focus", evidence: "Build evidence" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
@@ -243,7 +244,7 @@ const UI_COPY = {
       { index: "02", title: "Mobile Umsetzung", detail: "Mit Flutter und Kotlin baue ich echte Screens und Interaktionen." },
       { index: "03", title: "Sichere Grenzen", detail: "Mit Spring Boot definiere ich Authentifizierung und Datengrenzen." },
     ],
-    briefLabels: { role: "Meine Rolle", focus: "Designfokus", evidence: "Umsetzungsbeleg" },
+    briefLabels: { focus: "Designfokus", evidence: "Umsetzungsbeleg" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
@@ -254,7 +255,7 @@ const UI_COPY = {
   linkLabels: Record<ProjectLink["kind"], string>;
   homeSignals: Array<{ label: string; value: string }>;
   capabilities: Array<{ index: string; title: string; detail: string }>;
-  briefLabels: Record<keyof ProjectBrief, string>;
+  briefLabels: Record<ProjectFactKey, string>;
   pageTitle: string;
 }>;
 
@@ -1316,11 +1317,14 @@ export default function Home() {
 
             <footer className="project-dialog-copy">
               <div className="project-copy-main">
+                <div className="project-contribution">
+                  {selectedProject.brief.role[locale]}
+                </div>
                 <p id={`project-description-${selectedProject.key}`}>
                   {selectedProject.description[locale]}
                 </p>
                 <dl className="project-case-facts">
-                  {(Object.keys(copy.briefLabels) as Array<keyof ProjectBrief>).map((key) => (
+                  {(Object.keys(copy.briefLabels) as ProjectFactKey[]).map((key) => (
                     <div key={key}>
                       <dt>{copy.briefLabels[key]}</dt>
                       <dd>{selectedProject.brief[key][locale]}</dd>
