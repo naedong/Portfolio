@@ -36,10 +36,10 @@ type Zone = {
 
 const ZONES: Record<Locale, Zone[]> = {
   ko: [
-    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "아이디어를\n작동하는 제품으로.", description: "사용자의 실제 문제에서 출발해 모바일 앱과 안전한 백엔드를 제품으로 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
-    { key: "about", index: "01", nav: "소개", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "가장 중요한 경계부터\n설계합니다.", description: "Flutter와 Kotlin으로 제품을 만들고 Spring Boot로 신뢰 경계를 세웁니다. 기술보다 먼저 사용자, 안전, 반복 사용의 이유를 봅니다.", x: 12, z: -2, accent: "#ffd166" },
-    { key: "work", index: "02", nav: "작업", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "기획에서 코드까지\n이어진 제품들.", description: "실제 구현과 제품 정의로 확인할 수 있는 프로젝트입니다. 프로젝트를 선택하면 설명과 실제 화면을 볼 수 있습니다.", x: 24, z: 1.5, accent: "#3dd6a5" },
-    { key: "contact", index: "03", nav: "연락", eyebrow: "CONTACT · LET’S MAKE A SIGNAL", title: "함께 작동하는 것을\n만들어볼까요?", description: "모바일 제품, 안전 중심 백엔드, 학습 도구와 새로운 아이디어에 열려 있습니다.", x: 36, z: 0, accent: "#ff5c8a" },
+    { key: "home", index: "00", nav: "시작", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "사용자의 문제를\n제품으로 해결합니다.", description: "모바일 앱부터 백엔드까지, 사용자에게 필요한 화면과 기능을 직접 설계하고 구현합니다.", x: 0, z: 0, accent: "#ff6b35" },
+    { key: "about", index: "01", nav: "소개", eyebrow: "ABOUT · PRODUCT ENGINEERING", title: "사용자 경험부터\n안전한 구조까지.", description: "Flutter와 Kotlin으로 모바일 앱을 만들고, Spring Boot로 인증과 데이터 흐름을 설계합니다. 기술을 고르기 전에 누가 왜 쓰는지부터 생각합니다.", x: 12, z: -2, accent: "#ffd166" },
+    { key: "work", index: "02", nav: "프로젝트", eyebrow: "SELECTED PRODUCTS · VERIFIED SOURCES", title: "기획부터 개발까지\n직접 만든 프로젝트.", description: "아이디어를 실제 화면과 코드로 구현한 프로젝트입니다. 프로젝트를 선택하면 주요 기능과 앱 화면, 개발 내용을 볼 수 있습니다.", x: 24, z: 1.5, accent: "#3dd6a5" },
+    { key: "contact", index: "03", nav: "연락", eyebrow: "CONTACT · BERLIN / EUROPE", title: "함께 만들고 싶은\n제품이 있나요?", description: "모바일 앱이나 백엔드, 학습 도구에 관한 아이디어가 있다면 편하게 연락해 주세요.", x: 36, z: 0, accent: "#ff5c8a" },
   ],
   en: [
     { key: "home", index: "00", nav: "Start", eyebrow: "WONCHEOL HAN · MOBILE / BACKEND / PRODUCT", title: "Ideas into\nworking products.", description: "I start with real user problems and design and build mobile apps and secure backends end to end.", x: 0, z: 0, accent: "#ff6b35" },
@@ -58,8 +58,8 @@ const ZONES: Record<Locale, Zone[]> = {
 const END_SIGNAL_COPY: Record<Locale, { eyebrow: string; title: string; description: string }> = {
   ko: {
     eyebrow: "NEXT SIGNAL",
-    title: "함께, 다음 궤도로",
-    description: "좋은 제품은 사람과 사람 사이에서 더 멀리 갑니다.",
+    title: "다음 제품도 함께",
+    description: "좋은 아이디어는 함께 만들 때 더 멀리 갑니다.",
   },
   en: {
     eyebrow: "NEXT SIGNAL",
@@ -111,14 +111,14 @@ const PROJECTS: Project[] = [
       { image: unicalLoginScreenshot, label: { ko: "대학 인증 로그인", en: "University sign-in", de: "Hochschul-Anmeldung" } },
     ],
     description: {
-      ko: "대학별 인증을 기반으로 개인 시간표, 강의 탐색·후기, 학생 커뮤니티와 캠퍼스 행사를 연결하는 학생 플랫폼입니다.",
+      ko: "대학 인증을 바탕으로 개인 시간표, 강의 정보와 후기, 학생 커뮤니티, 교내 행사를 한곳에서 이용할 수 있도록 설계한 학생 플랫폼입니다.",
       en: "A student platform connecting personal timetables, course discovery and reviews, student communities, and campus events through university-based verification.",
       de: "Eine Studierendenplattform, die über eine hochschulbasierte Verifizierung persönliche Stundenpläne, Kurssuche und -bewertungen, Campus-Communitys und Veranstaltungen verbindet.",
     },
     brief: {
-      role: { ko: "제품 설계 · Flutter 구현", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
-      focus: { ko: "대학 인증으로 시간표와 커뮤니티 연결", en: "Verified identity connects schedule and community", de: "Verifizierte Identität verbindet Plan und Community" },
-      evidence: { ko: "5개 연결 화면 · Notion 제품 문서", en: "5 connected screens · product brief", de: "5 verbundene Screens · Produktdokument" },
+      role: { ko: "기획 · 화면 설계 · Flutter 개발", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
+      focus: { ko: "대학 인증 · 시간표 · 학생 커뮤니티", en: "Verified identity connects schedule and community", de: "Verifizierte Identität verbindet Plan und Community" },
+      evidence: { ko: "Flutter · 주요 화면 5개 · Notion 문서", en: "5 connected screens · product brief", de: "5 verbundene Screens · Produktdokument" },
     },
     links: [
       { kind: "notion", href: "https://app.notion.com/p/3b2b8ce076a181759c3efe9b3908067c" },
@@ -140,14 +140,14 @@ const PROJECTS: Project[] = [
       { image: deutschFlowDictionaryScreenshot, label: { ko: "실시간 문맥 사전", en: "Context dictionary", de: "Kontextwörterbuch" } },
     ],
     description: {
-      ko: "개인 단어장, 간격 반복, 발음 코칭과 실전 콘텐츠를 하나의 학습 흐름으로 연결한 독일어 학습 앱입니다.",
+      ko: "개인 단어장, 간격 반복 복습, 발음 연습과 실제 독일어 콘텐츠를 한 흐름으로 묶은 학습 앱입니다.",
       en: "A German-learning app combining a personal vocabulary library, spaced repetition, pronunciation coaching, and real-world content in one continuous workflow.",
       de: "Eine Deutschlern-App, die persönliche Vokabelsammlung, Spaced Repetition, Aussprachetraining und authentische Inhalte in einem Lernfluss verbindet.",
     },
     brief: {
-      role: { ko: "제품 설계 · Flutter 구현", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
-      focus: { ko: "수집부터 복습·발음·실전 읽기까지", en: "From capture to review, speaking, and immersion", de: "Vom Sammeln über Wiederholen bis zur Immersion" },
-      evidence: { ko: "Drift/SQLite · TTS · 음성 인식", en: "Drift/SQLite · TTS · speech recognition", de: "Drift/SQLite · TTS · Spracherkennung" },
+      role: { ko: "기획 · 화면 설계 · Flutter 개발", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
+      focus: { ko: "단어 수집 · 복습 · 발음 · 읽기", en: "From capture to review, speaking, and immersion", de: "Vom Sammeln über Wiederholen bis zur Immersion" },
+      evidence: { ko: "Flutter · Drift/SQLite · TTS", en: "Drift/SQLite · TTS · speech recognition", de: "Drift/SQLite · TTS · Spracherkennung" },
     },
     links: [
       { kind: "github", href: "https://github.com/naedong/vocabapp" },
@@ -166,14 +166,14 @@ const PROJECTS: Project[] = [
       { image: travelbMapScreenshot, label: { ko: "지도·주변 탐색", en: "Map exploration", de: "Karten-Erkundung" } },
     ],
     description: {
-      ko: "처음 Kotlin과 Jetpack Compose로 만든 모듈형 국내 여행 앱으로, 지역·축제 정보와 Kakao Map, 위치 탐색, 여행 계획 기능을 한 흐름으로 구성했습니다.",
+      ko: "Kotlin과 Jetpack Compose로 처음 만든 국내 여행 앱입니다. 여행지와 축제를 찾고, Kakao Map에서 위치를 확인한 뒤 여행 일정을 만들 수 있도록 구현했습니다.",
       en: "My first Kotlin and Jetpack Compose travel app, combining regional and festival discovery, Kakao Map exploration, location search, and trip planning in a modular Android architecture.",
       de: "Meine erste Reise-App mit Kotlin und Jetpack Compose: regionale und Festival-Entdeckung, Kakao-Map-Erkundung, Standortsuche und Reiseplanung in einer modularen Android-Architektur.",
     },
     brief: {
-      role: { ko: "Android 구조 설계 · UI 구현", en: "Android architecture · UI build", de: "Android-Architektur · UI-Umsetzung" },
-      focus: { ko: "탐색→지도→일정을 하나의 여행 흐름으로", en: "One flow from discovery to map and planning", de: "Ein Flow von Entdeckung über Karte bis Planung" },
-      evidence: { ko: "멀티 모듈 · Compose · Kakao Map", en: "Multi-module · Compose · Kakao Map", de: "Multi-Modul · Compose · Kakao Map" },
+      role: { ko: "앱 구조 설계 · Android 개발", en: "Android architecture · UI build", de: "Android-Architektur · UI-Umsetzung" },
+      focus: { ko: "여행지 탐색 · 지도 · 일정 관리", en: "One flow from discovery to map and planning", de: "Ein Flow von Entdeckung über Karte bis Planung" },
+      evidence: { ko: "Kotlin · Compose · Kakao Map", en: "Multi-module · Compose · Kakao Map", de: "Multi-Modul · Compose · Kakao Map" },
     },
     links: [
       { kind: "github", href: "https://github.com/naedong/travelB" },
@@ -184,24 +184,24 @@ const PROJECTS: Project[] = [
 
 const UI_COPY = {
   ko: {
-    loading: "공간을 조립하는 중", building: "직접 설계하고 구현하는 중", sayHello: "연락하기", start: "탐험 시작", next: "다음 구역",
-    brandHome: "처음으로 이동", projectList: "선택한 프로젝트", projectOpen: "프로젝트 상세 보기", social: "소셜 링크", journey: "포트폴리오 구역",
-    move: "이동", moveHint: "빛을 움직여\n구역을 탐험하세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
-    close: "닫기", sourceLead: "프로젝트 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "앱 화면",
-    contactTitle: "좋은 제품의 다음 장면을\n함께 만들어요.", contactIntro: "아이디어, 모바일 제품, 안전한 백엔드에 관해 편하게 이야기해 주세요.",
+    loading: "포트폴리오를 불러오는 중", building: "직접 설계하고 개발합니다", sayHello: "연락하기", start: "프로젝트 둘러보기", next: "다음으로",
+    brandHome: "처음으로 이동", projectList: "주요 프로젝트", projectOpen: "프로젝트 자세히 보기", social: "소셜 링크", journey: "포트폴리오 구역",
+    move: "이동", moveHint: "빛을 움직여\n화면을 둘러보세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
+    close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면",
+    contactTitle: "아이디어가 있다면\n편하게 연락해 주세요.", contactIntro: "모바일 앱과 백엔드, 학습 도구에 관한 이야기라면 언제든 환영합니다.",
     copyEmail: "이메일 복사", copied: "복사 완료", openMail: "메일 보내기", viewGithub: "GitHub 보기",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
     homeSignals: [
-      { label: "PRODUCT", value: "문제에서 사용 흐름까지" },
-      { label: "MOBILE", value: "Flutter · Kotlin" },
-      { label: "BACKEND", value: "Spring Boot · 신뢰 경계" },
+      { label: "PRODUCT", value: "사용자 문제와 제품 설계" },
+      { label: "MOBILE", value: "Flutter · Kotlin 앱 개발" },
+      { label: "BACKEND", value: "Spring Boot · 인증과 보안" },
     ],
     capabilities: [
-      { index: "01", title: "제품 흐름", detail: "문제 정의부터 반복 사용할 이유까지 연결합니다." },
-      { index: "02", title: "모바일 구현", detail: "Flutter와 Kotlin으로 실제 화면과 상호작용을 만듭니다." },
-      { index: "03", title: "안전한 경계", detail: "Spring Boot로 인증과 데이터 경계를 명확히 설계합니다." },
+      { index: "01", title: "제품 설계", detail: "문제를 정리하고 필요한 기능과 사용 흐름을 설계합니다." },
+      { index: "02", title: "모바일 개발", detail: "Flutter와 Kotlin으로 화면과 기능을 직접 구현합니다." },
+      { index: "03", title: "백엔드 설계", detail: "Spring Boot로 인증과 데이터 흐름을 안전하게 구성합니다." },
     ],
-    briefLabels: { role: "내 역할", focus: "설계 초점", evidence: "구현 근거" },
+    briefLabels: { role: "담당", focus: "핵심 기능", evidence: "기술 구성" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
