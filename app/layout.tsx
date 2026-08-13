@@ -17,13 +17,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: "ko_KR",
     url: siteUrl,
-    images: [{ url: `${siteUrl}/og.png`, width: 1731, height: 909, alt: "Woncheol Han Product Builder" }],
+    images: [{ url: `${siteUrl}/og-v2.png`, width: 1731, height: 909, alt: "Woncheol Han — Product Builder" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "WONCHEOL HAN — PRODUCT BUILDER",
     description: "Mobile products and secure backends — designed and built end to end.",
-    images: [`${siteUrl}/og.png`],
+    images: [`${siteUrl}/og-v2.png`],
   },
 };
 

@@ -78,6 +78,12 @@ type ProjectScreen = {
   image: StaticImageData;
   label: Record<Locale, string>;
 };
+type LocalizedCopy = Record<Locale, string>;
+type ProjectBrief = {
+  role: LocalizedCopy;
+  focus: LocalizedCopy;
+  evidence: LocalizedCopy;
+};
 type Project = {
   key: ProjectKey;
   year: string;
@@ -86,6 +92,7 @@ type Project = {
   accent: string;
   screens: ProjectScreen[];
   description: Record<Locale, string>;
+  brief: ProjectBrief;
   links: ProjectLink[];
 };
 
@@ -108,8 +115,12 @@ const PROJECTS: Project[] = [
       en: "A student platform connecting personal timetables, course discovery and reviews, student communities, and campus events through university-based verification.",
       de: "Eine Studierendenplattform, die über eine hochschulbasierte Verifizierung persönliche Stundenpläne, Kurssuche und -bewertungen, Campus-Communitys und Veranstaltungen verbindet.",
     },
+    brief: {
+      role: { ko: "제품 설계 · Flutter 구현", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
+      focus: { ko: "대학 인증으로 시간표와 커뮤니티 연결", en: "Verified identity connects schedule and community", de: "Verifizierte Identität verbindet Plan und Community" },
+      evidence: { ko: "5개 연결 화면 · Notion 제품 문서", en: "5 connected screens · product brief", de: "5 verbundene Screens · Produktdokument" },
+    },
     links: [
-      { kind: "github", href: "https://github.com/naedong/unical" },
       { kind: "notion", href: "https://app.notion.com/p/3b2b8ce076a181759c3efe9b3908067c" },
     ],
   },
@@ -133,6 +144,11 @@ const PROJECTS: Project[] = [
       en: "A German-learning app combining a personal vocabulary library, spaced repetition, pronunciation coaching, and real-world content in one continuous workflow.",
       de: "Eine Deutschlern-App, die persönliche Vokabelsammlung, Spaced Repetition, Aussprachetraining und authentische Inhalte in einem Lernfluss verbindet.",
     },
+    brief: {
+      role: { ko: "제품 설계 · Flutter 구현", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
+      focus: { ko: "수집부터 복습·발음·실전 읽기까지", en: "From capture to review, speaking, and immersion", de: "Vom Sammeln über Wiederholen bis zur Immersion" },
+      evidence: { ko: "Drift/SQLite · TTS · 음성 인식", en: "Drift/SQLite · TTS · speech recognition", de: "Drift/SQLite · TTS · Spracherkennung" },
+    },
     links: [
       { kind: "github", href: "https://github.com/naedong/vocabapp" },
       { kind: "notion", href: "https://app.notion.com/p/3c0b8ce076a182f9aeec01945499e3e7" },
@@ -154,6 +170,11 @@ const PROJECTS: Project[] = [
       en: "My first Kotlin and Jetpack Compose travel app, combining regional and festival discovery, Kakao Map exploration, location search, and trip planning in a modular Android architecture.",
       de: "Meine erste Reise-App mit Kotlin und Jetpack Compose: regionale und Festival-Entdeckung, Kakao-Map-Erkundung, Standortsuche und Reiseplanung in einer modularen Android-Architektur.",
     },
+    brief: {
+      role: { ko: "Android 구조 설계 · UI 구현", en: "Android architecture · UI build", de: "Android-Architektur · UI-Umsetzung" },
+      focus: { ko: "탐색→지도→일정을 하나의 여행 흐름으로", en: "One flow from discovery to map and planning", de: "Ein Flow von Entdeckung über Karte bis Planung" },
+      evidence: { ko: "멀티 모듈 · Compose · Kakao Map", en: "Multi-module · Compose · Kakao Map", de: "Multi-Modul · Compose · Kakao Map" },
+    },
     links: [
       { kind: "github", href: "https://github.com/naedong/travelB" },
       { kind: "notion", href: "https://app.notion.com/p/359b8ce076a18061ab5ce533688f7263" },
@@ -170,6 +191,17 @@ const UI_COPY = {
     contactTitle: "좋은 제품의 다음 장면을\n함께 만들어요.", contactIntro: "아이디어, 모바일 제품, 안전한 백엔드에 관해 편하게 이야기해 주세요.",
     copyEmail: "이메일 복사", copied: "복사 완료", openMail: "메일 보내기", viewGithub: "GitHub 보기",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
+    homeSignals: [
+      { label: "PRODUCT", value: "문제에서 사용 흐름까지" },
+      { label: "MOBILE", value: "Flutter · Kotlin" },
+      { label: "BACKEND", value: "Spring Boot · 신뢰 경계" },
+    ],
+    capabilities: [
+      { index: "01", title: "제품 흐름", detail: "문제 정의부터 반복 사용할 이유까지 연결합니다." },
+      { index: "02", title: "모바일 구현", detail: "Flutter와 Kotlin으로 실제 화면과 상호작용을 만듭니다." },
+      { index: "03", title: "안전한 경계", detail: "Spring Boot로 인증과 데이터 경계를 명확히 설계합니다." },
+    ],
+    briefLabels: { role: "내 역할", focus: "설계 초점", evidence: "구현 근거" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
@@ -180,6 +212,17 @@ const UI_COPY = {
     contactTitle: "Let’s build the next\ngood thing together.", contactIntro: "Reach out about thoughtful ideas, mobile products, or safety-first backends.",
     copyEmail: "Copy email", copied: "Copied", openMail: "Open email", viewGithub: "View GitHub",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
+    homeSignals: [
+      { label: "PRODUCT", value: "Problem to product flow" },
+      { label: "MOBILE", value: "Flutter · Kotlin" },
+      { label: "BACKEND", value: "Spring Boot · trust boundaries" },
+    ],
+    capabilities: [
+      { index: "01", title: "Product flow", detail: "I connect the problem, the user journey, and the reason to return." },
+      { index: "02", title: "Mobile craft", detail: "I build real screens and interactions with Flutter and Kotlin." },
+      { index: "03", title: "Safe boundaries", detail: "I define authentication and data boundaries with Spring Boot." },
+    ],
+    briefLabels: { role: "My role", focus: "Design focus", evidence: "Build evidence" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
@@ -190,6 +233,17 @@ const UI_COPY = {
     contactTitle: "Lass uns gemeinsam\ndas Nächste bauen.", contactIntro: "Schreib mir über durchdachte Ideen, mobile Produkte oder sicherheitsorientierte Backends.",
     copyEmail: "E-Mail kopieren", copied: "Kopiert", openMail: "E-Mail öffnen", viewGithub: "GitHub ansehen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
+    homeSignals: [
+      { label: "PRODUCT", value: "Vom Problem zum Produktfluss" },
+      { label: "MOBILE", value: "Flutter · Kotlin" },
+      { label: "BACKEND", value: "Spring Boot · Vertrauensgrenzen" },
+    ],
+    capabilities: [
+      { index: "01", title: "Produktfluss", detail: "Ich verbinde Problem, Nutzungspfad und den Grund zurückzukehren." },
+      { index: "02", title: "Mobile Umsetzung", detail: "Mit Flutter und Kotlin baue ich echte Screens und Interaktionen." },
+      { index: "03", title: "Sichere Grenzen", detail: "Mit Spring Boot definiere ich Authentifizierung und Datengrenzen." },
+    ],
+    briefLabels: { role: "Meine Rolle", focus: "Designfokus", evidence: "Umsetzungsbeleg" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
@@ -197,7 +251,11 @@ const UI_COPY = {
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
   close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string;
   contactTitle: string; contactIntro: string; copyEmail: string; copied: string; openMail: string; viewGithub: string;
-  linkLabels: Record<ProjectLink["kind"], string>; pageTitle: string;
+  linkLabels: Record<ProjectLink["kind"], string>;
+  homeSignals: Array<{ label: string; value: string }>;
+  capabilities: Array<{ index: string; title: string; detail: string }>;
+  briefLabels: Record<keyof ProjectBrief, string>;
+  pageTitle: string;
 }>;
 
 type UiCopy = (typeof UI_COPY)[Locale];
@@ -234,6 +292,43 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
         <div className="social-row" aria-label={copy.social}>
           <a href="https://github.com/naedong" target="_blank" rel="noreferrer">GITHUB ↗</a>
         </div>
+      </div>
+    );
+  }
+
+  if (zone.key === "home") {
+    return (
+      <div className="zone-extra home-evidence">
+        <div className="home-signal-grid" aria-label="Product builder summary">
+          {copy.homeSignals.map((signal) => (
+            <div className="home-signal" key={signal.label}>
+              <span>{signal.label}</span>
+              <strong>{signal.value}</strong>
+            </div>
+          ))}
+        </div>
+        <button className="primary-link" type="button" onClick={onExplore}>
+          {copy.start}<span aria-hidden="true">→</span>
+        </button>
+      </div>
+    );
+  }
+
+  if (zone.key === "about") {
+    return (
+      <div className="zone-extra about-evidence">
+        <div className="capability-grid">
+          {copy.capabilities.map((capability) => (
+            <div className="capability-card" key={capability.index}>
+              <span>{capability.index}</span>
+              <strong>{capability.title}</strong>
+              <p>{capability.detail}</p>
+            </div>
+          ))}
+        </div>
+        <button className="secondary-link" type="button" onClick={onExplore}>
+          {copy.next}<span aria-hidden="true">→</span>
+        </button>
       </div>
     );
   }
@@ -1220,9 +1315,19 @@ export default function Home() {
             </div>
 
             <footer className="project-dialog-copy">
-              <p id={`project-description-${selectedProject.key}`}>
-                {selectedProject.description[locale]}
-              </p>
+              <div className="project-copy-main">
+                <p id={`project-description-${selectedProject.key}`}>
+                  {selectedProject.description[locale]}
+                </p>
+                <dl className="project-case-facts">
+                  {(Object.keys(copy.briefLabels) as Array<keyof ProjectBrief>).map((key) => (
+                    <div key={key}>
+                      <dt>{copy.briefLabels[key]}</dt>
+                      <dd>{selectedProject.brief[key][locale]}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
               <nav className="project-source-links" aria-label={copy.sourceLead}>
                 {selectedProject.links.map((link) => (
                   <a href={link.href} target="_blank" rel="noreferrer" key={link.kind}>
