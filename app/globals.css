@@ -1243,6 +1243,28 @@ html:lang(ko) .project-case-facts dt {
   min-width: 0;
 }
 
+.project-contribution {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  color: color-mix(in srgb, var(--project-accent) 74%, white);
+  font-size: 11px;
+  font-weight: 680;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.project-contribution::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--project-accent);
+  box-shadow: 0 0 12px color-mix(in srgb, var(--project-accent) 66%, transparent);
+}
+
 .project-case-facts {
   display: flex;
   gap: 7px;
@@ -1801,16 +1823,14 @@ html:lang(ko) .project-case-facts dt {
   .project-screen-selector button.is-active { width: 25px; }
 
   .project-dialog-copy { gap: 9px; padding: 13px 16px 15px; }
+  .project-contribution { margin-bottom: 6px; font-size: 10.5px; }
   .project-dialog-copy p { font-size: 13px; line-height: 1.58; }
   .project-case-facts { margin-top: 10px; }
   .project-case-facts {
-    display: flex;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--project-accent) 50%, transparent) transparent;
-    scroll-snap-type: x proximity;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .project-case-facts > div { flex: 0 0 min(190px, 70vw); padding: 9px 10px; scroll-snap-align: start; }
+  .project-case-facts > div { min-width: 0; padding: 9px 10px; }
   .project-case-facts dd { font-size: 10.5px; }
   .project-source-links { gap: 6px; }
   .project-source-links a { min-height: 40px; padding: 8px 10px; font-size: 10px; }
