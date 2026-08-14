@@ -1,5 +1,3 @@
-@import "tailwindcss";
-
 :root {
   --ink: #f0f6ef;
   --muted: #9aa9a0;
@@ -7,8 +5,7 @@
   --panel: rgba(6, 15, 12, 0.74);
   --line: rgba(226, 241, 231, 0.18);
   --zone-accent: #ff6b35;
-  --font-korean: "Pretendard Variable", Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --font-readable: var(--font-geist-sans), var(--font-korean), "Segoe UI", Arial, sans-serif;
+  --font-geist-mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 }
 
 * {
@@ -26,6 +23,8 @@ body {
 }
 
 body {
+  --font-korean: var(--font-portfolio-korean), "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-readable: var(--font-geist-sans), var(--font-korean), "Segoe UI", Arial, sans-serif;
   font-family: var(--font-readable);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -52,6 +51,18 @@ button {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 button:focus-visible,
@@ -88,6 +99,12 @@ a:focus-visible {
 
 .scene canvas {
   display: block;
+  animation: scene-arrival 720ms ease both;
+}
+
+@keyframes scene-arrival {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .atmosphere {
@@ -112,63 +129,6 @@ a:focus-visible {
     repeating-radial-gradient(circle at 83% 67%, rgba(255, 255, 255, 0.06) 0 0.35px, transparent 0.7px 4px);
   background-size: 113px 97px, 139px 127px;
   mix-blend-mode: soft-light;
-}
-
-.loading-screen {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  background: #07100d;
-  transition: opacity 700ms ease 350ms, visibility 0s linear 1.1s;
-}
-
-.loading-screen.is-ready {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.loading-mark {
-  width: 64px;
-  height: 64px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 50%;
-  font: 800 15px/1 var(--font-geist-mono), monospace;
-  letter-spacing: 0.13em;
-  transform: rotate(-8deg);
-}
-
-.loading-track {
-  width: 170px;
-  height: 2px;
-  margin-top: 34px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.14);
-}
-
-.loading-track span {
-  display: block;
-  width: 45%;
-  height: 100%;
-  background: #ff6b35;
-  animation: load 1s ease-in-out infinite alternate;
-}
-
-.loading-screen p {
-  margin: 13px 0 0;
-  color: var(--muted);
-  font: 600 10px/1 var(--font-geist-mono), monospace;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-@keyframes load {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(220%); }
 }
 
 .topbar {
@@ -398,7 +358,6 @@ html:lang(ko) .project-dialog-copy p {
   letter-spacing: -0.012em;
 }
 
-html:lang(ko) .loading-screen p,
 html:lang(ko) .availability,
 html:lang(ko) .say-hi {
   font-family: var(--font-korean);
@@ -508,6 +467,34 @@ html:lang(ko) .project-case-facts dt {
   color: #8f9e95;
   font-size: 12px;
   line-height: 1.52;
+  word-break: keep-all;
+}
+
+.direction-statement {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--zone-accent);
+  border-radius: 0 12px 12px 0;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--zone-accent) 10%, transparent), transparent 82%);
+}
+
+.direction-statement span {
+  color: var(--zone-accent);
+  font: 700 8px/1 var(--font-geist-mono), monospace;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.direction-statement p {
+  margin: 0;
+  color: #d2ddd6;
+  font-size: 12.5px;
+  font-weight: 570;
+  line-height: 1.5;
   word-break: keep-all;
 }
 
@@ -1218,17 +1205,34 @@ html:lang(ko) .project-case-facts dt {
 }
 
 .project-screen-selector button {
-  width: 21px;
-  height: 5px;
+  position: relative;
+  width: 32px;
+  height: 28px;
   padding: 0;
   border: 0;
-  border-radius: 99px;
-  background: rgba(255, 255, 255, 0.22);
+  background: transparent;
   cursor: pointer;
+  transition: width 180ms ease;
+}
+
+.project-screen-selector button::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 21px;
+  height: 5px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.28);
+  transform: translate(-50%, -50%);
   transition: width 180ms ease, background 180ms ease;
 }
 
 .project-screen-selector button.is-active {
+  width: 44px;
+}
+
+.project-screen-selector button.is-active::after {
   width: 38px;
   background: var(--project-accent);
 }
@@ -1396,9 +1400,12 @@ html:lang(ko) .project-case-facts dt {
   top: 0;
   left: 0;
   width: 1px;
-  min-height: 5px;
+  height: 100%;
   background: var(--zone-accent);
-  transition: height 300ms ease, background 300ms ease;
+  transform: scaleY(0.015);
+  transform-origin: top;
+  transition: background 300ms ease;
+  will-change: transform;
 }
 
 .journey-rail nav {
@@ -1765,6 +1772,8 @@ html:lang(ko) .project-case-facts dt {
   }
   .capability-card strong { margin-top: 0; font-size: 13px; }
   .capability-card p { margin-top: 0; font-size: 11.5px; line-height: 1.42; }
+  .direction-statement { grid-template-columns: 66px minmax(0, 1fr); gap: 9px; margin-top: 7px; padding: 10px 11px; }
+  .direction-statement p { font-size: 11.5px; line-height: 1.45; }
   .secondary-link { width: 100%; justify-content: space-between; margin-top: 9px; }
 
   .project-row {
@@ -1837,9 +1846,11 @@ html:lang(ko) .project-case-facts dt {
   .project-screen-nav-prev { left: 2%; }
   .project-screen-nav-next { right: 2%; }
 
-  .project-screen-selector { right: 50%; bottom: 10px; gap: 4px; transform: translateX(50%); }
-  .project-screen-selector button { width: 14px; height: 4px; }
-  .project-screen-selector button.is-active { width: 25px; }
+  .project-screen-selector { right: 50%; bottom: 2px; gap: 2px; transform: translateX(50%); }
+  .project-screen-selector button { width: 24px; height: 28px; }
+  .project-screen-selector button::after { width: 14px; height: 4px; }
+  .project-screen-selector button.is-active { width: 34px; }
+  .project-screen-selector button.is-active::after { width: 25px; }
 
   .project-dialog-copy { gap: 9px; padding: 13px 16px 15px; }
   .project-contribution { margin-bottom: 6px; font-size: 10.5px; }
