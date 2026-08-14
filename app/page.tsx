@@ -61,7 +61,7 @@ const END_SIGNAL_COPY: Record<Locale, { eyebrow: string; title: string; descript
     title: "함께, 다음 궤도로",
     description: "좋은 제품은 함께 만들 때 더 멀리 갑니다.",
     goalLabel: "MY GOAL",
-    goal: "사용자에게 오래 쓰이는 제품을, 기획부터 배포까지 완성합니다.",
+    goal: "사용자가 다시 찾는 제품을, 아이디어에서 배포까지 완성합니다.",
   },
   en: {
     eyebrow: "NEXT SIGNAL",
@@ -192,7 +192,7 @@ const PROJECTS: Project[] = [
 
 const UI_COPY = {
   ko: {
-    loading: "포트폴리오를 불러오는 중", building: "직접 설계하고 개발합니다", sayHello: "연락하기", start: "프로젝트 둘러보기", next: "다음으로",
+    building: "직접 설계하고 개발합니다", sayHello: "연락하기", start: "프로젝트 둘러보기", next: "다음으로",
     brandHome: "처음으로 이동", projectList: "주요 프로젝트", projectOpen: "프로젝트 자세히 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n화면을 둘러보세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
     close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면", videoUnsupported: "이 브라우저에서는 영상을 재생할 수 없습니다.",
@@ -209,11 +209,14 @@ const UI_COPY = {
       { index: "02", title: "모바일 개발", detail: "Flutter와 Kotlin으로 화면과 기능을 직접 구현합니다." },
       { index: "03", title: "백엔드 설계", detail: "Spring Boot로 인증과 데이터 흐름을 안전하게 구성합니다." },
     ],
+    summaryLabel: "제품 개발 역량 요약",
+    directionLabel: "지향점",
+    direction: "사용자가 다시 찾는 제품을, 아이디어에서 배포까지 완성합니다.",
     briefLabels: { focus: "핵심 기능", evidence: "기술 구성" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
-    loading: "ASSEMBLING THE SPACE", building: "DESIGNED AND BUILT END TO END", sayHello: "CONTACT", start: "START EXPLORING", next: "NEXT ZONE",
+    building: "DESIGNED AND BUILT END TO END", sayHello: "CONTACT", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
     close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen", videoUnsupported: "This browser cannot play the video.",
@@ -230,11 +233,14 @@ const UI_COPY = {
       { index: "02", title: "Mobile craft", detail: "I build real screens and interactions with Flutter and Kotlin." },
       { index: "03", title: "Safe boundaries", detail: "I define authentication and data boundaries with Spring Boot." },
     ],
+    summaryLabel: "Product development capabilities",
+    directionLabel: "Direction",
+    direction: "I carry useful products from the first idea through a thoughtful release.",
     briefLabels: { focus: "Design focus", evidence: "Build evidence" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
-    loading: "RAUM WIRD AUFGEBAUT", building: "END-TO-END ENTWICKELT", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
+    building: "END-TO-END ENTWICKELT", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
     close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen", videoUnsupported: "Dieser Browser kann das Video nicht abspielen.",
@@ -251,17 +257,21 @@ const UI_COPY = {
       { index: "02", title: "Mobile Umsetzung", detail: "Mit Flutter und Kotlin baue ich echte Screens und Interaktionen." },
       { index: "03", title: "Sichere Grenzen", detail: "Mit Spring Boot definiere ich Authentifizierung und Datengrenzen." },
     ],
+    summaryLabel: "Kompetenzen in der Produktentwicklung",
+    directionLabel: "Richtung",
+    direction: "Ich begleite nützliche Produkte von der ersten Idee bis zum durchdachten Release.",
     briefLabels: { focus: "Designfokus", evidence: "Umsetzungsbeleg" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
-  loading: string; building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
+  building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
   close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string; videoUnsupported: string;
   contactTitle: string; contactIntro: string; copyEmail: string; copied: string; openMail: string; viewGithub: string;
   linkLabels: Record<ProjectLink["kind"], string>;
   homeSignals: Array<{ label: string; value: string }>;
   capabilities: Array<{ index: string; title: string; detail: string }>;
+  summaryLabel: string; directionLabel: string; direction: string;
   briefLabels: Record<ProjectFactKey, string>;
   pageTitle: string;
 }>;
@@ -307,7 +317,7 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
   if (zone.key === "home") {
     return (
       <div className="zone-extra home-evidence">
-        <div className="home-signal-grid" aria-label="Product builder summary">
+        <div className="home-signal-grid" aria-label={copy.summaryLabel}>
           {copy.homeSignals.map((signal) => (
             <div className="home-signal" key={signal.label}>
               <span>{signal.label}</span>
@@ -333,6 +343,10 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
               <p>{capability.detail}</p>
             </div>
           ))}
+        </div>
+        <div className="direction-statement">
+          <span>{copy.directionLabel}</span>
+          <p>{copy.direction}</p>
         </div>
         <button className="secondary-link" type="button" onClick={onExplore}>
           {copy.next}<span aria-hidden="true">→</span>
@@ -361,14 +375,14 @@ export default function Home() {
   const projectDialogRef = useRef<HTMLElement>(null);
   const contactDialogRef = useRef<HTMLElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const railProgressRef = useRef<HTMLElement>(null);
   const [locale, setLocale] = useState<Locale>("ko");
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedScreenIndex, setSelectedScreenIndex] = useState(0);
   const [contactOpen, setContactOpen] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
-  const [ready, setReady] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [sceneRequested, setSceneRequested] = useState(false);
 
   const zones = ZONES[locale];
   const copy = UI_COPY[locale];
@@ -380,12 +394,17 @@ export default function Home() {
     setLocale(nextLocale);
   }, []);
 
+  const requestScene = useCallback(() => {
+    setSceneRequested(true);
+  }, []);
+
   const goToZone = useCallback((key: ZoneKey) => {
     const zone = zones.find((item) => item.key === key);
     if (!zone) return;
     destinationRef.current = { x: zone.x, z: zone.z };
     setActiveKey(key);
-  }, [zones]);
+    requestScene();
+  }, [requestScene, zones]);
 
   const goNext = useCallback(() => {
     const current = zones.findIndex((zone) => zone.key === activeKey);
@@ -394,6 +413,7 @@ export default function Home() {
 
   const setControl = useCallback((control: string, isPressed: boolean) => {
     if (isPressed) {
+      requestScene();
       pressedRef.current.add(control);
       destinationRef.current = null;
       if (control === "d" || control === "arrowright") movementImpulseRef.current.x += 0.075;
@@ -403,7 +423,7 @@ export default function Home() {
     } else {
       pressedRef.current.delete(control);
     }
-  }, []);
+  }, [requestScene]);
 
   const openProject = useCallback((project: Project) => {
     previouslyFocusedRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
@@ -463,6 +483,18 @@ export default function Home() {
     document.documentElement.lang = locale;
     document.title = copy.pageTitle;
   }, [copy.pageTitle, locale]);
+
+  useEffect(() => {
+    const requestOnInteraction = () => requestScene();
+    window.addEventListener("pointermove", requestOnInteraction, { once: true, passive: true });
+    window.addEventListener("pointerdown", requestOnInteraction, { once: true, passive: true });
+    window.addEventListener("keydown", requestOnInteraction, { once: true });
+    return () => {
+      window.removeEventListener("pointermove", requestOnInteraction);
+      window.removeEventListener("pointerdown", requestOnInteraction);
+      window.removeEventListener("keydown", requestOnInteraction);
+    };
+  }, [requestScene]);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -541,17 +573,19 @@ export default function Home() {
   }, [contactOpen, selectedProject]);
 
   useEffect(() => {
+    if (!sceneRequested) return;
+
     let disposed = false;
     let cleanup = () => {};
-    const readinessFallback = window.setTimeout(() => {
-      if (!disposed) setReady(true);
-    }, 2600);
 
     async function startScene() {
       const THREE = await import("three");
       await document.fonts.ready;
       const host = canvasHostRef.current;
       if (!host || disposed) return;
+      const bodyStyles = window.getComputedStyle(document.body);
+      const canvasFontVariable = document.documentElement.lang === "ko" ? "--font-portfolio-korean" : "--font-geist-sans";
+      const canvasFontFamily = bodyStyles.getPropertyValue(canvasFontVariable).trim() || "Arial";
 
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0x07100d);
@@ -614,10 +648,10 @@ export default function Home() {
         const context = labelCanvas.getContext("2d");
         if (!context) return null;
         context.clearRect(0, 0, 768, 192);
-        context.font = '700 34px "Pretendard Variable", Arial, sans-serif';
+        context.font = `700 34px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillStyle = zone.accent;
         context.fillText(zone.index, 30, 65);
-        context.font = '750 72px "Pretendard Variable", Arial, sans-serif';
+        context.font = `750 72px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillStyle = "#f0f6ef";
         context.fillText(zone.nav.toUpperCase(), 30, 145);
         const texture = new THREE.CanvasTexture(labelCanvas);
@@ -637,24 +671,24 @@ export default function Home() {
         context.clearRect(0, 0, labelCanvas.width, labelCanvas.height);
         context.textAlign = "center";
         context.fillStyle = "#ff84a6";
-        context.font = '700 30px "Pretendard Variable", Arial, sans-serif';
+        context.font = `700 30px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillText(endSignal.eyebrow, 600, 66);
 
         const titleSize = endSignal.title.length > 28 ? 52 : 68;
         context.fillStyle = "#f0f6ef";
-        context.font = `750 ${titleSize}px "Pretendard Variable", Arial, sans-serif`;
+        context.font = `750 ${titleSize}px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillText(endSignal.title, 600, 172);
 
         context.fillStyle = "#a9b8af";
-        context.font = '500 27px "Pretendard Variable", Arial, sans-serif';
+        context.font = `500 27px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillText(endSignal.description, 600, 245);
 
         context.fillStyle = "#ff84a6";
-        context.font = '700 20px "Pretendard Variable", Arial, sans-serif';
+        context.font = `700 20px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillText(endSignal.goalLabel, 600, 305);
 
         context.fillStyle = "#d9e3dc";
-        context.font = '620 27px "Pretendard Variable", Arial, sans-serif';
+        context.font = `620 27px ${canvasFontFamily}, Arial, sans-serif`;
         context.fillText(endSignal.goal, 600, 350, 1080);
 
         const texture = new THREE.CanvasTexture(labelCanvas);
@@ -933,14 +967,15 @@ export default function Home() {
       window.addEventListener("keydown", onKeyDown);
       window.addEventListener("keyup", onKeyUp);
 
-      const usesCompactScene = () => host.clientWidth <= 1600 || host.clientHeight <= 800;
+      const usesCompactScene = () => host.clientWidth <= 1120 || host.clientHeight <= 700;
+      const usesEfficientPixelRatio = () => host.clientWidth <= 1600 || host.clientHeight <= 800;
       let compactScene = usesCompactScene();
       const onResize = () => {
         if (!host) return;
         compactScene = usesCompactScene();
         camera.aspect = host.clientWidth / host.clientHeight;
         camera.updateProjectionMatrix();
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, compactScene ? 1.35 : 1.8));
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, usesEfficientPixelRatio() ? 1.35 : 1.65));
         renderer.setSize(host.clientWidth, host.clientHeight);
         zoneLabelSprites.forEach((label) => {
           label.visible = !compactScene;
@@ -1005,12 +1040,13 @@ export default function Home() {
           return distance < best.distance ? { key: zone.key, distance } : best;
         }, { key: "home" as ZoneKey, distance: Number.POSITIVE_INFINITY });
 
-        if (nearest.key !== lastZone && nearest.distance < 7.4) {
+        if (!destinationRef.current && nearest.key !== lastZone && nearest.distance < 7.4) {
           lastZone = nearest.key;
           setActiveKey(nearest.key);
         }
 
-        setProgress(Math.max(0, Math.min(1, player.x / 48)));
+        const journeyProgress = Math.max(0.015, Math.min(1, player.x / 48));
+        railProgressRef.current?.style.setProperty("transform", `scaleY(${journeyProgress})`);
 
         zoneGroups.forEach((group, groupIndex) => {
           group.children.forEach((child) => {
@@ -1061,8 +1097,6 @@ export default function Home() {
         animationFrame = window.requestAnimationFrame(animate);
       };
 
-      setReady(true);
-      window.clearTimeout(readinessFallback);
       animate();
 
       cleanup = () => {
@@ -1091,27 +1125,20 @@ export default function Home() {
 
     startScene().catch((error) => {
       console.error("The 3D scene could not be initialized.", error);
-      if (!disposed) setReady(true);
     });
     return () => {
       disposed = true;
-      window.clearTimeout(readinessFallback);
       cleanup();
     };
-  }, [endSignal, setControl, zones]);
+  }, [endSignal, sceneRequested, setControl, zones]);
 
   return (
     <main className="portfolio-shell" style={{ "--zone-accent": activeZone.accent } as React.CSSProperties}>
       <div className="scene" ref={canvasHostRef} />
       <div className="atmosphere" aria-hidden="true" />
-      <div className={`loading-screen ${ready ? "is-ready" : ""}`} aria-hidden={ready}>
-        <div className="loading-mark">HW</div>
-        <div className="loading-track"><span /></div>
-        <p>{copy.loading}</p>
-      </div>
 
       <header className="topbar">
-        <button className="brand" type="button" onClick={() => goToZone("home")} aria-label={copy.brandHome}>
+        <button className="brand" type="button" onClick={() => goToZone("home")} aria-label={`HW — ${copy.brandHome}`}>
           <span className="brand-mark">HW</span>
           <span className="brand-copy">WONCHEOL<br />HAN</span>
         </button>
@@ -1139,7 +1166,8 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="content-panel" data-zone={activeZone.key} key={`${activeZone.key}-${locale}`} aria-live="polite">
+      <p className="sr-only" aria-live="polite">{activeZone.nav}: {activeZone.title.replace("\n", " ")}</p>
+      <section className="content-panel" data-zone={activeZone.key} key={`${activeZone.key}-${locale}`}>
         <div className="zone-index"><span>{activeZone.index}</span><i /></div>
         <p className="eyebrow">{activeZone.eyebrow}</p>
         <h1>{activeZone.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
@@ -1149,7 +1177,7 @@ export default function Home() {
 
       <aside className="journey-rail" aria-label={copy.journey}>
         <span className="rail-label">JOURNEY</span>
-        <div className="rail-line"><i style={{ height: `${progress * 100}%` }} /></div>
+        <div className="rail-line"><i ref={railProgressRef} aria-hidden="true" /></div>
         <nav>
           {zones.map((zone) => (
             <button
@@ -1157,7 +1185,7 @@ export default function Home() {
               className={zone.key === activeKey ? "is-active" : ""}
               type="button"
               onClick={() => goToZone(zone.key)}
-              aria-current={zone.key === activeKey ? "page" : undefined}
+              aria-current={zone.key === activeKey ? "step" : undefined}
             >
               <span>{zone.index}</span>{zone.nav}
             </button>
