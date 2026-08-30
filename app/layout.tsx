@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   applicationName: "Woncheol Han Portfolio",
   authors: [{ name: "Woncheol Han", url: "https://github.com/naedong" }],
   creator: "Woncheol Han",
+  referrer: "strict-origin-when-cross-origin",
   keywords: ["Woncheol Han", "한원철", "Product Builder", "Flutter", "Kotlin", "Spring Boot", "Mobile Developer", "Portfolio"],
   alternates: { canonical: siteUrl },
   robots: { index: true, follow: true },
@@ -54,9 +55,30 @@ const structuredData = {
   knowsAbout: ["Product design", "Flutter", "Kotlin", "Spring Boot", "Mobile application development"],
 };
 
+const contentSecurityPolicy = [
+  "default-src 'self'",
+  "base-uri 'self'",
+  "object-src 'none'",
+  "frame-src 'none'",
+  "form-action 'self'",
+  "img-src 'self' data: blob:",
+  "media-src 'self'",
+  "font-src 'self' data:",
+  "style-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline'",
+  "worker-src 'self' blob:",
+  "connect-src 'self'",
+  "upgrade-insecure-requests",
+].join("; ");
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="ko">
+      <head>
+        {process.env.NODE_ENV === "production" && (
+          <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+        )}
+      </head>
       <body className={`${GeistSans.variable} ${PortfolioKorean.variable}`}>
         {children}
         <script
