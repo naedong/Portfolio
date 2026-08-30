@@ -2,6 +2,8 @@
 
 한원철의 인터랙티브 3D 포트폴리오입니다. 빛나는 탐사체를 움직이며 소개, 실제 프로젝트와 연락처를 탐험할 수 있습니다.
 
+데스크톱에서는 3D 여정을 제공하고, 휴대폰과 태블릿에서는 같은 콘텐츠를 가벼운 정적 배경과 하단 내비게이션으로 즉시 탐색할 수 있습니다. 프로젝트 화면은 화살표와 스와이프를 모두 지원합니다.
+
 ## Live
 
 [naedong.github.io/Portfolio](https://naedong.github.io/Portfolio/)
@@ -30,3 +32,7 @@ npm run build
 ## Deployment
 
 `main` 브랜치에 변경사항이 병합되면 GitHub Actions가 Next.js 프로젝트를 정적 사이트로 빌드하고 GitHub Pages에 자동 배포합니다. 소스 저장소에는 수동으로 작성한 `index.html`이 없으며, 배포 산출물에만 빌드 과정에서 생성됩니다.
+
+## Security
+
+의존성 취약점, 빌드, 린트는 pull request마다 자동 검사됩니다. GitHub Actions는 검증된 커밋 SHA로 고정되어 있으며 Dependabot이 npm 패키지와 Actions 업데이트를 확인합니다. 취약점 제보 방법은 [SECURITY.md](SECURITY.md)를 참고해 주세요.

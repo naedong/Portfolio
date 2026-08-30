@@ -22,6 +22,8 @@ type ZoneKey = "home" | "about" | "work" | "contact";
 type Locale = "ko" | "en" | "de";
 type ProjectKey = "unical" | "deutsch-flow" | "travelb";
 
+const ZONE_KEYS: ZoneKey[] = ["home", "about", "work", "contact"];
+
 type Zone = {
   key: ZoneKey;
   index: string;
@@ -195,7 +197,7 @@ const UI_COPY = {
     building: "직접 설계하고 개발합니다", sayHello: "연락하기", start: "프로젝트 둘러보기", next: "다음으로",
     brandHome: "처음으로 이동", projectList: "주요 프로젝트", projectOpen: "프로젝트 자세히 보기", social: "소셜 링크", journey: "포트폴리오 구역",
     move: "이동", moveHint: "빛을 움직여\n화면을 둘러보세요", movement: "이동 컨트롤", up: "위로 이동", left: "왼쪽으로 이동", down: "아래로 이동", right: "오른쪽으로 이동",
-    close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면", videoUnsupported: "이 브라우저에서는 영상을 재생할 수 없습니다.",
+    close: "닫기", sourceLead: "관련 링크", previousScreen: "이전 화면", nextScreen: "다음 화면", screen: "화면", swipeHint: "스와이프 또는 화살표", videoUnsupported: "이 브라우저에서는 영상을 재생할 수 없습니다.",
     contactTitle: "아이디어가 있다면\n편하게 연락해 주세요.", contactIntro: "모바일 앱과 백엔드, 학습 도구에 관한 이야기라면 언제든 환영합니다.",
     copyEmail: "이메일 복사", copied: "복사 완료", openMail: "메일 보내기", viewGithub: "GitHub 보기",
     linkLabels: { github: "GitHub 저장소", notion: "Notion 문서" },
@@ -209,6 +211,7 @@ const UI_COPY = {
       { index: "02", title: "모바일 개발", detail: "Flutter와 Kotlin으로 화면과 기능을 직접 구현합니다." },
       { index: "03", title: "백엔드 설계", detail: "Spring Boot로 인증과 데이터 흐름을 안전하게 구성합니다." },
     ],
+    skipToContent: "본문으로 바로가기",
     summaryLabel: "제품 개발 역량 요약",
     directionLabel: "지향점",
     direction: "사용자가 다시 찾는 제품을, 아이디어에서 배포까지 완성합니다.",
@@ -219,7 +222,7 @@ const UI_COPY = {
     building: "DESIGNED AND BUILT END TO END", sayHello: "CONTACT", start: "START EXPLORING", next: "NEXT ZONE",
     brandHome: "Go to start", projectList: "Selected projects", projectOpen: "View project details", social: "Social links", journey: "Portfolio zones",
     move: "MOVE", moveHint: "Move the light\nand explore each zone", movement: "Movement controls", up: "Move up", left: "Move left", down: "Move down", right: "Move right",
-    close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen", videoUnsupported: "This browser cannot play the video.",
+    close: "Close", sourceLead: "Project links", previousScreen: "Previous screen", nextScreen: "Next screen", screen: "App screen", swipeHint: "Swipe or use arrows", videoUnsupported: "This browser cannot play the video.",
     contactTitle: "Let’s build the next\ngood thing together.", contactIntro: "Reach out about thoughtful ideas, mobile products, or safety-first backends.",
     copyEmail: "Copy email", copied: "Copied", openMail: "Open email", viewGithub: "View GitHub",
     linkLabels: { github: "GitHub repository", notion: "Notion brief" },
@@ -233,6 +236,7 @@ const UI_COPY = {
       { index: "02", title: "Mobile craft", detail: "I build real screens and interactions with Flutter and Kotlin." },
       { index: "03", title: "Safe boundaries", detail: "I define authentication and data boundaries with Spring Boot." },
     ],
+    skipToContent: "Skip to content",
     summaryLabel: "Product development capabilities",
     directionLabel: "Direction",
     direction: "I carry useful products from the first idea through a thoughtful release.",
@@ -243,7 +247,7 @@ const UI_COPY = {
     building: "END-TO-END ENTWICKELT", sayHello: "KONTAKT", start: "ERKUNDUNG STARTEN", next: "NÄCHSTER BEREICH",
     brandHome: "Zum Start", projectList: "Ausgewählte Projekte", projectOpen: "Projektdetails öffnen", social: "Social Links", journey: "Portfolio-Bereiche",
     move: "BEWEGEN", moveHint: "Bewege das Licht\nund erkunde die Bereiche", movement: "Bewegungssteuerung", up: "Nach oben", left: "Nach links", down: "Nach unten", right: "Nach rechts",
-    close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen", videoUnsupported: "Dieser Browser kann das Video nicht abspielen.",
+    close: "Schließen", sourceLead: "Projekt-Links", previousScreen: "Vorheriger Screen", nextScreen: "Nächster Screen", screen: "App-Screen", swipeHint: "Wischen oder Pfeile nutzen", videoUnsupported: "Dieser Browser kann das Video nicht abspielen.",
     contactTitle: "Lass uns gemeinsam\ndas Nächste bauen.", contactIntro: "Schreib mir über durchdachte Ideen, mobile Produkte oder sicherheitsorientierte Backends.",
     copyEmail: "E-Mail kopieren", copied: "Kopiert", openMail: "E-Mail öffnen", viewGithub: "GitHub ansehen",
     linkLabels: { github: "GitHub-Repository", notion: "Notion-Dokument" },
@@ -257,6 +261,7 @@ const UI_COPY = {
       { index: "02", title: "Mobile Umsetzung", detail: "Mit Flutter und Kotlin baue ich echte Screens und Interaktionen." },
       { index: "03", title: "Sichere Grenzen", detail: "Mit Spring Boot definiere ich Authentifizierung und Datengrenzen." },
     ],
+    skipToContent: "Direkt zum Inhalt",
     summaryLabel: "Kompetenzen in der Produktentwicklung",
     directionLabel: "Richtung",
     direction: "Ich begleite nützliche Produkte von der ersten Idee bis zum durchdachten Release.",
@@ -266,12 +271,12 @@ const UI_COPY = {
 } satisfies Record<Locale, {
   building: string; sayHello: string; start: string; next: string; brandHome: string; projectList: string; projectOpen: string;
   social: string; journey: string; move: string; moveHint: string; movement: string; up: string; left: string; down: string; right: string;
-  close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string; videoUnsupported: string;
+  close: string; sourceLead: string; previousScreen: string; nextScreen: string; screen: string; swipeHint: string; videoUnsupported: string;
   contactTitle: string; contactIntro: string; copyEmail: string; copied: string; openMail: string; viewGithub: string;
   linkLabels: Record<ProjectLink["kind"], string>;
   homeSignals: Array<{ label: string; value: string }>;
   capabilities: Array<{ index: string; title: string; detail: string }>;
-  summaryLabel: string; directionLabel: string; direction: string;
+  skipToContent: string; summaryLabel: string; directionLabel: string; direction: string;
   briefLabels: Record<ProjectFactKey, string>;
   pageTitle: string;
 }>;
@@ -308,7 +313,7 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
           gim21041@gmail.com <span aria-hidden="true">↗</span>
         </button>
         <div className="social-row" aria-label={copy.social}>
-          <a href="https://github.com/naedong" target="_blank" rel="noreferrer">GITHUB ↗</a>
+          <a href="https://github.com/naedong" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
         </div>
       </div>
     );
@@ -376,6 +381,7 @@ export default function Home() {
   const contactDialogRef = useRef<HTMLElement>(null);
   const previouslyFocusedRef = useRef<HTMLElement | null>(null);
   const railProgressRef = useRef<HTMLElement>(null);
+  const projectSwipeStartRef = useRef<{ x: number; y: number } | null>(null);
   const [locale, setLocale] = useState<Locale>("ko");
   const [activeKey, setActiveKey] = useState<ZoneKey>("home");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -395,6 +401,7 @@ export default function Home() {
   }, []);
 
   const requestScene = useCallback(() => {
+    if (window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)").matches) return;
     setSceneRequested(true);
   }, []);
 
@@ -403,6 +410,8 @@ export default function Home() {
     if (!zone) return;
     destinationRef.current = { x: zone.x, z: zone.z };
     setActiveKey(key);
+    const nextHash = `#${key}`;
+    if (window.location.hash !== nextHash) window.history.pushState({ zone: key }, "", nextHash);
     requestScene();
   }, [requestScene, zones]);
 
@@ -479,10 +488,46 @@ export default function Home() {
     });
   }, [selectedProject]);
 
+  const startProjectSwipe = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    const target = event.target;
+    if (target instanceof Element && target.closest("button, a, video")) return;
+    projectSwipeStartRef.current = { x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }, []);
+
+  const finishProjectSwipe = useCallback((event: React.PointerEvent<HTMLDivElement>) => {
+    const start = projectSwipeStartRef.current;
+    projectSwipeStartRef.current = null;
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    if (!start) return;
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+    if (Math.abs(deltaX) < 48 || Math.abs(deltaX) <= Math.abs(deltaY) * 1.15) return;
+    moveProjectScreen(deltaX < 0 ? 1 : -1);
+  }, [moveProjectScreen]);
+
   useEffect(() => {
     document.documentElement.lang = locale;
     document.title = copy.pageTitle;
   }, [copy.pageTitle, locale]);
+
+  useEffect(() => {
+    const syncZoneFromUrl = () => {
+      const key = window.location.hash.slice(1) as ZoneKey;
+      if (!ZONE_KEYS.includes(key)) return;
+      const zone = zones.find((item) => item.key === key);
+      if (!zone) return;
+      destinationRef.current = { x: zone.x, z: zone.z };
+      setActiveKey(key);
+    };
+    syncZoneFromUrl();
+    window.addEventListener("popstate", syncZoneFromUrl);
+    window.addEventListener("hashchange", syncZoneFromUrl);
+    return () => {
+      window.removeEventListener("popstate", syncZoneFromUrl);
+      window.removeEventListener("hashchange", syncZoneFromUrl);
+    };
+  }, [zones]);
 
   useEffect(() => {
     const requestOnInteraction = () => requestScene();
@@ -495,6 +540,16 @@ export default function Home() {
       window.removeEventListener("keydown", requestOnInteraction);
     };
   }, [requestScene]);
+
+  useEffect(() => {
+    const staticExperience = window.matchMedia("(max-width: 900px), (pointer: coarse), (prefers-reduced-motion: reduce)");
+    const stopSceneWhenStatic = () => {
+      if (staticExperience.matches) setSceneRequested(false);
+    };
+    stopSceneWhenStatic();
+    staticExperience.addEventListener("change", stopSceneWhenStatic);
+    return () => staticExperience.removeEventListener("change", stopSceneWhenStatic);
+  }, []);
 
   useEffect(() => {
     if (!selectedProject) return;
@@ -1134,6 +1189,7 @@ export default function Home() {
 
   return (
     <main className="portfolio-shell" style={{ "--zone-accent": activeZone.accent } as React.CSSProperties}>
+      <a className="skip-link" href="#portfolio-content">{copy.skipToContent}</a>
       <div className="scene" ref={canvasHostRef} />
       <div className="atmosphere" aria-hidden="true" />
 
@@ -1146,7 +1202,7 @@ export default function Home() {
         <div className="availability"><span /> {copy.building}</div>
 
         <div className="top-actions">
-          <div className="language-switch" aria-label="언어 / Language / Sprache">
+          <div className="language-switch" role="group" aria-label="언어 / Language / Sprache">
             {(["ko", "en", "de"] as Locale[]).map((language) => (
               <button
                 type="button"
@@ -1159,7 +1215,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <a href="https://github.com/naedong" target="_blank" rel="noreferrer" className="github-link">GITHUB / NAEDONG ↗</a>
+          <a href="https://github.com/naedong" target="_blank" rel="noopener noreferrer" className="github-link">GITHUB / NAEDONG ↗</a>
           <button className="say-hi" type="button" onClick={openContact} aria-haspopup="dialog" aria-expanded={contactOpen}>
             {copy.sayHello} <span aria-hidden="true">↗</span>
           </button>
@@ -1167,7 +1223,7 @@ export default function Home() {
       </header>
 
       <p className="sr-only" aria-live="polite">{activeZone.nav}: {activeZone.title.replace("\n", " ")}</p>
-      <section className="content-panel" data-zone={activeZone.key} key={`${activeZone.key}-${locale}`}>
+      <section id="portfolio-content" tabIndex={-1} className="content-panel" data-zone={activeZone.key} key={`${activeZone.key}-${locale}`}>
         <div className="zone-index"><span>{activeZone.index}</span><i /></div>
         <p className="eyebrow">{activeZone.eyebrow}</p>
         <h1>{activeZone.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
@@ -1276,7 +1332,7 @@ export default function Home() {
               <a className="contact-action-primary" href="mailto:gim21041@gmail.com">
                 {copy.openMail} <span aria-hidden="true">↗</span>
               </a>
-              <a href="https://github.com/naedong" target="_blank" rel="noreferrer">
+              <a href="https://github.com/naedong" target="_blank" rel="noopener noreferrer">
                 {copy.viewGithub} <span aria-hidden="true">↗</span>
               </a>
             </nav>
@@ -1300,9 +1356,6 @@ export default function Home() {
             aria-describedby={`project-description-${selectedProject.key}`}
             style={{ "--project-accent": selectedProject.accent } as CSSProperties}
           >
-            <button className="project-dialog-close" type="button" onClick={closeProject} aria-label={copy.close}>
-              <span aria-hidden="true">×</span>
-            </button>
             <header className="project-dialog-header">
               <div>
                 <span className="project-dialog-kicker">{selectedProject.year} · {selectedProject.type}</span>
@@ -1311,6 +1364,9 @@ export default function Home() {
               <span className="project-dialog-count" aria-live="polite">
                 {String(selectedScreenIndex + 1).padStart(2, "0")} / {String(selectedProject.screens.length).padStart(2, "0")}
               </span>
+              <button className="project-dialog-close" type="button" onClick={closeProject} aria-label={copy.close}>
+                <span aria-hidden="true">×</span>
+              </button>
             </header>
 
             <div className="project-dialog-stage">
@@ -1328,7 +1384,13 @@ export default function Home() {
               )}
 
               {activeProjectScreen && (
-                <div className="project-screen-display">
+                <div
+                  className="project-screen-display"
+                  aria-label={`${selectedProject.name} · ${copy.swipeHint}`}
+                  onPointerDown={startProjectSwipe}
+                  onPointerUp={finishProjectSwipe}
+                  onPointerCancel={() => { projectSwipeStartRef.current = null; }}
+                >
                   <div className="project-screen-pedestal">
                     <div className="project-screen-frame" key={`${selectedProject.key}-${selectedScreenIndex}`}>
                       {activeProjectScreen.video ? (
@@ -1355,7 +1417,10 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="project-screen-caption">
-                    <span>{activeProjectScreen.label[locale]}</span>
+                    <span className="project-screen-label">
+                      {activeProjectScreen.label[locale]}
+                      <small>{copy.swipeHint}</small>
+                    </span>
                     <span>{copy.screen} {selectedScreenIndex + 1}</span>
                   </div>
                 </div>
@@ -1402,7 +1467,7 @@ export default function Home() {
               </div>
               <nav className="project-source-links" aria-label={copy.sourceLead}>
                 {selectedProject.links.map((link) => (
-                  <a href={link.href} target="_blank" rel="noreferrer" key={link.kind}>
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" key={link.kind}>
                     {copy.linkLabels[link.kind]} <span aria-hidden="true">↗</span>
                   </a>
                 ))}
