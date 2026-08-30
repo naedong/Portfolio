@@ -93,6 +93,11 @@ type ProjectBrief = {
   focus: LocalizedCopy;
   evidence: LocalizedCopy;
 };
+type ProjectStory = {
+  problem: LocalizedCopy;
+  approach: LocalizedCopy;
+  result: LocalizedCopy;
+};
 type ProjectFactKey = Exclude<keyof ProjectBrief, "role">;
 type Project = {
   key: ProjectKey;
@@ -103,6 +108,7 @@ type Project = {
   screens: ProjectScreen[];
   description: Record<Locale, string>;
   brief: ProjectBrief;
+  story: ProjectStory;
   links: ProjectLink[];
 };
 
@@ -129,6 +135,23 @@ const PROJECTS: Project[] = [
       role: { ko: "기획 · 화면 설계 · Flutter 개발", en: "Product design · Flutter build", de: "Produktkonzept · Flutter" },
       focus: { ko: "대학 인증 · 시간표 · 학생 커뮤니티", en: "Verified identity connects schedule and community", de: "Verifizierte Identität verbindet Plan und Community" },
       evidence: { ko: "Flutter · 주요 화면 5개 · Notion 문서", en: "5 connected screens · product brief", de: "5 verbundene Screens · Produktdokument" },
+    },
+    story: {
+      problem: {
+        ko: "시간표, 강의 정보, 학생 커뮤니티가 서로 분리되어 있고 신뢰할 수 있는 학생 인증이 필요했습니다.",
+        en: "Schedules, course information, and student communities were fragmented, with no shared trust layer.",
+        de: "Stundenplan, Kursinformationen und Community waren getrennt; eine gemeinsame Vertrauensbasis fehlte.",
+      },
+      approach: {
+        ko: "대학 이메일 인증을 하나의 진입점으로 두고 일정·강의·커뮤니티 흐름을 연결했습니다.",
+        en: "University email verification became the shared entry point connecting schedule, courses, and community.",
+        de: "Die Hochschul-E-Mail-Verifizierung verbindet Stundenplan, Kurse und Community über einen Einstieg.",
+      },
+      result: {
+        ko: "핵심 사용 흐름을 5개의 연결된 Flutter 화면과 제품 문서로 구체화했습니다.",
+        en: "The core journey is expressed through five connected Flutter screens and a documented product model.",
+        de: "Der Kernablauf ist in fünf verbundenen Flutter-Screens und einem dokumentierten Produktmodell umgesetzt.",
+      },
     },
     links: [
       { kind: "notion", href: "https://app.notion.com/p/3b2b8ce076a181759c3efe9b3908067c" },
@@ -159,6 +182,23 @@ const PROJECTS: Project[] = [
       focus: { ko: "단어 수집 · 복습 · 발음 · 읽기", en: "From capture to review, speaking, and immersion", de: "Vom Sammeln über Wiederholen bis zur Immersion" },
       evidence: { ko: "Flutter · Drift/SQLite · TTS", en: "Drift/SQLite · TTS · speech recognition", de: "Drift/SQLite · TTS · Spracherkennung" },
     },
+    story: {
+      problem: {
+        ko: "단어장, 복습, 기사 읽기와 말하기 연습이 여러 도구에 흩어져 학습 흐름이 자주 끊겼습니다.",
+        en: "Vocabulary, review, reading, and speaking lived in separate tools, repeatedly breaking the learning flow.",
+        de: "Vokabeln, Wiederholung, Lesen und Sprechen lagen in getrennten Werkzeugen und unterbrachen den Lernfluss.",
+      },
+      approach: {
+        ko: "단어를 수집한 순간부터 간격 반복, 실제 콘텐츠 읽기, 발음 확인까지 하나의 순환으로 설계했습니다.",
+        en: "I designed one loop from word capture to spaced review, authentic reading, and pronunciation feedback.",
+        de: "Ein Kreislauf verbindet Wortsammlung, Spaced Repetition, authentisches Lesen und Aussprachefeedback.",
+      },
+      result: {
+        ko: "로컬 데이터와 음성 기능을 기반으로 7개의 연결된 학습 화면을 구현했습니다.",
+        en: "Seven connected study screens now run on local-first vocabulary data and speech features.",
+        de: "Sieben verbundene Lern-Screens basieren auf lokalen Vokabeldaten und Sprachfunktionen.",
+      },
+    },
     links: [
       { kind: "github", href: "https://github.com/naedong/vocabapp" },
       { kind: "notion", href: "https://app.notion.com/p/3c0b8ce076a182f9aeec01945499e3e7" },
@@ -184,6 +224,23 @@ const PROJECTS: Project[] = [
       role: { ko: "앱 구조 설계 · Android 개발", en: "Android architecture · UI build", de: "Android-Architektur · UI-Umsetzung" },
       focus: { ko: "여행지 탐색 · 지도 · 일정 관리", en: "One flow from discovery to map and planning", de: "Ein Flow von Entdeckung über Karte bis Planung" },
       evidence: { ko: "Kotlin · Compose · Kakao Map", en: "Multi-module · Compose · Kakao Map", de: "Multi-Modul · Compose · Kakao Map" },
+    },
+    story: {
+      problem: {
+        ko: "여행지 탐색, 지도 확인, 일정 만들기가 서로 다른 흐름에 있어 계획을 이어가기 어려웠습니다.",
+        en: "Discovery, map checks, and itinerary planning were disconnected steps in the travel-planning journey.",
+        de: "Entdeckung, Kartenprüfung und Reiseplanung waren voneinander getrennte Schritte.",
+      },
+      approach: {
+        ko: "축제와 여행지를 찾고 지도에서 위치를 확인한 뒤 바로 일정에 담는 흐름으로 연결했습니다.",
+        en: "I connected festival discovery, Kakao Map exploration, and itinerary building into one continuous flow.",
+        de: "Festival-Entdeckung, Kakao-Map-Erkundung und Reiseplanung wurden zu einem durchgängigen Ablauf verbunden.",
+      },
+      result: {
+        ko: "멀티 모듈 Compose 구조와 3개의 실제 동영상 흐름으로 Android 구현을 완성했습니다.",
+        en: "The Android implementation is demonstrated through a multi-module Compose architecture and three real video flows.",
+        de: "Die Android-Umsetzung zeigt eine Multi-Modul-Compose-Architektur in drei echten Videoabläufen.",
+      },
     },
     links: [
       { kind: "github", href: "https://github.com/naedong/travelB" },
@@ -213,9 +270,23 @@ const UI_COPY = {
     ],
     skipToContent: "본문으로 바로가기",
     summaryLabel: "제품 개발 역량 요약",
+    nowLabel: "지금 만드는 것",
+    nowOpen: "UniCal 프로젝트 열기",
+    focusBoardLabel: "현재와 다음 목표",
+    focusBoardTitle: "제품을 끝까지 만드는 개발자",
+    focusMilestones: [
+      { label: "NOW", title: "UniCal Europe", detail: "대학 생활의 일정과 커뮤니티를 하나의 흐름으로 연결하고 있습니다." },
+      { label: "NEXT", title: "모바일과 백엔드를 함께", detail: "좋은 화면 뒤의 인증·데이터·보안 구조까지 함께 설계합니다." },
+      { label: "METHOD", title: "작게 검증하고 실제 배포", detail: "문제를 정의하고 구현한 뒤 실제 환경에서 다시 확인합니다." },
+    ],
+    contactTopicsLabel: "함께 이야기하고 싶은 주제",
+    contactTopics: ["모바일 제품", "안전한 백엔드", "학습 도구"],
+    responseNote: "이메일로 보내주시면 가장 빠르게 확인할 수 있습니다.",
     directionLabel: "지향점",
     direction: "사용자가 다시 찾는 제품을, 아이디어에서 배포까지 완성합니다.",
     briefLabels: { focus: "핵심 기능", evidence: "기술 구성" },
+    storySectionLabel: "프로젝트 과정",
+    storyLabels: { problem: "문제", approach: "접근", result: "결과" },
     pageTitle: "한원철 — Product Builder",
   },
   en: {
@@ -238,9 +309,23 @@ const UI_COPY = {
     ],
     skipToContent: "Skip to content",
     summaryLabel: "Product development capabilities",
+    nowLabel: "Building now",
+    nowOpen: "Open the UniCal project",
+    focusBoardLabel: "Current focus and next direction",
+    focusBoardTitle: "A builder who carries products through",
+    focusMilestones: [
+      { label: "NOW", title: "UniCal Europe", detail: "Connecting campus schedules and communities in one coherent student flow." },
+      { label: "NEXT", title: "Mobile and backend together", detail: "Designing authentication, data, and safety behind a thoughtful interface." },
+      { label: "METHOD", title: "Validate small, release for real", detail: "Define the problem, build the flow, and verify it again in production." },
+    ],
+    contactTopicsLabel: "Good reasons to start a conversation",
+    contactTopics: ["Mobile products", "Safe backends", "Learning tools"],
+    responseNote: "Email is the fastest way to reach me.",
     directionLabel: "Direction",
     direction: "I carry useful products from the first idea through a thoughtful release.",
     briefLabels: { focus: "Design focus", evidence: "Build evidence" },
+    storySectionLabel: "Project story",
+    storyLabels: { problem: "Problem", approach: "Approach", result: "Result" },
     pageTitle: "Woncheol Han — Product Builder",
   },
   de: {
@@ -263,9 +348,23 @@ const UI_COPY = {
     ],
     skipToContent: "Direkt zum Inhalt",
     summaryLabel: "Kompetenzen in der Produktentwicklung",
+    nowLabel: "Aktuell im Aufbau",
+    nowOpen: "UniCal-Projekt öffnen",
+    focusBoardLabel: "Aktueller Fokus und nächste Richtung",
+    focusBoardTitle: "Produkte konsequent bis zum Release bauen",
+    focusMilestones: [
+      { label: "JETZT", title: "UniCal Europe", detail: "Campus-Stundenpläne und Community in einem klaren Studierenden-Flow verbinden." },
+      { label: "NÄCHSTES", title: "Mobile und Backend gemeinsam", detail: "Authentifizierung, Daten und Sicherheit hinter einer guten Oberfläche mitdenken." },
+      { label: "METHODE", title: "Klein validieren, real veröffentlichen", detail: "Problem definieren, Ablauf bauen und im echten Einsatz erneut prüfen." },
+    ],
+    contactTopicsLabel: "Gute Themen für ein Gespräch",
+    contactTopics: ["Mobile Produkte", "Sichere Backends", "Lernwerkzeuge"],
+    responseNote: "Per E-Mail bin ich am schnellsten erreichbar.",
     directionLabel: "Richtung",
     direction: "Ich begleite nützliche Produkte von der ersten Idee bis zum durchdachten Release.",
     briefLabels: { focus: "Designfokus", evidence: "Umsetzungsbeleg" },
+    storySectionLabel: "Projektverlauf",
+    storyLabels: { problem: "Problem", approach: "Ansatz", result: "Ergebnis" },
     pageTitle: "Woncheol Han — Product Builder",
   },
 } satisfies Record<Locale, {
@@ -276,14 +375,18 @@ const UI_COPY = {
   linkLabels: Record<ProjectLink["kind"], string>;
   homeSignals: Array<{ label: string; value: string }>;
   capabilities: Array<{ index: string; title: string; detail: string }>;
-  skipToContent: string; summaryLabel: string; directionLabel: string; direction: string;
+  skipToContent: string; summaryLabel: string; nowLabel: string; nowOpen: string;
+  focusBoardLabel: string; focusBoardTitle: string; focusMilestones: Array<{ label: string; title: string; detail: string }>;
+  contactTopicsLabel: string; contactTopics: string[]; responseNote: string; directionLabel: string; direction: string;
   briefLabels: Record<ProjectFactKey, string>;
+  storySectionLabel: string;
+  storyLabels: Record<keyof ProjectStory, string>;
   pageTitle: string;
 }>;
 
 type UiCopy = (typeof UI_COPY)[Locale];
 
-function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zone: Zone; copy: UiCopy; onExplore: () => void; onSelectProject: (project: Project) => void; onContact: () => void }) {
+function ZoneContent({ zone, copy, locale, onExplore, onSelectProject, onContact }: { zone: Zone; copy: UiCopy; locale: Locale; onExplore: () => void; onSelectProject: (project: Project) => void; onContact: () => void }) {
   if (zone.key === "work") {
     return (
       <div className="zone-extra project-list" aria-label={copy.projectList}>
@@ -297,7 +400,10 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
             aria-label={`${project.name} — ${copy.projectOpen}`}
           >
             <span className="project-year">{project.year}</span>
-            <span className="project-name">{project.name}</span>
+            <span className="project-name-wrap">
+              <span className="project-name">{project.name}</span>
+              <small>{project.brief.focus[locale]}</small>
+            </span>
             <span className="project-type">{project.type}</span>
             <span className="project-arrow" aria-hidden="true">→</span>
           </button>
@@ -309,11 +415,19 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
   if (zone.key === "contact") {
     return (
       <div className="zone-extra contact-actions">
-        <button className="primary-link" type="button" onClick={onContact} aria-haspopup="dialog">
-          gim21041@gmail.com <span aria-hidden="true">↗</span>
-        </button>
-        <div className="social-row" aria-label={copy.social}>
-          <a href="https://github.com/naedong" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
+        <div className="contact-topic-block" aria-label={copy.contactTopicsLabel}>
+          <span>{copy.contactTopicsLabel}</span>
+          <div>
+            {copy.contactTopics.map((topic) => <strong key={topic}>{topic}</strong>)}
+          </div>
+        </div>
+        <div className="contact-link-row">
+          <button className="primary-link" type="button" onClick={onContact} aria-haspopup="dialog">
+            gim21041@gmail.com <span aria-hidden="true">↗</span>
+          </button>
+          <div className="social-row" aria-label={copy.social}>
+            <a href="https://github.com/naedong" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
+          </div>
         </div>
       </div>
     );
@@ -330,6 +444,17 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
             </div>
           ))}
         </div>
+        <button
+          className="now-building-card"
+          type="button"
+          onClick={() => onSelectProject(PROJECTS[0])}
+          aria-label={copy.nowOpen}
+        >
+          <span className="now-building-label"><i aria-hidden="true" />{copy.nowLabel}</span>
+          <strong>UniCal Europe</strong>
+          <small>{PROJECTS[0].brief.focus[locale]}</small>
+          <b aria-hidden="true">↗</b>
+        </button>
         <button className="primary-link" type="button" onClick={onExplore}>
           {copy.start}<span aria-hidden="true">→</span>
         </button>
@@ -353,6 +478,21 @@ function ZoneContent({ zone, copy, onExplore, onSelectProject, onContact }: { zo
           <span>{copy.directionLabel}</span>
           <p>{copy.direction}</p>
         </div>
+        <section className="focus-board" aria-label={copy.focusBoardLabel}>
+          <header>
+            <span>NOW / NEXT</span>
+            <strong>{copy.focusBoardTitle}</strong>
+          </header>
+          <div className="focus-board-track">
+            {copy.focusMilestones.map((milestone) => (
+              <article key={milestone.label}>
+                <span>{milestone.label}</span>
+                <strong>{milestone.title}</strong>
+                <p>{milestone.detail}</p>
+              </article>
+            ))}
+          </div>
+        </section>
         <button className="secondary-link" type="button" onClick={onExplore}>
           {copy.next}<span aria-hidden="true">→</span>
         </button>
@@ -1228,7 +1368,7 @@ export default function Home() {
         <p className="eyebrow">{activeZone.eyebrow}</p>
         <h1>{activeZone.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h1>
         <p className="zone-description">{activeZone.description}</p>
-        <ZoneContent zone={activeZone} copy={copy} onExplore={goNext} onSelectProject={openProject} onContact={openContact} />
+        <ZoneContent zone={activeZone} copy={copy} locale={locale} onExplore={goNext} onSelectProject={openProject} onContact={openContact} />
       </section>
 
       <aside className="journey-rail" aria-label={copy.journey}>
@@ -1318,6 +1458,9 @@ export default function Home() {
                 {copy.contactTitle.split("\n").map((line) => <span key={line}>{line}</span>)}
               </h2>
               <p id="contact-dialog-description">{copy.contactIntro}</p>
+              <div className="contact-dialog-topics" aria-label={copy.contactTopicsLabel}>
+                {copy.contactTopics.map((topic) => <span key={topic}>{topic}</span>)}
+              </div>
             </div>
             <div className="contact-email-card">
               <div>
@@ -1328,6 +1471,7 @@ export default function Home() {
                 {emailCopied ? copy.copied : copy.copyEmail}
               </button>
             </div>
+            <p className="contact-response-note"><i aria-hidden="true" />{copy.responseNote}</p>
             <nav className="contact-dialog-actions" aria-label={copy.social}>
               <a className="contact-action-primary" href="mailto:gim21041@gmail.com">
                 {copy.openMail} <span aria-hidden="true">↗</span>
@@ -1456,6 +1600,17 @@ export default function Home() {
                 <p id={`project-description-${selectedProject.key}`}>
                   {selectedProject.description[locale]}
                 </p>
+                <section className="project-story" aria-label={`${selectedProject.name} · ${copy.storySectionLabel}`}>
+                  {(Object.keys(copy.storyLabels) as Array<keyof ProjectStory>).map((key, index) => (
+                    <article key={key}>
+                      <span>{String(index + 1).padStart(2, "0")}</span>
+                      <div>
+                        <strong>{copy.storyLabels[key]}</strong>
+                        <p>{selectedProject.story[key][locale]}</p>
+                      </div>
+                    </article>
+                  ))}
+                </section>
                 <dl className="project-case-facts">
                   {(Object.keys(copy.briefLabels) as ProjectFactKey[]).map((key) => (
                     <div key={key}>
