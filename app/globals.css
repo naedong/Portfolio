@@ -360,7 +360,7 @@ a:focus-visible {
   margin: 0;
   font-size: clamp(48px, 5.25vw, 88px);
   font-weight: 650;
-  line-height: 0.97;
+  line-height: 1.06;
   letter-spacing: -0.06em;
   text-wrap: balance;
 }
@@ -1199,7 +1199,7 @@ html:lang(ko) .project-case-facts dt {
   font-family: var(--font-readable);
   font-size: clamp(38px, 5vw, 62px);
   font-weight: 650;
-  line-height: 0.9;
+  line-height: 1;
   letter-spacing: -0.045em;
 }
 
@@ -2232,6 +2232,14 @@ html:lang(ko) .project-case-facts dt {
   .content-panel h1 { font-size: clamp(31px, 9vw, 39px); }
   .zone-description { margin-top: 12px; font-size: 13px; line-height: 1.52; }
   .zone-extra { margin-top: 13px; }
+  .capability-card {
+    min-height: 58px;
+    grid-template-columns: 25px minmax(78px, 0.66fr) 1.34fr;
+    padding-block: 8px;
+  }
+  .direction-statement { padding-block: 8px; }
+  .focus-board > header { min-height: 38px; padding-block: 7px; }
+  .focus-board-track article { padding-block: 8px; }
   .project-row { min-height: 44px; padding-block: 7px; }
   .project-screen-display { gap: 10px; padding: 32px 0 30px; }
   .project-dialog-stage { height: min(72svh, 430px); height: min(72dvh, 430px); min-height: 340px; }
@@ -2246,6 +2254,27 @@ html:lang(ko) .project-case-facts dt {
   .language-switch button { min-width: 29px; padding-inline: 4px; }
   .say-hi { min-width: 76px; padding-left: 9px; }
   .content-panel { left: 10px; width: calc(100% - 20px); padding-inline: 16px; }
+  .capability-card {
+    grid-template-columns: 24px minmax(0, 1fr);
+  }
+  .capability-card p {
+    grid-column: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .direction-statement { grid-template-columns: 54px minmax(0, 1fr); }
+  .focus-board-track article {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+  .focus-board-track p {
+    grid-column: 2;
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
   .journey-rail { right: 8px; left: 8px; }
   .journey-rail button { font-size: 10px; }
   .contact-dialog-actions { grid-template-columns: 1fr; }
@@ -2265,6 +2294,66 @@ html:lang(ko) .project-case-facts dt {
   }
 }
 
+@media (min-width: 901px) {
+  .content-panel {
+    top: calc(96px + clamp(14px, 2vh, 24px));
+    bottom: 48px;
+    height: auto;
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: clamp(18px, 7vh, 72px) 18px 20px 0;
+    transform: none;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--zone-accent) 55%, transparent) transparent;
+    animation: reveal-desktop-content 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .content-panel[data-zone="about"] { padding-top: 6px; }
+
+  .control-hint { display: none; }
+
+  @keyframes reveal-desktop-content {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+@media (max-height: 960px) and (min-width: 901px) {
+  .content-panel {
+    top: 106px;
+    bottom: 54px;
+    height: auto;
+    max-height: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 6px 18px 18px 0;
+    transform: none;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--zone-accent) 55%, transparent) transparent;
+    animation: reveal-content-short 500ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  @keyframes reveal-content-short {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .zone-index { margin-bottom: 13px; }
+  .eyebrow { margin-bottom: 13px; }
+  .content-panel h1 {
+    font-size: clamp(40px, 4.45vw, 66px);
+    line-height: 1.06;
+  }
+  .zone-description { margin-top: 17px; }
+  .zone-extra { margin-top: 17px; }
+  .capability-card { min-height: 104px; }
+  .control-hint { display: none; }
+  .footer-note { bottom: 20px; }
+}
+
 @media (max-height: 820px) and (min-width: 901px) {
   .project-screen-display { gap: 22px; padding-block: 42px 15px; }
   .project-screen-pedestal { max-height: min(43svh, 370px); }
@@ -2272,8 +2361,8 @@ html:lang(ko) .project-case-facts dt {
 
 @media (max-height: 710px) and (min-width: 901px) {
   .topbar { height: 76px; }
-  .content-panel { transform: translateY(-44%); }
-  .content-panel h1 { font-size: clamp(40px, 4.5vw, 67px); }
+  .content-panel { top: 88px; bottom: 46px; }
+  .content-panel h1 { font-size: clamp(38px, 4.1vw, 60px); }
   .zone-description { margin-top: 18px; }
   .zone-extra { margin-top: 17px; }
   .project-row { padding-block: 9px; }
